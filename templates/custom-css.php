@@ -47,6 +47,14 @@ $background_image_url = MaHelper::get_default_background_image_url()
         background-color: <?php echo $solid_color; ?>;
     }
 
+    #mainNav .navbar-brand {
+        color: <?php echo $solid_color; ?>;
+    }
+
+    #mainNav .navbar-brand:hover {
+        color: <?php echo MaHelper::darken_color($solid_color,1.2); ?>;
+    }
+
     li.page-item.active .page-link {
         background-color: <?php echo $solid_color; ?> !important;
         border-color: <?php echo $solid_color; ?> !important;
