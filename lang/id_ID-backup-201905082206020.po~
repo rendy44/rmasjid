@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Masjid\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-05-07 15:29+0000\n"
-"PO-Revision-Date: 2019-05-07 15:31+0000\n"
+"POT-Creation-Date: 2019-05-08 09:52+0000\n"
+"PO-Revision-Date: 2019-05-08 09:53+0000\n"
 "Last-Translator: admin <rendy.de.p@gmail.com>\n"
 "Language-Team: Bahasa Indonesia\n"
 "Language: id_ID\n"
@@ -849,7 +849,7 @@ msgstr ""
 "Ini akan ditetapkan sebagai gambar latar belakang default, biarkan kosong "
 "untuk menggunakan gambar stok (gambar masjid nabawi)"
 
-#: includes/class/MaOptionsPage.php:80
+#: includes/class/MaOptionsPage.php:80 includes/class/MaOptionsPage.php:201
 msgid "Color Scheme"
 msgstr "Skema Warna"
 
@@ -919,34 +919,58 @@ msgstr "Youtube"
 
 #: includes/class/MaOptionsPage.php:180 includes/class/MaOptionsPage.php:185
 msgid "Footer"
-msgstr "Bagan Bawah"
+msgstr "Bagan Kaki"
 
 #: includes/class/MaOptionsPage.php:189
+msgid "Design"
+msgstr "Desain"
+
+#: includes/class/MaOptionsPage.php:196
+msgid "Full"
+msgstr "Penuh"
+
+#: includes/class/MaOptionsPage.php:197
+msgid "Minimalism"
+msgstr "Minimalis"
+
+#: includes/class/MaOptionsPage.php:208
+msgid "Dark"
+msgstr "Gelap"
+
+#: includes/class/MaOptionsPage.php:209
+msgid "Light"
+msgstr "Cerah"
+
+#: includes/class/MaOptionsPage.php:210
+msgid "Default"
+msgstr "Bawaan"
+
+#: includes/class/MaOptionsPage.php:214
 msgid "First Column Title"
 msgstr "Judul Kolom Pertama"
 
-#: includes/class/MaOptionsPage.php:194
+#: includes/class/MaOptionsPage.php:223
 msgid "First Column Links"
 msgstr "Permalink Kolom Pertama"
 
-#: includes/class/MaOptionsPage.php:196 includes/class/MaOptionsPage.php:209
-#: includes/class/MaOptionsPage.php:222
+#: includes/class/MaOptionsPage.php:225 includes/class/MaOptionsPage.php:238
+#: includes/class/MaOptionsPage.php:251
 msgid "You can select multiple options"
 msgstr "Anda bisa memilih beberapa pilihan"
 
-#: includes/class/MaOptionsPage.php:202
+#: includes/class/MaOptionsPage.php:231
 msgid "Second Column Title"
 msgstr "Judul Kolom Kedua"
 
-#: includes/class/MaOptionsPage.php:207
+#: includes/class/MaOptionsPage.php:236
 msgid "Second Column Links"
 msgstr "Permalink Kolom Kedua"
 
-#: includes/class/MaOptionsPage.php:215
+#: includes/class/MaOptionsPage.php:244
 msgid "Third Column Title"
 msgstr "Judul Kolom Ketiga"
 
-#: includes/class/MaOptionsPage.php:220
+#: includes/class/MaOptionsPage.php:249
 msgid "Third Column Links"
 msgstr "Permalink Kolom Ketiga"
 

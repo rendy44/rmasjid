@@ -49,6 +49,17 @@ if ( ! class_exists( 'MaActivator' ) ) {
 		 */
 		private function __construct() {
 			$this->_create_dep_pages();
+			$this->_set_web_settings();
+		}
+
+		/**
+		 * Set default settings
+		 */
+		private function _set_web_settings() {
+			$options = get_option( 'ma_page_maps' );
+			update_option( 'show_on_front', 'page' );
+			update_option( 'page_on_front', $options['page_home'] );
+			update_option( 'page_for_posts', $options['page_article'] );
 		}
 
 		/**
@@ -60,6 +71,7 @@ if ( ! class_exists( 'MaActivator' ) ) {
 			// check options for created pages
 			$opt_page_ids  = (array) get_option( 'ma_page_ids' );
 			$opt_page_keys = (array) get_option( 'ma_page_keys' );
+			$opt_page_maps = (array) get_option( 'ma_page_maps' );
 
 			foreach ( $this->dep_pages as $name => $title ) {
 				// if not available in option, then create one
@@ -67,14 +79,15 @@ if ( ! class_exists( 'MaActivator' ) ) {
 					$opt_page_keys[] = $name;
 					$created_page    = $this->_create_post( $title, 'page' );
 					update_post_meta( $created_page, '_wp_page_template', "page-templates/{$name}.php" );
-					$opt_page_ids[] = $created_page;
-
+					$opt_page_ids[]                   = $created_page;
+					$opt_page_maps[ 'page_' . $name ] = $created_page;
 				}
 			}
 
 			// update options
 			update_option( 'ma_page_ids', $opt_page_ids );
 			update_option( 'ma_page_keys', $opt_page_keys );
+			update_option( 'ma_page_maps', $opt_page_maps );
 		}
 
 		/**
@@ -82,12 +95,11 @@ if ( ! class_exists( 'MaActivator' ) ) {
 		 */
 		private function _map_dep_pages() {
 			$this->dep_pages = [
-				'kajian'     => 'Jadwal Kajian',
-				'donasi'     => 'Program Donasi',
-				'tentang'    => 'Tentang Kami',
-				'artikel'    => 'Artikel',
-				'konsultasi' => 'Konsultasi',
-				'kontak'     => 'Hubungi Kami',
+				'campaign' => __( 'Campaign', 'masjid' ),
+				'history'  => __( 'History', 'masjid' ),
+				'home'     => __( 'Home', 'masjid' ),
+				'lecture'  => __( 'Lecture', 'masjid' ),
+				'article'  => __( 'Article', 'masjid' ),
 			];
 		}
 

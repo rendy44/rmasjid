@@ -21,15 +21,17 @@ if ( ! defined( 'ABSPATH' ) ) {
             <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
         </button>
 		<?php
-		wp_nav_menu( [
-			'theme_location'  => 'main_nav',
-			'depth'           => 1,
-			'container'       => 'div',
-			'container_class' => 'collapse navbar-collapse',
-			'container_id'    => 'navbarResponsive',
-			'menu_class'      => 'navbar-nav text-uppercase ml-auto',
-			'walker'          => new MaNavWalker(),
-		] );
+		if ( has_nav_menu( 'main_nav' ) ) {
+			wp_nav_menu( [
+				'theme_location'  => 'main_nav',
+				'depth'           => 1,
+				'container'       => 'div',
+				'container_class' => 'collapse navbar-collapse',
+				'container_id'    => 'navbarResponsive',
+				'menu_class'      => 'navbar-nav text-uppercase ml-auto',
+				'walker'          => new MaNavWalker(),
+			] );
+		}
 		?>
     </div>
 </nav>
