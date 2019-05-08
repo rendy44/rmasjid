@@ -1,0 +1,93 @@
+// Styling for the masthead
+section.masthead {
+	padding: 0;
+	background-image: linear-gradient(to top right, rgba(30, 30, 30, .6), rgba(0, 0, 0, .8)), url("../img/main-background.jpg");
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-position: top center;
+	background-size: cover;
+	text-align: center;
+	color: white;
+	.intro-text {
+		padding-top: 120px;
+		padding-bottom: 90px;
+		.intro-lead-in {
+			font-size: 24px;
+			font-style: normal;
+			line-height: 1.3;
+			margin-bottom: 25px;
+			@include serif-font;
+		}
+		.intro-heading {
+			font-size: 32px;
+			font-weight: 600;
+			line-height: 1.3;
+			margin-bottom: 30px;
+			@include heading-font;
+		}
+	}
+	&.small {
+		.intro-text {
+			padding-top: 120px;
+			padding-bottom: 60px;
+		}
+	}
+}
+
+@media (min-width: 576px) {
+	section.masthead {
+		.intro-text {
+			padding-top: 170px;
+			padding-bottom: 140px;
+			.intro-lead-in {
+				font-size: 29px;
+			}
+			.intro-heading {
+				font-size: 42px;
+			}
+		}
+		&.small {
+			.intro-text {
+				padding-top: 140px;
+				padding-bottom: 130px;
+			}
+		}
+	}
+}
+
+@media(min-width: 768px) {
+	section.masthead {
+		.intro-text {
+			padding-top: 220px;
+			padding-bottom: 190px;
+			.intro-lead-in {
+				font-size: 34px;
+			}
+			.intro-heading {
+				font-size: 52px;
+				font-weight: 700;
+			}
+		}
+		&.small {
+			.intro-text {
+				padding-top: 150px;
+				padding-bottom: 160px;
+			}
+		}
+	}
+}
+
+@media (min-width: 992px) {
+	section.masthead {
+		.intro-text {
+			padding-top: 270px;
+			padding-bottom: 150px;
+			.intro-text {
+				font-size: 39px;
+			}
+			.intro-heading {
+				font-size: 57px;
+			}
+		}
+	}
+}

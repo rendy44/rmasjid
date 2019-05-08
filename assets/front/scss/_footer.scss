@@ -1,0 +1,281 @@
+// Styling for the footer
+footer {
+	ul.social-buttons {
+		margin-bottom: 0;
+		li {
+			a {
+				font-size: 14px;
+				line-height: 30px;
+				display: block;
+				width: 30px;
+				height: 30px;
+				-webkit-transition: all 0.3s;
+				-moz-transition: all 0.3s;
+				transition: all 0.3s;
+				color: white;
+				border-radius: 100%;
+				outline: none;
+				background-color: $gray-900;
+				text-align: center;
+				&:active,
+				&:focus,
+				&:hover {
+					background-color: $primary;
+				}
+			}
+		}
+	}
+	&.bg-light {
+		ul.social-buttons {
+			li {
+				a {
+					background-color: $gray-300;
+				}
+			}
+		}
+	}
+	&.style1 {
+		margin-top: 5rem;
+		padding-top: 3rem;
+		h4 {
+			color: $gray-100;
+			font-size: 1.2em;
+			font-weight: 400;
+			@include title-font;
+		}
+		p {
+			color: $gray-300;
+		}
+		ul.links {
+			padding-left: 0;
+			list-style: none;
+			margin-bottom: 0;
+			li {
+				a {
+					color: $gray-300;
+					&:hover,
+					&.active {
+						color: $gray-200;
+						text-decoration: underline;
+					}
+				}
+			}
+		}
+		.row {
+			.desc {
+				text-align: center;
+				margin-bottom: 1rem;
+			}
+			.first,
+			.mid {
+				text-align: center;
+				margin-bottom: 1rem;
+			}
+			.last {
+				text-align: center;
+			}
+		}
+		.network {
+			margin-top: 2rem;
+			text-align: center;
+			padding: .7rem;
+			background-color: $gray-900;
+			color: $gray-300;
+			font-size: .9rem;
+		}
+		&.bg-light {
+			h4 {
+				color: $gray-900;
+			}
+			p {
+				color: $gray-600;
+			}
+			ul.links {
+				li {
+					a {
+						color: $gray-600;
+						&:hover,
+						&:active {
+							color: $gray-700;
+						}
+					}
+				}
+			}
+			.network {
+				background-color: $gray-100;
+				color: $gray-600;
+			}
+		}
+		&.bg-primary {
+			.network {
+				color: $gray-100;
+			}
+		}
+	}
+	&.style2 {
+		padding: 25px 0;
+		text-align: center;
+		.row {
+			.socnet {
+				margin: 1rem 0;
+			}
+		}
+		span.copyright {
+			font-size: 90%;
+			text-transform: none;
+			@include heading-font;
+			color: $gray-300;
+		}
+		ul.quicklinks {
+			li {
+				a {
+					font-size: 90%;
+					color: $gray-300;
+					&:hover {
+						color: $gray-200;
+					}
+				}
+				ul.sub-items {
+					bottom: 100%;
+					min-width: 150px;
+					list-style: none;
+					padding-left: 0;
+					display: none;
+					transition: all .3s;
+					position: absolute;
+					margin-top: -120px;
+					li {
+						text-align: left;
+						a {
+							background-color: $dark;
+							color: $gray-300;
+							padding: 5px 8px;
+							margin-top: 5px;
+							font-size: 80%;
+							&:before {
+								content: '+ ';
+							}
+							&:hover {
+								text-decoration: none;
+								color: $gray-200;
+							}
+						}
+					}
+				}
+				&:hover {
+					ul.sub-items {
+						display: block;
+					}
+				}
+			}
+			margin-bottom: 0;
+			text-transform: none;
+			@include heading-font;
+		}
+		&.bg-light {
+			span.copyright {
+				color: $gray-900;
+			}
+			ul.quicklinks {
+				li {
+					a {
+						color: $gray-600;
+						&:hover {
+							color: $gray-800;
+						}
+					}
+					ul.sub-items {
+						li {
+							a {
+								background-color: $light;
+								color: $gray-600;
+								&:hover {
+									color: $gray-800;
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		&.bg-primary {
+			span.copyright {
+				color: $gray-100;
+			}
+			ul.quicklinks {
+				li {
+					a {
+						color: $gray-200;
+						&:hover {
+							color: $gray-100;
+						}
+					}
+					ul.sub-items {
+						li {
+							a {
+								background-color: $primary;
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+@media (min-width: 576px) {
+	footer {
+		&.style1 {
+			.row {
+				.first {
+					text-align: right;
+					margin-bottom: 0;
+				}
+				.mid {
+					margin-bottom: 0;
+				}
+				.last {
+					text-align: left;
+				}
+			}
+		}
+	}
+}
+
+@media (min-width: 992px) {
+	footer {
+		&.style1 {
+			.row {
+				.desc {
+					text-align: left;
+					margin-bottom: 0;
+				}
+				.first,
+				.mid,
+				.last {
+					text-align: left;
+				}
+			}
+		}
+	}
+}
+
+@media (min-width: 768px) {
+	footer {
+		&.style2 {
+			.row {
+				div {
+					&:first-child {
+						text-align: left;
+					}
+					&:last-child {
+						text-align: right;
+					}
+				}
+				.socnet {
+					margin: 0;
+				}
+			}
+		}
+	}
+}

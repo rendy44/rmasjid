@@ -1,0 +1,89 @@
+// Style for utilities component
+.darken {
+	position: relative;
+	&:after {
+		content: '';
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		display: block;
+		background-color: rgba(20, 20, 20, 0.6);
+	}
+}
+
+li.page-item {
+	.page-link {
+		color: $primary !important;
+	}
+	&.active {
+		.page-link {
+			color: #fff !important;
+			background: $primary !important;
+			border-color: $primary !important;
+		}
+	}
+	.page-link {
+		&:active,
+		&:focus {
+			box-shadow: none;
+		}
+	}
+}
+
+.arabic {
+	font-weight: 400;
+	@include font-arabic;
+}
+
+.custom-control-input {
+	&:not(:disabled):active ~ .custom-control-label::before {
+		border-color: rgba($primary, .7) !important;
+		background-color: rgba($primary, .7) !important;
+	}
+	&:checked ~ .custom-control-label::before {
+		border-color: $primary !important;
+		background-color: $primary !important;
+		box-shadow: none !important;
+	}
+	&:not(:checked) {
+		box-shadow: none !important;
+	}
+}
+
+.disclaimer {
+	font-size: 12px;
+}
+
+.alert.detail-amount {
+	border: 1px solid #e7e9eb;
+	.row {
+		border-bottom: 1px solid #e7e9eb;
+		margin-bottom: 5px;
+		padding-bottom: 5px;
+		&:last-child {
+			margin-bottom: 0;
+			padding-bottom: 0;
+			border-bottom: none;
+		}
+	}
+}
+
+.card.bank-item {
+	.card-footer {
+		background: #fff;
+	}
+}
+
+.progress {
+	.progress-bar {
+		background: $primary;
+	}
+}
+
+.point-heading {
+	margin: 15px 0;
+	text-transform: none;
+	font-weight: 500;
+}

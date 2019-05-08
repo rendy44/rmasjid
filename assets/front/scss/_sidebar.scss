@@ -1,0 +1,24 @@
+// Style for sidebar
+
+.card.widget-item {
+	.card-header {
+		&:first-letter {
+			border-bottom: 1px solid $primary;
+		}
+		background: transparent;
+		font-weight: 400;
+		border-bottom: none;
+		padding-bottom: .25rem;
+	}
+	//hr {
+	//  margin: 0 1.25rem;
+	//}
+	.card-body {
+		padding-top: .5rem;
+		ul {
+			padding-left: 0;
+			list-style: none;
+			margin-bottom: 0;
+		}
+	}
+}

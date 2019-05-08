@@ -1,0 +1,68 @@
+// Style for page lecture
+
+.card.style1 {
+	transition: all .3s ease;
+	-moz-transition: all .3s ease;
+	-o-transition: all .3s ease;
+	-webkit-transition: all .3s ease;
+	&:hover {
+		transform: scale(1.03);
+		-o-transform: scale(1.03);
+		-webkit-transform: scale(1.03);
+		-moz-transform: scale(1.03);
+		-ms-transform: scale(1.03);
+		box-shadow: 0 .2rem .5rem .2rem rgba(#eee, .3) !important;
+		.overlay {
+			opacity: 1;
+		}
+	}
+	.card-body {
+		position: relative;
+		padding-bottom: calc(1.25rem + 20px);
+		.author-avatar {
+			margin-top: -50px;
+		}
+		.permalink {
+			h5 {
+				font-weight: 500;
+			}
+		}
+		.card-link {
+			position: absolute;
+			bottom: 1.25rem;
+			&:hover {
+				text-decoration: underline;
+			}
+		}
+	}
+	.card-footer {
+		background: #fff;
+		font-size: 12px;
+		//padding-top: .3rem;
+		//padding-bottom: .3rem;
+		ul {
+			padding-left: 0;
+			margin-bottom: 0;
+			list-style: none;
+			li {
+				display: inline-block;
+				&:not(:last-child) {
+					margin-right: 4px;
+					&:after {
+						padding-left: 8px;
+						content: '-';
+					}
+				}
+			}
+		}
+	}
+}
+
+.post_detail {
+	margin: 10px 0;
+	border: 1px dashed $primary;
+	padding: 8px 10px;
+	p {
+		margin-bottom: 0;
+	}
+}

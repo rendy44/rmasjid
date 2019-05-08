@@ -1,0 +1,54 @@
+.cmb2-wrap {
+	input.cmb2-text-money {
+		width: 150px !important;
+	}
+}
+
+.cmb-row {
+	&.finfo {
+		margin-top: -15px !important;
+		.cmb-th label {
+			font-weight: 400 !important;
+			font-size: 12px;
+		}
+	}
+	&.cmb-repeat-group-field,
+	&.cmb-remove-field-row {
+		padding: 0 !important;
+	}
+}
+
+.footer_selection {
+	ul.cmb2-list {
+		li {
+			padding: 10px 0;
+			margin-bottom: 10px;
+			border-bottom: 1px dotted #f3f3f3;
+			input[type=checkbox] {
+				position: absolute;
+			}
+			label {
+				cursor: pointer;
+				background-size: contain;
+				background-repeat: no-repeat;
+				display: inline-block;
+				width: 420px;
+				text-indent: -9999px;
+				white-space: nowrap;
+			}
+			&:first-child {
+				label {
+					background-image: url('../img/footer1-min.jpg');
+					height: 100px;
+				}
+			}
+			&:last-child {
+				margin-bottom: 0;
+				label {
+					background-image: url('../img/footer2-min.jpg');
+					height: 40px;
+				}
+			}
+		}
+	}
+}

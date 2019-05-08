@@ -1,0 +1,122 @@
+// Styling for the services section
+
+.campaign-summary {
+	padding-bottom: 49px;
+	.sticky-info {
+		position: absolute;
+		bottom: 0;
+		left: 15px;
+		right: 15px;
+	}
+}
+
+.donasi-slider-item {
+	height: 250px;
+	background: no-repeat center center scroll;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+	h4 {
+		line-height: 1.3;
+		font-size: 1.1rem;
+	}
+	p.lead {
+		font-size: 1rem;
+		line-height: 1.3;
+	}
+}
+
+@media (min-width: 576px) {
+	.donasi-slider-item {
+		h4 {
+			line-height: 1.3;
+			font-size: 1.2rem;
+		}
+		p.lead {
+			font-size: 1.1rem;
+			line-height: 1.4;
+		}
+	}
+}
+
+@media (min-width: 768px) {
+	.donasi-slider-item {
+		height: 300px;
+		h4 {
+			font-size: 1.3rem;
+		}
+		p.lead {
+			font-size: 1.2rem;
+			line-height: 1.4;
+		}
+	}
+}
+
+.history_item {
+	img {
+		width: 42px;
+		height: 42px;
+		object-fit: cover;
+		-o-object-fit: cover;
+	}
+}
+
+@media (min-width: 375px) {
+	.history_item {
+		img {
+			width: 56px;
+			height: 56px;
+		}
+	}
+}
+
+@media (min-width: 425px) {
+	.history_item {
+		img {
+			width: 63px;
+			height: 63px;
+		}
+	}
+}
+
+@media (min-width: 576px) {
+	.history_item {
+		img {
+			width: 27px;
+			height: 27px;
+		}
+	}
+}
+
+@media (min-width: 768px) {
+	.history_item {
+		img {
+			width: 47px;
+			height: 47px;
+		}
+	}
+}
+
+@media (min-width: 992px) {
+	.history_item {
+		img {
+			width: 62px;
+			height: 62px;
+		}
+	}
+}
+
+.why-item {
+	.fa-stack {
+		transition: all .4s ease;
+		-moz-transition: all .4s ease;
+		-o-transition: all .4s ease;
+		-webkit-transition: all .4s ease;
+		&:hover {
+			-ms-transform: rotate(36deg) scale(1.1); /* IE 9 */
+			-webkit-transform: rotate(36deg) scale(1.1); /* Safari 3-8 */
+			transform: rotate(36deg) scale(1.1);
+		}
+	}
+}
