@@ -95,11 +95,11 @@ if ( ! class_exists( 'MaActivator' ) ) {
 		 */
 		private function _map_dep_pages() {
 			$this->dep_pages = [
-				'campaign' => __( 'Campaign', 'masjid' ),
-				'history'  => __( 'History', 'masjid' ),
+				'campaign' => __( 'All Campaigns', 'masjid' ),
+				'history'  => __( 'Our History', 'masjid' ),
 				'home'     => __( 'Home', 'masjid' ),
-				'lecture'  => __( 'Lecture', 'masjid' ),
-				'article'  => __( 'Article', 'masjid' ),
+				'lecture'  => __( 'Lecture Schedules', 'masjid' ),
+				'article'  => __( 'All Articles', 'masjid' ),
 			];
 		}
 
