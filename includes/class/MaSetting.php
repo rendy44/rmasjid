@@ -64,8 +64,8 @@ if ( ! class_exists( 'MaSetting' ) ) {
 				'id'            => 'ma_right_bar',
 				'before_widget' => '<div class="card widget-item mb-4">',
 				'before_title'  => '<h5 class="card-header">',
-				'after_title'   => '</h5><div class="card-body">',
-				'after_widget'  => '</div></div>',
+				'after_title'   => '</h5>',
+				'after_widget'  => '</div>',
 			] );
 		}
 
