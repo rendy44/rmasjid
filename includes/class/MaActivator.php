@@ -73,14 +73,21 @@ if ( ! class_exists( 'MaActivator' ) ) {
 			$opt_page_keys = (array) get_option( 'ma_page_keys' );
 			$opt_page_maps = (array) get_option( 'ma_page_maps' );
 
-			foreach ( $this->dep_pages as $name => $title ) {
+			foreach ( $this->dep_pages as $name => $obj ) {
 				// if not available in option, then create one
 				if ( ! in_array( $name, $opt_page_keys ) ) {
-					$opt_page_keys[] = $name;
-					$created_page    = $this->_create_post( $title, 'page' );
-					update_post_meta( $created_page, '_wp_page_template', "page-templates/{$name}.php" );
+					$title                            = ! empty( $obj['title'] ) ? $obj['title'] : ucwords( $name );
+					$contents                         = ! empty( $obj['content'] ) ? $obj['content'] : [];
+					$opt_page_keys[]                  = $name;
+					$created_page                     = $this->_create_post( $title, 'page' );
 					$opt_page_ids[]                   = $created_page;
 					$opt_page_maps[ 'page_' . $name ] = $created_page;
+
+					$post_metas = [ '_wp_page_template' => 'page-templates/' . $name . '.php' ];
+					if ( $contents ) {
+						$post_metas = array_merge( $post_metas, $contents );
+					}
+					MaHelper::upfield( $created_page, $post_metas );
 				}
 			}
 
@@ -95,11 +102,29 @@ if ( ! class_exists( 'MaActivator' ) ) {
 		 */
 		private function _map_dep_pages() {
 			$this->dep_pages = [
-				'campaign' => __( 'All Campaigns', 'masjid' ),
-				'history'  => __( 'Our History', 'masjid' ),
-				'home'     => __( 'Home', 'masjid' ),
-				'lecture'  => __( 'Lecture Schedules', 'masjid' ),
-				'article'  => __( 'All Articles', 'masjid' ),
+				'campaign' => [
+					'title' => __( 'All Campaigns', 'masjid' ),
+				],
+				'history'  => [
+					'title' => __( 'Our History', 'masjid' ),
+				],
+				'home'     => [
+					'title'   => __( 'Home', 'masjid' ),
+					'content' => [
+						'campaign_title'    => __( 'Give Your Best', 'masjid' ),
+						'campaign_subtitle' => __( 'These are some reasons why you should give donation through our programs', 'masjid' ),
+						'lecture_title'     => __( 'Latest Lecture Schedules', 'masjid' ),
+						'lecture_subtitle'  => __( 'Some active lecture schedules that you can attend along with your family nor friends', 'masjid' ),
+						'article_title'     => __( 'Latest Published Articles', 'masjid' ),
+						'article_subtitle'  => __( 'We will keep sharing useful articles both for your dunya and hereafter', 'masjid' ),
+					],
+				],
+				'lecture'  => [
+					'title' => __( 'Lecture Schedules', 'masjid' ),
+				],
+				'article'  => [
+					'title' => __( 'All Articles', 'masjid' ),
+				],
 			];
 		}
 
