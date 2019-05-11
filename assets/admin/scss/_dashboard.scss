@@ -1,0 +1,75 @@
+ul.payment-overview {
+	overflow: auto;
+	li {
+		padding-bottom: 10px;
+		border-bottom: 1px solid #eee;
+		a {
+			display: inline-block;
+			font-size: larger;
+			position: relative;
+			padding-left: 55px;
+			vertical-align: middle;
+			span {
+				display: block;
+				color: #888;
+				font-size: 12px;
+			}
+			&:before {
+				font-family: "dashicons";
+				font-size: 40px;
+				position: absolute;
+				left: 0;
+				top: 50%;
+				margin-top: -9px; // half height of icon
+			}
+		}
+		&.total_success {
+			a {
+				&:before {
+					content: "\f159";
+					color: #7ad03a;
+				}
+			}
+		}
+		&.total {
+			float: left;
+			width: 50%;
+			a {
+				&:before {
+					content: "\f502";
+					color: #999;
+				}
+			}
+		}
+		&.total_waiting_payment {
+			float: left;
+			width: 50%;
+			a {
+				&:before {
+					content: "\f348";
+					color: #2ea2cc;
+				}
+			}
+		}
+		&.total_waiting_confirmation {
+			float: left;
+			width: 50%;
+			a {
+				&:before {
+					content: "\f534";
+					color: #ffba00;
+				}
+			}
+		}
+		&.total_rejected {
+			float: left;
+			width: 50%;
+			a {
+				&:before {
+					content: "\f153";
+					color: #a00;
+				}
+			}
+		}
+	}
+}

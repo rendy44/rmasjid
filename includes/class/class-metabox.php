@@ -51,6 +51,7 @@ if ( ! class_exists( 'Metabox' ) ) {
 			add_action( 'cmb2_admin_init', [ $this, 'donasi_metabox_callback' ] );
 			add_action( 'cmb2_admin_init', [ $this, 'front_page_metabox_callback' ] );
 			add_action( 'cmb2_admin_init', [ $this, 'history_page_metabox_callback' ] );
+			add_action( 'wp_dashboard_setup', [ $this, 'custom_dashboard_widget_callback' ] );
 		}
 
 		/**
@@ -609,6 +610,39 @@ if ( ! class_exists( 'Metabox' ) ) {
 					'type' => 'textarea_small',
 				]
 			);
+		}
+
+		/**
+		 * Register dashboard custom widget
+		 */
+		public function custom_dashboard_widget_callback() {
+			wp_add_dashboard_widget( 'campaign_payment_widget', __( 'Payment Overview', 'masjid' ), [ $this, 'campaign_payment_widget_callback' ] );
+		}
+
+		/**
+		 * Callback for rendering campaign payment widget
+		 */
+		public function campaign_payment_widget_callback() {
+			$admin_url = admin_url( 'edit.php?post_type=bayar' );
+			?>
+			<ul class="payment-overview">
+				<li class="total_success">
+					<a href="<?php echo $admin_url; ?>">Rp <strong>2.000.000.000</strong><span>Total invoice</span></a>
+				</li>
+				<li class="total">
+					<a href="<?php echo $admin_url; ?>"><strong>44</strong> payments<span>Total payment</span></a>
+				</li>
+				<li class="total_waiting_payment">
+					<a href="<?php echo $admin_url; ?>"><strong>44</strong> payments<span>Waiting payment</span></a>
+				</li>
+				<li class="total_waiting_confirmation">
+					<a href="<?php echo $admin_url; ?>"><strong>10</strong> payments<span>Waiting confirmation</span></a>
+				</li>
+				<li class="total_rejected">
+					<a href="<?php echo $admin_url; ?>"><strong>35</strong> payments<span>Already rejected</span></a>
+				</li>
+			</ul>
+			<?php
 		}
 	}
 }
