@@ -4,19 +4,23 @@
  * User: ASUS
  * Date: 4/20/2019
  * Time: 12:30 PM
+ *
+ * @package Masjid/Settinfs
  */
+
+namespace Masjid\Settings;
+
+use Masjid\Helpers;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
-
-if ( ! class_exists( 'MaCPT' ) ) {
+if ( ! class_exists( 'CPT' ) ) {
 
 	/**
 	 * Class MaCPT
 	 */
-	class MaCPT {
-
+	class CPT {
 		/**
 		 * Private instance variable
 		 *
@@ -27,9 +31,9 @@ if ( ! class_exists( 'MaCPT' ) ) {
 		/**
 		 * Singleton
 		 *
-		 * @return MaCPT|null
+		 * @return CPT|null
 		 */
-		static function init() {
+		public static function init() {
 			if ( null === self::$instance ) {
 				self::$instance = new self();
 			}
@@ -41,22 +45,22 @@ if ( ! class_exists( 'MaCPT' ) ) {
 		 * MaCPT constructor.
 		 */
 		private function __construct() {
-			add_action( 'init', [ $this, '_register_kajian' ] );
-			add_action( 'init', [ $this, '_register_donasi' ] );
-			add_action( 'init', [ $this, '_register_pembayaran' ] );
+			add_action( 'init', [ $this, 'register_kajian' ] );
+			add_action( 'init', [ $this, 'register_donasi' ] );
+			add_action( 'init', [ $this, 'register_pembayaran' ] );
 		}
 
 		/**
 		 * Register kajian post type
 		 */
-		function _register_kajian() {
+		public function register_kajian() {
 			$args = [
 				'labels'              => [
 					'name'          => __( 'Lectures', 'masjid' ),
 					'singular_name' => __( 'Lecture', 'masjid' ),
 				],
 				'supports'            => [
-					//					'title',
+					// 'title',
 					'thumbnail',
 				],
 				'taxonomies'          => [],
@@ -79,7 +83,7 @@ if ( ! class_exists( 'MaCPT' ) ) {
 		/**
 		 * Register donasi post type
 		 */
-		function _register_donasi() {
+		public function register_donasi() {
 			$args = [
 				'labels'              => [
 					'name'          => __( 'Campaigns', 'masjid' ),
@@ -104,7 +108,6 @@ if ( ! class_exists( 'MaCPT' ) ) {
 				'menu_icon'           => 'dashicons-heart',
 			];
 			register_post_type( 'donasi', $args );
-
 			add_filter( 'manage_donasi_posts_columns', [ $this, 'manage_donasi_column_title_callback' ] );
 			add_action( 'manage_donasi_posts_custom_column', [ $this, 'manage_donasi_columns_callback' ], 10, 2 );
 		}
@@ -112,7 +115,7 @@ if ( ! class_exists( 'MaCPT' ) ) {
 		/**
 		 * Register pembayaran post type
 		 */
-		function _register_pembayaran() {
+		public function register_pembayaran() {
 			$args = [
 				'labels'              => [
 					'name'          => __( 'Payments', 'masjid' ),
@@ -120,8 +123,6 @@ if ( ! class_exists( 'MaCPT' ) ) {
 				],
 				'supports'            => [
 					'none',
-					//					'title',
-					//					'thumbnail',
 				],
 				'taxonomies'          => [],
 				'hierarchical'        => false,
@@ -136,14 +137,8 @@ if ( ! class_exists( 'MaCPT' ) ) {
 				'publicly_queryable'  => true,
 				'capability_type'     => 'page',
 				'menu_icon'           => 'dashicons-star-filled',
-				//				'capabilities'        => [
-				//					'create_posts' => false,
-				//				],
 			];
 			register_post_type( 'bayar', $args );
-
-			//			add_action( 'cmb2_admin_init', [ $this, 'donasi_metabox_callback' ] );
-
 			add_filter( 'manage_bayar_posts_columns', [ $this, 'manage_bayar_column_title_callback' ] );
 			add_action( 'manage_bayar_posts_custom_column', [ $this, 'manage_bayar_columns_callback' ], 10, 2 );
 		}
@@ -153,7 +148,7 @@ if ( ! class_exists( 'MaCPT' ) ) {
 		 *
 		 * @return array
 		 */
-		function manage_bayar_column_title_callback() {
+		public function manage_bayar_column_title_callback() {
 			$columns = [
 				'cb'           => '<input type="checkbox" />',
 				'title'        => __( 'Title', 'masjid' ),
@@ -170,39 +165,39 @@ if ( ! class_exists( 'MaCPT' ) ) {
 		/**
 		 * Manage payment column value
 		 *
-		 * @param $column
-		 * @param $post_id
+		 * @param string $column  column name.
+		 * @param int    $post_id post id.
 		 */
-		function manage_bayar_columns_callback( $column, $post_id ) {
+		public function manage_bayar_columns_callback( $column, $post_id ) {
 			switch ( $column ) {
 				case 'name':
-					echo MaHelper::pfield( 'name', $post_id );
+					echo Helpers\Helper::pfield( 'name', $post_id ); // phpcs:ignore WordPress.Security.EscapeOutput
 					break;
 				case 'total_amount':
-					$total_amount = (int) MaHelper::pfield( 'total_amount', $post_id );
+					$total_amount = (int) Helpers\Helper::pfield( 'total_amount', $post_id );
 					echo 'Rp' . number_format( $total_amount, '0', ',', '.' );
 					break;
 				case 'campaign':
-					$campaign_id = MaHelper::pfield( 'campaign_id', $post_id );
-					echo '<a href="' . get_edit_post_link( $campaign_id ) . '"><strong>' . get_the_title( $campaign_id ) . '</strong></a>';
+					$campaign_id = Helpers\Helper::pfield( 'campaign_id', $post_id );
+					echo '<a href="' . get_edit_post_link( $campaign_id ) . '"><strong>' . get_the_title( $campaign_id ) . '</strong></a>'; // phpcs:ignore WordPress.Security.EscapeOutput
 					break;
 				case 'status':
-					$status = MaHelper::pfield( 'status' );
+					$status = Helpers\Helper::pfield( 'status' );
 					switch ( $status ) {
 						case 'waiting_payment':
-							echo '<strong>' . __( 'Waiting Payment', 'masjid' ) . '</strong>';
+							echo '<strong>' . __( 'Waiting Payment', 'masjid' ) . '</strong>'; // phpcs:ignore WordPress.Security.EscapeOutput
 							break;
 						case 'waiting_confirmation':
-							echo '<strong>' . __( 'Waiting Confirmation', 'masjid' ) . '</strong>';
+							echo '<strong>' . __( 'Waiting Confirmation', 'masjid' ) . '</strong>'; // phpcs:ignore WordPress.Security.EscapeOutput
 							break;
 						case 'waiting_validation':
-							echo '<strong style="color: #856404; background: #fff3cd">' . __( 'Waiting Validation', 'masjid' ) . '</strong>';
+							echo '<strong style="color: #856404; background: #fff3cd">' . __( 'Waiting Validation', 'masjid' ) . '</strong>'; // phpcs:ignore WordPress.Security.EscapeOutput
 							break;
 						case 'done':
-							echo '<strong style="color: #155724; background: #d4edda">' . __( 'Done', 'masjid' ) . '</strong>';
+							echo '<strong style="color: #155724; background: #d4edda">' . __( 'Done', 'masjid' ) . '</strong>'; // phpcs:ignore WordPress.Security.EscapeOutput
 							break;
 						case 'rejected':
-							echo '<strong style="color: #721c24; background: #f8d7da">' . __( 'Rejected', 'masjid' ) . '</strong>';
+							echo '<strong style="color: #721c24; background: #f8d7da">' . __( 'Rejected', 'masjid' ) . '</strong>'; // phpcs:ignore WordPress.Security.EscapeOutput
 							break;
 					}
 					break;
@@ -214,7 +209,7 @@ if ( ! class_exists( 'MaCPT' ) ) {
 		 *
 		 * @return array
 		 */
-		function manage_donasi_column_title_callback() {
+		public function manage_donasi_column_title_callback() {
 			$columns = [
 				'cb'        => '<input type="checkbox" />',
 				'title'     => __( 'Title', 'masjid' ),
@@ -230,30 +225,29 @@ if ( ! class_exists( 'MaCPT' ) ) {
 		/**
 		 * Manage campaign column value
 		 *
-		 * @param $column
-		 * @param $post_id
+		 * @param string $column  column name.
+		 * @param int    $post_id post id.
 		 */
-		function manage_donasi_columns_callback( $column, $post_id ) {
+		public function manage_donasi_columns_callback( $column, $post_id ) {
 			switch ( $column ) {
 				case 'target':
-					$target = (int) MaHelper::pfield( 'main_detail_target', $post_id );
+					$target = (int) Helpers\Helper::pfield( 'main_detail_target', $post_id );
 					echo 'Rp' . number_format( $target, 0, ',', '.' );
 					break;
 				case 'collected':
-					$collected = (int) MaHelper::pfield( 'main_detail_collected', $post_id );
+					$collected = (int) Helpers\Helper::pfield( 'main_detail_collected', $post_id );
 					echo 'Rp' . number_format( $collected, 0, ',', '.' );
 					break;
 				case 'due_date':
-					$target        = (int) MaHelper::pfield( 'main_detail_target', $post_id );
-					$collected     = (int) MaHelper::pfield( 'main_detail_collected', $post_id );
-					$duedate       = MaHelper::pfield( 'main_detail_due_date', $post_id );
-					$calculation   = MaHelper::count_campaign( $target, $collected, $duedate );
+					$target        = (int) Helpers\Helper::pfield( 'main_detail_target', $post_id );
+					$collected     = (int) Helpers\Helper::pfield( 'main_detail_collected', $post_id );
+					$duedate       = Helpers\Helper::pfield( 'main_detail_due_date', $post_id );
+					$calculation   = Helpers\Helper::count_campaign( $target, $collected, $duedate );
 					$duedate_style = $duedate ? 'style="color: #721c24; background: #f8d7da"' : '';
-					echo '<strong ' . $duedate_style . '>' . $calculation['duedate_html_single'] . '</strong>';
+					echo '<strong ' . $duedate_style . '>' . $calculation['duedate_html_single'] . '</strong>'; // phpcs:ignore WordPress.Security.EscapeOutput
 					break;
 			}
 		}
 	}
 }
-
-MaCPT::init();
+CPT::init();

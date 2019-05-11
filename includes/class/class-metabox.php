@@ -4,15 +4,25 @@
  * User: ASUS
  * Date: 5/3/2019
  * Time: 9:45 PM
+ *
+ * @package Masjid/Settings
  */
+
+namespace Masjid\Settings;
+
+use WP_Query;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
+if ( ! class_exists( 'Metabox' ) ) {
 
-if ( ! class_exists( 'MaMetaBox' ) ) {
-	class MaMetaBox {
-
+	/**
+	 * Class Metabox
+	 *
+	 * @package Masjid\Settings
+	 */
+	class Metabox {
 		/**
 		 * Private instance variable
 		 *
@@ -23,9 +33,9 @@ if ( ! class_exists( 'MaMetaBox' ) ) {
 		/**
 		 * Singleton
 		 *
-		 * @return MaMetaBox|null
+		 * @return Metabox|null
 		 */
-		static function init() {
+		public static function init() {
 			if ( null === self::$instance ) {
 				self::$instance = new self();
 			}
@@ -46,23 +56,22 @@ if ( ! class_exists( 'MaMetaBox' ) ) {
 		/**
 		 * Callback for registering kajian metabox
 		 */
-		function kajian_metabox_callback() {
+		public function kajian_metabox_callback() {
 			$main_box_options  = [
 				'id'           => 'cmb_kajian_main',
 				'title'        => __( 'Lecture', 'masjid' ),
-				'object_types' => [ 'kajian' ], // Post type
+				'object_types' => [ 'kajian' ], // Post type.
 				'context'      => 'normal',
 				'priority'     => 'high',
-				'show_names'   => true, // Show field names on the left
+				'show_names'   => true, // Show field names on the left.
 			];
 			$cmb_main          = new_cmb2_box( $main_box_options );
 			$main_tabs_setting = [
 				'config' => $main_box_options,
-				'layout' => 'vertical', // Default : horizontal
+				'layout' => 'vertical', // Default : horizontal.
 				'tabs'   => [],
 			];
-
-			// Time Detail
+			// Time Detail.
 			$main_tabs_setting['tabs'][] = [
 				'id'     => 'tab_main_time',
 				'title'  => __( 'Time Information', 'masjid' ),
@@ -137,7 +146,7 @@ if ( ! class_exists( 'MaMetaBox' ) ) {
 						'attributes'        => [
 							'select_all_button'      => false,
 							'data-conditional-id'    => 'recurring_period',
-							'data-conditional-value' => json_encode( [ 'monthly', 'annually' ] ),
+							'data-conditional-value' => wp_json_encode( [ 'monthly', 'annually' ] ),
 						],
 					],
 					[
@@ -159,7 +168,7 @@ if ( ! class_exists( 'MaMetaBox' ) ) {
 						'attributes'        => [
 							'select_all_button'      => false,
 							'data-conditional-id'    => 'recurring_period',
-							'data-conditional-value' => json_encode( [ 'weekly', 'monthly', 'annually' ] ),
+							'data-conditional-value' => wp_json_encode( [ 'weekly', 'monthly', 'annually' ] ),
 						],
 					],
 					[
@@ -198,8 +207,7 @@ if ( ! class_exists( 'MaMetaBox' ) ) {
 					],
 				],
 			];
-
-			// Detail
+			// Detail.
 			$main_tabs_setting['tabs'][] = [
 				'id'     => 'tab_main_detail',
 				'title'  => __( 'Detail', 'masjid' ),
@@ -269,33 +277,33 @@ if ( ! class_exists( 'MaMetaBox' ) ) {
 					],
 				],
 			];
-
-			$cmb_main->add_field( [
-				'id'   => '__tabs',
-				'type' => 'tabs',
-				'tabs' => $main_tabs_setting,
-			] );
+			$cmb_main->add_field(
+				[
+					'id'   => '__tabs',
+					'type' => 'tabs',
+					'tabs' => $main_tabs_setting,
+				]
+			);
 		}
 
 		/**
 		 * Callback for registering donasi metabox
 		 */
-		function donasi_metabox_callback() {
-			$main_box_options  = [
+		public function donasi_metabox_callback() {
+			$main_box_options            = [
 				'id'           => 'cmb_donasi_main',
 				'title'        => __( 'Campaign', 'masjid' ),
-				'object_types' => [ 'donasi' ], // Post type
+				'object_types' => [ 'donasi' ],
 				'context'      => 'normal',
 				'priority'     => 'high',
-				'show_names'   => true, // Show field names on the left
+				'show_names'   => true,
 			];
-			$cmb_main          = new_cmb2_box( $main_box_options );
-			$main_tabs_setting = [
+			$cmb_main                    = new_cmb2_box( $main_box_options );
+			$main_tabs_setting           = [
 				'config' => $main_box_options,
-				'layout' => 'vertical', // Default : horizontal
+				'layout' => 'vertical',
 				'tabs'   => [],
 			];
-
 			$main_tabs_setting['tabs'][] = [
 				'id'     => 'tab_main_info',
 				'title'  => __( 'Information', 'masjid' ),
@@ -331,8 +339,8 @@ if ( ! class_exists( 'MaMetaBox' ) ) {
 						'name'         => __( 'Gallery', 'masjid' ),
 						'id'           => 'main_images_gallery',
 						'type'         => 'file_list',
-						'preview_size' => [ 100, 100 ], // Default: array( 50, 50 )
-						'query_args'   => [ 'type' => 'image' ], // Only images attachment
+						'preview_size' => [ 100, 100 ],
+						'query_args'   => [ 'type' => 'image' ],
 						'text'         => [
 							'add_upload_files_text' => __( 'Select Image', 'masjid' ),
 							'remove_image_text'     => __( 'Remove', 'masjid' ),
@@ -382,41 +390,47 @@ if ( ! class_exists( 'MaMetaBox' ) ) {
 						'desc' => __( 'Leave it empty, for unlimited due date', 'masjid' ),
 						'id'   => 'main_detail_due_date',
 						'type' => 'text_date_timestamp',
-						// 'timezone_meta_key' => 'wiki_test_timezone',
-						// 'date_format' => 'l jS \of F Y',
 					],
 				],
 			];
-
-			$cmb_main->add_field( [
-				'id'   => '__tabs',
-				'type' => 'tabs',
-				'tabs' => $main_tabs_setting,
-			] );
+			$cmb_main->add_field(
+				[
+					'id'   => '__tabs',
+					'type' => 'tabs',
+					'tabs' => $main_tabs_setting,
+				]
+			);
 		}
 
 		/**
 		 * Callback for registering front page metabox
 		 */
-		function front_page_metabox_callback() {
+		public function front_page_metabox_callback() {
 			$main_box_options  = [
 				'id'           => 'cmb_front_page',
 				'title'        => __( 'Front Page', 'masjid' ),
-				'object_types' => [ 'page' ], // Post type
-				'show_on'      => [ 'key' => 'page-template', 'value' => 'page-templates/home.php' ],
+				'object_types' => [ 'page' ],
+				'show_on'      => [
+					'key'   => 'page-template',
+					'value' => 'page-templates/home.php',
+				],
 				'context'      => 'normal',
 				'priority'     => 'high',
-				'show_names'   => true, // Show field names on the left
+				'show_names'   => true,
 			];
 			$cmb_main          = new_cmb2_box( $main_box_options );
 			$main_tabs_setting = [
 				'config' => $main_box_options,
-				'layout' => 'vertical', // Default : horizontal
+				'layout' => 'vertical',
 				'tabs'   => [],
 			];
-
-			$pages_arr   = [];
-			$query_pages = new WP_Query( [ 'post_type' => 'page', 'posts_per_page' => - 1 ] );
+			$pages_arr         = [];
+			$query_pages       = new WP_Query(
+				[
+					'post_type'      => 'page',
+					'posts_per_page' => - 1,
+				]
+			);
 			if ( $query_pages->have_posts() ) {
 				while ( $query_pages->have_posts() ) {
 					$query_pages->the_post();
@@ -503,88 +517,99 @@ if ( ! class_exists( 'MaMetaBox' ) ) {
 					],
 				],
 			];
-			$cmb_main->add_field( [
-				'id'   => '__tabs',
-				'type' => 'tabs',
-				'tabs' => $main_tabs_setting,
-			] );
+			$cmb_main->add_field(
+				[
+					'id'   => '__tabs',
+					'type' => 'tabs',
+					'tabs' => $main_tabs_setting,
+				]
+			);
 		}
 
 		/**
 		 * Callback for registering history page metabox
 		 */
-		function history_page_metabox_callback() {
+		public function history_page_metabox_callback() {
 			$main_box_options = [
 				'id'           => 'cmb_history_page',
 				'title'        => __( 'History Page', 'masjid' ),
-				'object_types' => [ 'page' ], // Post type
-				'show_on'      => [ 'key' => 'page-template', 'value' => 'page-templates/history.php' ],
+				'object_types' => [ 'page' ],
+				'show_on'      => [
+					'key'   => 'page-template',
+					'value' => 'page-templates/history.php',
+				],
 				'context'      => 'normal',
 				'priority'     => 'high',
-				'show_names'   => true, // Show field names on the left
+				'show_names'   => true,
 			];
 			$cmb_main         = new_cmb2_box( $main_box_options );
-			$cmb_main->add_field( [
-				'name' => __( 'Content', 'masjid' ),
-				'id'   => 'content',
-				'type' => 'textarea_small',
-				// 'repeatable' => true, // Repeatable fields are supported w/in repeatable groups (for most types)
-			] );
-			$group_field_id = $cmb_main->add_field( [
-				'id'      => 'timeline',
-				'type'    => 'group',
-				//				'description' => __( 'Generates reusable form entries', 'cmb2' ),
-				// 'repeatable'  => false, // use false if you want non-repeatable group
-				'options' => [
-					'group_title'   => __( 'Timeline {#}', 'masjid' ),
-					// since version 1.1.4, {#} gets replaced by row number
-					'add_button'    => __( 'Add Timeline', 'masjid' ),
-					'remove_button' => __( 'Remove Timeline', 'masjid' ),
-					'sortable'      => true,
-					// 'closed'         => true, // true to have the groups closed by default
-					// 'remove_confirm' => esc_html__( 'Are you sure you want to remove?', 'cmb2' ), // Performs confirmation before removing group.
-				],
-			] );
-			$cmb_main->add_group_field( $group_field_id, [
-				'name' => __( 'Period', 'masjid' ),
-				'desc' => __( 'Estimation time period when the event occur', 'masjid' ),
-				'id'   => 'period',
-				'type' => 'text',
-				// 'repeatable' => true, // Repeatable fields are supported w/in repeatable groups (for most types)
-			] );
-			$cmb_main->add_group_field( $group_field_id, [
-				'name' => __( 'Title', 'masjid' ),
-				'id'   => 'title',
-				'type' => 'text',
-				// 'repeatable' => true, // Repeatable fields are supported w/in repeatable groups (for most types)
-			] );
-			$cmb_main->add_group_field( $group_field_id, [
-				'name'         => __( 'Image', 'masjid' ),
-				'id'           => 'image',
-				'type'         => 'file',
-				'options'      => [
-					'url' => false,
-				],
-				'text'         => [
-					'add_upload_file_text' => __( 'Select Image', 'masjid' ),
-				],
-				'query_args'   => [
-					'type' => [
-						'image/gif',
-						'image/jpeg',
-						'image/png',
+			$cmb_main->add_field(
+				[
+					'name' => __( 'Content', 'masjid' ),
+					'id'   => 'content',
+					'type' => 'textarea_small',
+				]
+			);
+			$group_field_id = $cmb_main->add_field(
+				[
+					'id'      => 'timeline',
+					'type'    => 'group',
+					'options' => [
+						'group_title'   => __( 'Timeline {#}', 'masjid' ),
+						'add_button'    => __( 'Add Timeline', 'masjid' ),
+						'remove_button' => __( 'Remove Timeline', 'masjid' ),
+						'sortable'      => true,
 					],
-				],
-				'preview_size' => 'thumbnail',
-			] );
-			$cmb_main->add_group_field( $group_field_id, [
-				'name' => __( 'Description', 'masjid' ),
-				'id'   => 'description',
-				'type' => 'textarea_small',
-				// 'repeatable' => true, // Repeatable fields are supported w/in repeatable groups (for most types)
-			] );
+				]
+			);
+			$cmb_main->add_group_field(
+				$group_field_id,
+				[
+					'name' => __( 'Period', 'masjid' ),
+					'desc' => __( 'Estimation time period when the event occur', 'masjid' ),
+					'id'   => 'period',
+					'type' => 'text',
+				]
+			);
+			$cmb_main->add_group_field(
+				$group_field_id,
+				[
+					'name' => __( 'Title', 'masjid' ),
+					'id'   => 'title',
+					'type' => 'text',
+				]
+			);
+			$cmb_main->add_group_field(
+				$group_field_id,
+				[
+					'name'         => __( 'Image', 'masjid' ),
+					'id'           => 'image',
+					'type'         => 'file',
+					'options'      => [
+						'url' => false,
+					],
+					'text'         => [
+						'add_upload_file_text' => __( 'Select Image', 'masjid' ),
+					],
+					'query_args'   => [
+						'type' => [
+							'image/gif',
+							'image/jpeg',
+							'image/png',
+						],
+					],
+					'preview_size' => 'thumbnail',
+				]
+			);
+			$cmb_main->add_group_field(
+				$group_field_id,
+				[
+					'name' => __( 'Description', 'masjid' ),
+					'id'   => 'description',
+					'type' => 'textarea_small',
+				]
+			);
 		}
 	}
 }
-
-MaMetaBox::init();
+Metabox::init();

@@ -4,19 +4,29 @@
  * User: ASUS
  * Date: 4/24/2019
  * Time: 3:32 PM
+ *
+ * @package Masjid/CMB2/Extension
  */
+
+namespace Masjid\CMB2\Extension;
+
+use CMB2;
+use CMB2_Boxes;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
-
-if ( ! class_exists( 'MaCMB2Conditionals' ) ) {
+if ( ! class_exists( 'CMB2_Conditionals' ) ) {
 
 	/**
-	 * Class MaCMB2Conditionals
+	 * Class CMB2_Conditionals
 	 */
-	class MaCMB2Conditionals {
-
+	class CMB2_Conditionals {
+		/**
+		 * Private instance variable
+		 *
+		 * @var null
+		 */
 		private static $instance = null;
 		/**
 		 * Priority on which our actions are hooked in.
@@ -24,14 +34,12 @@ if ( ! class_exists( 'MaCMB2Conditionals' ) ) {
 		 * @const int
 		 */
 		const PRIORITY = 99999;
-
 		/**
 		 * Version number of the plugin.
 		 *
 		 * @const string
 		 */
 		const VERSION = '1.0.4';
-
 		/**
 		 * CMB2 Form elements which can be set to "required".
 		 *
@@ -51,7 +59,12 @@ if ( ! class_exists( 'MaCMB2Conditionals' ) ) {
 			'multicheck_inline',
 		];
 
-		static function init() {
+		/**
+		 * Singleton
+		 *
+		 * @return \Masjid\CMB2\Extension\CMB2_Conditionals|null
+		 */
+		public static function init() {
 			if ( null === self::$instance ) {
 				self::$instance = new self();
 			}
@@ -66,15 +79,16 @@ if ( ! class_exists( 'MaCMB2Conditionals' ) ) {
 			if ( ! defined( 'CMB2_LOADED' ) || false === CMB2_LOADED ) {
 				return;
 			}
-
 			add_action( 'admin_init', [ $this, 'admin_init' ], self::PRIORITY );
-			//			add_action( 'admin_footer', array( $this, 'admin_footer' ), self::PRIORITY );
-
 			foreach ( $this->maybe_required_form_elms as $element ) {
-				add_filter( "cmb2_{$element}_attributes", [
-					$this,
-					'maybe_set_required_attribute',
-				], self::PRIORITY );
+				add_filter(
+					"cmb2_{$element}_attributes",
+					[
+						$this,
+						'maybe_set_required_attribute',
+					],
+					self::PRIORITY
+				);
 			}
 		}
 
@@ -85,16 +99,7 @@ if ( ! class_exists( 'MaCMB2Conditionals' ) ) {
 			if ( ! in_array( $GLOBALS['pagenow'], [ 'post-new.php', 'post.php' ], true ) ) {
 				return;
 			}
-
-			//			wp_enqueue_script(
-			//				'cmb2-conditionals',
-			//				plugins_url( '/cmb2-conditionals.js', __FILE__ ),
-			//				array( 'jquery', 'cmb2-scripts' ),
-			//				self::VERSION,
-			//				true
-			//			);
 		}
-
 
 		/**
 		 * Ensure valid html for the required attribute.
@@ -107,7 +112,6 @@ if ( ! class_exists( 'MaCMB2Conditionals' ) ) {
 			if ( ! isset( $args['required'] ) ) {
 				return $args;
 			}
-
 			// Comply with HTML specs.
 			if ( true === $args['required'] ) {
 				$args['required'] = 'required';
@@ -116,27 +120,29 @@ if ( ! class_exists( 'MaCMB2Conditionals' ) ) {
 			return $args;
 		}
 
-
 		/**
 		 * Hook in the filtering of the data being saved.
 		 */
 		public function admin_init() {
 			$cmb2_boxes = CMB2_Boxes::get_all();
-
 			foreach ( $cmb2_boxes as $cmb_id => $cmb2_box ) {
-				add_action( "cmb2_{$cmb2_box->object_type()}_process_fields_{$cmb_id}", [
-					$this,
-					'filter_data_to_save',
-				], self::PRIORITY, 2 );
+				add_action(
+					"cmb2_{$cmb2_box->object_type()}_process_fields_{$cmb_id}",
+					[
+						$this,
+						'filter_data_to_save',
+					],
+					self::PRIORITY,
+					2
+				);
 			}
 		}
-
 
 		/**
 		 * Filter the data received from the form in order to remove those values
 		 * which are not suppose to be enabled to edit according to the declared conditionals.
 		 *
-		 * @param \CMB2 $cmb2 An instance of the CMB2 class.
+		 * @param \CMB2 $cmb2      An instance of the CMB2 class.
 		 * @param int   $object_id The id of the object being saved, could post_id, comment_id, user_id.
 		 *
 		 * The potentially adjusted array is returned via reference $cmb2.
@@ -146,20 +152,17 @@ if ( ! class_exists( 'MaCMB2Conditionals' ) ) {
 				if ( ! ( 'group' === $field_args['type'] || ( array_key_exists( 'attributes', $field_args ) && array_key_exists( 'data-conditional-id', $field_args['attributes'] ) ) ) ) {
 					continue;
 				}
-
 				if ( 'group' === $field_args['type'] ) {
 					foreach ( $field_args['fields'] as $group_field ) {
 						if ( ! ( array_key_exists( 'attributes', $group_field ) && array_key_exists( 'data-conditional-id', $group_field['attributes'] ) ) ) {
 							continue;
 						}
-
 						$field_id               = $group_field['id'];
 						$conditional_id         = $group_field['attributes']['data-conditional-id'];
-						$decoded_conditional_id = @json_decode( $conditional_id );
+						$decoded_conditional_id = json_decode( $conditional_id );
 						if ( $decoded_conditional_id ) {
 							$conditional_id = $decoded_conditional_id;
 						}
-
 						if ( is_array( $conditional_id ) && ! empty( $conditional_id ) && ! empty( $cmb2->data_to_save[ $conditional_id[0] ] ) ) {
 							foreach ( $cmb2->data_to_save[ $conditional_id[0] ] as $key => $group_data ) {
 								$cmb2->data_to_save[ $conditional_id[0] ][ $key ] = $this->filter_field_data_to_save( $group_data, $field_id, $conditional_id[1], $group_field['attributes'] );
@@ -168,22 +171,20 @@ if ( ! class_exists( 'MaCMB2Conditionals' ) ) {
 						continue;
 					}
 				} else {
-					$field_id       = $field_args['id'];
-					$conditional_id = $field_args['attributes']['data-conditional-id'];
-
+					$field_id           = $field_args['id'];
+					$conditional_id     = $field_args['attributes']['data-conditional-id'];
 					$cmb2->data_to_save = $this->filter_field_data_to_save( $cmb2->data_to_save, $field_id, $conditional_id, $field_args['attributes'] );
 				}
 			}
 		}
 
-
 		/**
 		 * Determine if the data for one individual field should be saved or not.
 		 *
-		 * @param array  $data_to_save The received $_POST data.
-		 * @param string $field_id The CMB2 id of this field.
+		 * @param array  $data_to_save   The received $_POST data.
+		 * @param string $field_id       The CMB2 id of this field.
 		 * @param string $conditional_id The CMB2 id of the field this field is conditional on.
-		 * @param array  $attributes The CMB2 field attributes.
+		 * @param array  $attributes     The CMB2 field attributes.
 		 *
 		 * @return array Array of data to save.
 		 */
@@ -191,11 +192,10 @@ if ( ! class_exists( 'MaCMB2Conditionals' ) ) {
 			if ( array_key_exists( 'data-conditional-value', $attributes ) ) {
 
 				$conditional_value         = $attributes['data-conditional-value'];
-				$decoded_conditional_value = @json_decode( $conditional_value );
+				$decoded_conditional_value = json_decode( $conditional_value );
 				if ( $decoded_conditional_value ) {
 					$conditional_value = $decoded_conditional_value;
 				}
-
 				if ( ! isset( $data_to_save[ $conditional_id ] ) ) {
 					if ( 'off' !== $conditional_value ) {
 						unset( $data_to_save[ $field_id ] );
@@ -203,13 +203,11 @@ if ( ! class_exists( 'MaCMB2Conditionals' ) ) {
 
 					return $data_to_save;
 				}
-
-				if ( ( ! is_array( $conditional_value ) && ! is_array( $data_to_save[ $conditional_id ] ) ) && $data_to_save[ $conditional_id ] != $conditional_value ) {
+				if ( ( ! is_array( $conditional_value ) && ! is_array( $data_to_save[ $conditional_id ] ) ) && $data_to_save[ $conditional_id ] !== $conditional_value ) {
 					unset( $data_to_save[ $field_id ] );
 
 					return $data_to_save;
 				}
-
 				if ( is_array( $conditional_value ) || is_array( $data_to_save[ $conditional_id ] ) ) {
 					$match = array_intersect( (array) $conditional_value, (array) $data_to_save[ $conditional_id ] );
 					if ( empty( $match ) ) {
@@ -219,7 +217,6 @@ if ( ! class_exists( 'MaCMB2Conditionals' ) ) {
 					}
 				}
 			}
-
 			if ( ! isset( $data_to_save[ $conditional_id ] ) || ! $data_to_save[ $conditional_id ] ) {
 				unset( $data_to_save[ $field_id ] );
 			}
@@ -228,5 +225,4 @@ if ( ! class_exists( 'MaCMB2Conditionals' ) ) {
 		}
 	} /* End of class. */
 }
-
-MaCMB2Conditionals::init();
+CMB2_Conditionals::init();

@@ -4,24 +4,30 @@
  * User: ASUS
  * Date: 4/19/2019
  * Time: 6:28 PM
+ *
+ * @package Masjid/Helpers
  */
+
+namespace Masjid\Helpers;
+
+use Masjid\Transactions;
+use WP_Query;
+use DateTime;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
-
-if ( ! class_exists( 'MaHelper' ) ) {
+if ( ! class_exists( 'Helper' ) ) {
 
 	/**
 	 * Class MaHelper
 	 */
-	class MaHelper {
-
+	class Helper {
 		/**
 		 * Get post thumbnail url
 		 *
-		 * @param bool   $post_id
-		 * @param string $size
+		 * @param bool   $post_id post_id.
+		 * @param string $size    thumbnail resolution.
 		 *
 		 * @return false|string
 		 */
@@ -36,8 +42,8 @@ if ( ! class_exists( 'MaHelper' ) ) {
 		/**
 		 * Custom pagination
 		 *
-		 * @param $numpages
-		 * @param $paged
+		 * @param int $numpages max numpage.
+		 * @param int $paged    current page.
 		 *
 		 * @return string
 		 */
@@ -53,20 +59,19 @@ if ( ! class_exists( 'MaHelper' ) ) {
 			 * and custom queries.
 			 */
 			$paged = empty( $paged ) ? 1 : $paged;
-			if ( $numpages == '' ) {
+			if ( '' === $numpages ) {
 				global $wp_query;
 				$numpages = $wp_query->max_num_pages;
 				if ( ! $numpages ) {
 					$numpages = 1;
 				}
 			}
-
 			/**
 			 * We construct the pagination arguments to enter into our paginate_links
 			 * function.
 			 */
 			$pagination_args = [
-				'base'         => @add_query_arg( 'paged', '%#%' ),
+				'base'         => add_query_arg( 'paged', '%#%' ),
 				'total'        => $numpages,
 				'current'      => $paged,
 				'show_all'     => false,
@@ -79,9 +84,8 @@ if ( ! class_exists( 'MaHelper' ) ) {
 				'add_args'     => true,
 				'add_fragment' => '',
 			];
-
-			$result         = "";
-			$paginate_links = paginate_links( $pagination_args );
+			$result          = '';
+			$paginate_links  = paginate_links( $pagination_args );
 			if ( $paginate_links ) {
 				$result .= '<div class="pagination"><ul class="pagination">';
 				foreach ( $paginate_links as $page ) {
@@ -99,7 +103,13 @@ if ( ! class_exists( 'MaHelper' ) ) {
 		 * @return array
 		 */
 		public static function get_column_width() {
-			return is_active_sidebar( 'ma_right_bar' ) ? [ 'main' => 8, 'post' => 6 ] : [ 'main' => 12, 'post' => 4 ];
+			return is_active_sidebar( 'ma_right_bar' ) ? [
+				'main' => 8,
+				'post' => 6,
+			] : [
+				'main' => 12,
+				'post' => 4,
+			];
 		}
 
 		/**
@@ -108,49 +118,53 @@ if ( ! class_exists( 'MaHelper' ) ) {
 		 * @return array
 		 */
 		public static function count_available_campaign() {
-			$result    = [ 'items' => [] ];
-			$target    = 0;
-			$collected = 0;
-			$date_now  = new DateTime();
-			if ( false === ( $query_latest_campaigns = get_transient( 'query_latest_campaigns' ) ) ) {
-				$query_latest_campaigns = new WP_Query( [
-					'post_type'      => 'donasi',
-					'post_status'    => 'publish',
-					'posts_per_page' => - 1,
-					'meta_query'     => [
-						'relation' => 'and',
-						[
-							'relation' => 'or',
+			$result                 = [ 'items' => [] ];
+			$target                 = 0;
+			$collected              = 0;
+			$date_now               = new DateTime();
+			$query_latest_campaigns = get_transient( 'query_latest_campaigns' );
+			if ( false === $query_latest_campaigns ) {
+				$query_latest_campaigns = new WP_Query(
+					[
+						'post_type'      => 'donasi',
+						'post_status'    => 'publish',
+						'posts_per_page' => - 1,
+						'meta_query'     => // phpcs:ignore WordPress.DB
 							[
-								'key'     => 'main_detail_due_date',
-								'compare' => 'NOT EXISTS',
+								'relation' => 'and',
+								[
+									'relation' => 'or',
+									[
+										'key'     => 'main_detail_due_date',
+										'compare' => 'NOT EXISTS',
+									],
+									[
+										'key'     => 'main_detail_due_date',
+										'value'   => $date_now->getTimestamp(),
+										'compare' => '>',
+									],
+								],
+								[
+									'relation' => 'or',
+									[
+										'key'     => 'main_detail_collected_percent',
+										'compare' => 'NOT EXISTS',
+									],
+									[
+										'type'    => 'NUMERIC',
+										'key'     => 'main_detail_collected_percent',
+										'value'   => 100,
+										'compare' => '<',
+									],
+								],
 							],
-							[
-								'key'     => 'main_detail_due_date',
-								'value'   => $date_now->getTimestamp(),
-								'compare' => '>',
-							],
-						],
-						[
-							'relation' => 'or',
-							[
-								'key'     => 'main_detail_collected_percent',
-								'compare' => 'NOT EXISTS',
-							],
-							[
-								'type'    => 'NUMERIC',
-								'key'     => 'main_detail_collected_percent',
-								'value'   => 100,
-								'compare' => '<',
-							],
-						],
-					],
-				] );
+					]
+				);
 				set_transient( 'query_latest_campaigns', $query_latest_campaigns, 1 * HOUR_IN_SECONDS );
 			}
-
 			if ( $query_latest_campaigns->have_posts() ) {
-				while ( $query_latest_campaigns->have_posts() ) : $query_latest_campaigns->the_post();
+				while ( $query_latest_campaigns->have_posts() ) {
+					$query_latest_campaigns->the_post();
 					$target    += (float) self::pfield( 'main_detail_target' );
 					$collected += (float) self::pfield( 'main_detail_collected' );
 					if ( count( $result['items'] ) < 5 ) {
@@ -164,7 +178,7 @@ if ( ! class_exists( 'MaHelper' ) ) {
 							'short_description_fix' => self::limit_char( $short_description, 100 ),
 						];
 					}
-				endwhile;
+				}
 			}
 			$result['sum'] = self::count_campaign( $target, $collected );
 
@@ -174,9 +188,9 @@ if ( ! class_exists( 'MaHelper' ) ) {
 		/**
 		 * Calculate campaign detail
 		 *
-		 * @param        $target
-		 * @param int    $collected
-		 * @param string $duedate
+		 * @param int    $target    the amount of campaign target.
+		 * @param int    $collected the amount of campaign collected funfs.
+		 * @param string $duedate   the due date of campaign.
 		 *
 		 * @return array
 		 */
@@ -184,7 +198,7 @@ if ( ! class_exists( 'MaHelper' ) ) {
 			$duedate_html        = '&infin;';
 			$duedate_html_single = '&infin;';
 			if ( ! empty( $duedate ) ) {
-				$now                 = time(); // or your date as well
+				$now                 = time(); // or your date as well.
 				$your_date           = $duedate;
 				$datediff            = $your_date - $now;
 				$days                = round( $datediff / ( 60 * 60 * 24 ) );
@@ -209,8 +223,8 @@ if ( ! class_exists( 'MaHelper' ) ) {
 		/**
 		 * Get post meta
 		 *
-		 * @param      $key
-		 * @param bool $post_id
+		 * @param string $key     the name of post meta.
+		 * @param bool   $post_id post id.
 		 *
 		 * @return mixed
 		 */
@@ -223,8 +237,8 @@ if ( ! class_exists( 'MaHelper' ) ) {
 		/**
 		 * Update post meta
 		 *
-		 * @param       $post_id
-		 * @param array $args
+		 * @param int   $post_id post id.
+		 * @param array $args    post meta key and followed by its value.
 		 */
 		public static function upfield( $post_id, $args = [] ) {
 			if ( ! empty( $args ) ) {
@@ -237,24 +251,26 @@ if ( ! class_exists( 'MaHelper' ) ) {
 		/**
 		 * Setup custom query
 		 *
-		 * @param int    $page
-		 * @param string $post_type
-		 * @param array  $query_args
-		 * @param string $posts_per_page
+		 * @param int    $page           current page.
+		 * @param string $post_type      post type.
+		 * @param array  $query_args     custom meta_query args.
+		 * @param string $posts_per_page posts_per_page.
 		 *
 		 * @return WP_Query
 		 */
 		public static function setup_query( $page = 1, $post_type = 'post', $query_args = [], $posts_per_page = '' ) {
 			$posts_per_page = ! empty( $posts_per_page ) ? $posts_per_page : get_option( 'posts_per_page' );
-			$setup_query    = new WP_Query( [
-				'post_type'      => $post_type,
-				'post_status'    => 'publish',
-				'posts_per_page' => $posts_per_page,
-				'orderby'        => 'date',
-				'order'          => 'desc',
-				'paged'          => $page,
-				'meta_query'     => $query_args,
-			] );
+			$setup_query    = new WP_Query(
+				[
+					'post_type'      => $post_type,
+					'post_status'    => 'publish',
+					'posts_per_page' => $posts_per_page,
+					'orderby'        => 'date',
+					'order'          => 'desc',
+					'paged'          => $page,
+					'meta_query'     => $query_args, // phpcs:ignore WordPress.DB.SlowDBQuery
+				]
+			);
 
 			return $setup_query;
 		}
@@ -262,8 +278,8 @@ if ( ! class_exists( 'MaHelper' ) ) {
 		/**
 		 * Limit string
 		 *
-		 * @param     $string
-		 * @param int $limit
+		 * @param string $string original string.
+		 * @param int    $limit  limit string index.
 		 *
 		 * @return string
 		 */
@@ -274,8 +290,8 @@ if ( ! class_exists( 'MaHelper' ) ) {
 		/**
 		 * Get lecture short description
 		 *
-		 * @param      $lecture_id
-		 * @param bool $upper_first
+		 * @param int  $lecture_id  lecture_id.
+		 * @param bool $upper_first maybe display as capitalized.
 		 *
 		 * @return string
 		 */
@@ -284,15 +300,14 @@ if ( ! class_exists( 'MaHelper' ) ) {
 			$lec_material = self::pfield( 'material_title', $lecture_id );
 			$lecturer     = self::pfield( 'lecturer', $lecture_id );
 			$lec_note     = self::pfield( 'lecturer_note' );
-			$result       = ( 'recurring' == $lec_type ? __( 'recurring lecture', 'masjid' ) : __( 'special lecture', 'masjid' ) );
-			$result       .= ' ';
-			$result       .= $lec_material;
-			$result       .= ' ';
-			$result       .= __( 'by', 'masjid' );
-			$result       .= ' ';
-			$result       .= $lecturer;
-			$result       .= ! empty( $lec_note ) ? ' (' . $lec_note . ')' : '';
-
+			$result       = ( 'recurring' === $lec_type ? __( 'recurring lecture', 'masjid' ) : __( 'special lecture', 'masjid' ) );
+			$result      .= ' ';
+			$result      .= $lec_material;
+			$result      .= ' ';
+			$result      .= __( 'by', 'masjid' );
+			$result      .= ' ';
+			$result      .= $lecturer;
+			$result      .= ! empty( $lec_note ) ? ' (' . $lec_note . ')' : '';
 			if ( $upper_first ) {
 				$result = ucfirst( $result );
 			}
@@ -303,8 +318,8 @@ if ( ! class_exists( 'MaHelper' ) ) {
 		/**
 		 * Get lecture date description
 		 *
-		 * @param      $lecture_id
-		 * @param bool $long
+		 * @param string $lecture_id .
+		 * @param bool   $long       .
 		 *
 		 * @return string
 		 */
@@ -312,9 +327,9 @@ if ( ! class_exists( 'MaHelper' ) ) {
 			$lec_type       = self::pfield( 'lecture_type', $lecture_id );
 			$lec_time_start = self::pfield( 'time_start', $lecture_id );
 			$lec_time_end   = self::pfield( 'time_end', $lecture_id );
-			$result         = ( 'recurring' == $lec_type ) ? __( 'recurring lecture', 'masjid' ) : __( 'special lecture', 'masjid' );
-			$result         .= ' ';
-			if ( 'recurring' == $lec_type ) {
+			$result         = ( 'recurring' === $lec_type ) ? __( 'recurring lecture', 'masjid' ) : __( 'special lecture', 'masjid' );
+			$result        .= ' ';
+			if ( 'recurring' === $lec_type ) {
 				$lec_period = self::pfield( 'recurring_period', $lecture_id );
 				switch ( $lec_period ) {
 					case 'daily':
@@ -322,44 +337,42 @@ if ( ! class_exists( 'MaHelper' ) ) {
 						break;
 					case 'weekly':
 						$lec_days = (array) self::pfield( 'recurring_period_day', $lecture_id );
-						$result   .= __( 'every', 'masjid' );
-						$result   .= ' ';
-						$result   .= implode( ', ', $lec_days );
+						$result  .= __( 'every', 'masjid' );
+						$result  .= ' ';
+						$result  .= implode( ', ', $lec_days );
 						break;
 					case 'monthly':
 						$lec_weeks = (array) self::pfield( 'recurring_period_week', $lecture_id );
 						$lec_days  = (array) self::pfield( 'recurring_period_day', $lecture_id );
-						$result    .= __( 'every', 'masjid' );
-						$result    .= ' ';
-						$result    .= implode( ', ', array_map( 'self::alt__', $lec_days ) );
-						$result    .= ' ';
-						$result    .= __( 'at', 'masjid' );
-						$result    .= ' ';
-						$result    .= implode( ', ', array_map( 'self::alt__', $lec_weeks ) );
+						$result   .= __( 'every', 'masjid' );
+						$result   .= ' ';
+						$result   .= implode( ', ', array_map( 'self::alt__', $lec_days ) );
+						$result   .= ' ';
+						$result   .= __( 'at', 'masjid' );
+						$result   .= ' ';
+						$result   .= implode( ', ', array_map( 'self::alt__', $lec_weeks ) );
 						break;
 				}
 			} else {
 				$date_format = get_option( 'date_format' );
 				$lec_date    = self::pfield( 'once_date', $lecture_id );
-				$result      .= __( 'at', 'masjid' );
-				$result      .= ' ';
-				$result      .= date( $date_format, $lec_date );
+				$result     .= __( 'at', 'masjid' );
+				$result     .= ' ';
+				$result     .= date( $date_format, $lec_date );
 			}
-
 			if ( $long ) {
 				$time_end_html = ! empty( $lec_time_end ) ? $lec_time_end : __( 'finish', 'masjid' );
-				$result        .= ', ' . $lec_time_start . ' - ' . $time_end_html;
+				$result       .= ', ' . $lec_time_start . ' - ' . $time_end_html;
 			}
 
-			// TODO: translate imploded array
-
+			// TODO: translate imploded array.
 			return ucfirst( $result );
 		}
 
 		/**
 		 * Beautify timestamp into readable date
 		 *
-		 * @param $timestamp
+		 * @param int $timestamp .
 		 *
 		 * @return false|string
 		 */
@@ -374,7 +387,7 @@ if ( ! class_exists( 'MaHelper' ) ) {
 		/**
 		 * Manual alternate translation
 		 *
-		 * @param $string
+		 * @param string $string .
 		 *
 		 * @return mixed
 		 */
@@ -403,8 +416,8 @@ if ( ! class_exists( 'MaHelper' ) ) {
 		/**
 		 * Get serialized value
 		 *
-		 * @param $objs
-		 * @param $key
+		 * @param array  $objs serialized object.
+		 * @param string $key  key.
 		 *
 		 * @return array|bool|mixed
 		 */
@@ -412,7 +425,7 @@ if ( ! class_exists( 'MaHelper' ) ) {
 			$result = false;
 			$temres = [];
 			foreach ( $objs as $obj ) {
-				if ( $obj['name'] == $key ) {
+				if ( $obj['name'] === $key ) {
 					$temres[] = $obj['value'];
 				}
 			}
@@ -427,14 +440,14 @@ if ( ! class_exists( 'MaHelper' ) ) {
 		/**
 		 * Check campaign availability
 		 *
-		 * @param $campaign_id
+		 * @param int $campaign_id campaign id.
 		 *
 		 * @return bool
 		 */
 		public static function is_campaign_available( $campaign_id ) {
-			$check = MaPayment::is_campaign_available_to_continue_payment( $campaign_id );
+			$check = Transactions\Payment::is_campaign_available_to_continue_payment( $campaign_id );
 
-			return 'error' == $check['status'] ? false : true;
+			return 'error' === $check['status'] ? false : true;
 		}
 
 		/**
@@ -459,13 +472,20 @@ if ( ! class_exists( 'MaHelper' ) ) {
 			return ! empty( $options['background_image'] ) ? $options['background_image'] : TEMP_URI . '/assets/front/img/main-background.jpg';
 		}
 
+		/**
+		 * Convert hex number to rgb
+		 *
+		 * @param string $colour hex color code.
+		 *
+		 * @return array|bool
+		 */
 		public static function hex2rgb( $colour ) {
-			if ( $colour[0] == '#' ) {
+			if ( '#' === $colour[0] ) {
 				$colour = substr( $colour, 1 );
 			}
-			if ( strlen( $colour ) == 6 ) {
+			if ( 6 === strlen( $colour ) ) {
 				list( $r, $g, $b ) = [ $colour[0] . $colour[1], $colour[2] . $colour[3], $colour[4] . $colour[5] ];
-			} else if ( strlen( $colour ) == 3 ) {
+			} elseif ( 6 === strlen( $colour ) ) {
 				list( $r, $g, $b ) = [ $colour[0] . $colour[0], $colour[1] . $colour[1], $colour[2] . $colour[2] ];
 			} else {
 				return false;
@@ -474,13 +494,17 @@ if ( ! class_exists( 'MaHelper' ) ) {
 			$g = hexdec( $g );
 			$b = hexdec( $b );
 
-			return [ 'r' => $r, 'g' => $g, 'b' => $b ];
+			return [
+				'r' => $r,
+				'g' => $g,
+				'b' => $b,
+			];
 		}
 
 		/**
 		 * Get formatted background color
 		 *
-		 * @param int $opacity
+		 * @param int $opacity multiply opacity.
 		 *
 		 * @return string
 		 */
@@ -510,27 +534,25 @@ if ( ! class_exists( 'MaHelper' ) ) {
 		/**
 		 * Darken hex color
 		 *
-		 * @param     $hex
-		 * @param int $darker
+		 * @param string $hex    color code.
+		 * @param int    $darker darken level.
 		 *
 		 * @return string
 		 */
 		public static function darken_color( $hex, $darker = 1 ) {
 
 			$hash = ( strpos( $hex, '#' ) !== false ) ? '#' : '';
-			$hex  = ( strlen( $hex ) == 7 ) ? str_replace( '#', '', $hex ) : ( ( strlen( $hex ) == 6 ) ? $hex : false );
-			if ( strlen( $hex ) != 6 ) {
+			$hex  = ( strlen( $hex ) === 7 ) ? str_replace( '#', '', $hex ) : ( ( strlen( $hex ) === 6 ) ? $hex : false );
+			if ( strlen( $hex ) !== 6 ) {
 				return $hash . '000000';
 			}
-			$darker = ( $darker > 1 ) ? $darker : 1;
+			$darker                  = ( $darker > 1 ) ? $darker : 1;
+			list( $r16, $g16, $b16 ) = str_split( $hex, 2 );
+			$r                       = sprintf( '%02X', floor( hexdec( $r16 ) / $darker ) );
+			$g                       = sprintf( '%02X', floor( hexdec( $g16 ) / $darker ) );
+			$b                       = sprintf( '%02X', floor( hexdec( $b16 ) / $darker ) );
 
-			list( $R16, $G16, $B16 ) = str_split( $hex, 2 );
-
-			$R = sprintf( "%02X", floor( hexdec( $R16 ) / $darker ) );
-			$G = sprintf( "%02X", floor( hexdec( $G16 ) / $darker ) );
-			$B = sprintf( "%02X", floor( hexdec( $B16 ) / $darker ) );
-
-			return $hash . $R . $G . $B;
+			return $hash . $r . $g . $b;
 		}
 
 		/**

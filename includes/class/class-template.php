@@ -4,26 +4,27 @@
  * User: ASUS
  * Date: 4/18/2019
  * Time: 10:47 PM
+ *
+ * @package Masjid/Helpers
  */
+
+namespace Masjid\Helpers;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
-
-if ( ! class_exists( 'MaTemplate' ) ) {
+if ( ! class_exists( 'Template' ) ) {
 
 	/**
-	 * Class MaTemplate
+	 * Class Template
 	 */
-	class MaTemplate {
-
+	class Template {
 		/**
 		 * Private instance variable
 		 *
 		 * @var null
 		 */
 		private static $instance = null;
-
 		/**
 		 * Location of expected template
 		 *
@@ -34,9 +35,9 @@ if ( ! class_exists( 'MaTemplate' ) ) {
 		/**
 		 * Create singleton
 		 *
-		 * @return null|MaTemplate
+		 * @return null|Template
 		 */
-		static function init() {
+		public static function init() {
 			if ( null === self::$instance ) {
 				self::$instance = new self();
 			}
@@ -46,7 +47,6 @@ if ( ! class_exists( 'MaTemplate' ) ) {
 
 		/**
 		 * MaTemplate constructor.
-		 *
 		 */
 		private function __construct() {
 			$folder = TEMP_PATH . '/templates';
@@ -58,18 +58,18 @@ if ( ! class_exists( 'MaTemplate' ) ) {
 		/**
 		 * Simple method for updating the base folder where templates are located.
 		 *
-		 * @param $folder
+		 * @param string $folder folder name.
 		 */
 		private static function set_folder( $folder ) {
-			// normalize the internal folder value by removing any final slashes
+			// normalize the internal folder value by removing any final slashes.
 			self::$folder = rtrim( $folder, '/' );
 		}
 
 		/**
 		 * Find and attempt to render a template with variables
 		 *
-		 * @param $suggestions
-		 * @param $variables
+		 * @param string $suggestions file name.
+		 * @param array  $variables variables.
 		 *
 		 * @return string
 		 */
@@ -86,7 +86,7 @@ if ( ! class_exists( 'MaTemplate' ) ) {
 		/**
 		 * Look for the first template suggestion
 		 *
-		 * @param $suggestions
+		 * @param string $suggestions file name.
 		 *
 		 * @return bool|string
 		 */
@@ -111,8 +111,8 @@ if ( ! class_exists( 'MaTemplate' ) ) {
 		 * Execute the template by extracting the variables into scope, and including
 		 * the template file.
 		 *
-		 * @param $template
-		 * @param $variables
+		 * @param string $template file name.
+		 * @param array  $variables variables.
 		 *
 		 * @return string
 		 */
@@ -127,6 +127,5 @@ if ( ! class_exists( 'MaTemplate' ) ) {
 		}
 	}
 }
-
 global $temp;
-$temp = MaTemplate::init();
+$temp = Template::init();

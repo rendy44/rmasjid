@@ -4,6 +4,8 @@
  * User: ASUS
  * Date: 4/20/2019
  * Time: 10:16 PM
+ *
+ * @package Masjid/Components
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -11,5 +13,5 @@ if ( ! defined( 'ABSPATH' ) ) {
 } ?>
 
 <div class="text-center">
-    <p class="big"><?php echo __( 'There is no active campaign right now', 'masjid' ); ?></p>
+	<p class="big"><?php echo __( 'There is no active campaign right now', 'masjid' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></p>
 </div>
