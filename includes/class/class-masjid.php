@@ -76,14 +76,14 @@ if ( ! class_exists( 'Masjid' ) ) {
 		 */
 		private function map_classes() {
 			$this->classes = [
-				'cpt',
+				'post-type',
 				'template',
 				'designer',
 				'asset',
 				'setting',
 				'navwalker',
 				'helper',
-				'cmb2-conditionals',
+				'cmb2-conditional',
 				'cmb2-custom-field',
 				'ajax',
 				'payment',

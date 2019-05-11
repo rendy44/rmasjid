@@ -16,12 +16,12 @@ use CMB2_Boxes;
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
-if ( ! class_exists( 'CMB2_Conditionals' ) ) {
+if ( ! class_exists( 'CMB2_Conditional' ) ) {
 
 	/**
-	 * Class CMB2_Conditionals
+	 * Class CMB2_Conditional
 	 */
-	class CMB2_Conditionals {
+	class CMB2_Conditional {
 		/**
 		 * Private instance variable
 		 *
@@ -62,7 +62,7 @@ if ( ! class_exists( 'CMB2_Conditionals' ) ) {
 		/**
 		 * Singleton
 		 *
-		 * @return \Masjid\CMB2\Extension\CMB2_Conditionals|null
+		 * @return \Masjid\CMB2\Extension\CMB2_Conditional|null
 		 */
 		public static function init() {
 			if ( null === self::$instance ) {
@@ -225,4 +225,4 @@ if ( ! class_exists( 'CMB2_Conditionals' ) ) {
 		}
 	} /* End of class. */
 }
-CMB2_Conditionals::init();
+CMB2_Conditional::init();

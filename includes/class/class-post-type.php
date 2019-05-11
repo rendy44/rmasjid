@@ -15,12 +15,12 @@ use Masjid\Helpers;
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
-if ( ! class_exists( 'CPT' ) ) {
+if ( ! class_exists( 'Post_Type' ) ) {
 
 	/**
-	 * Class MaCPT
+	 * Class Post_Type
 	 */
-	class CPT {
+	class Post_Type {
 		/**
 		 * Private instance variable
 		 *
@@ -31,7 +31,7 @@ if ( ! class_exists( 'CPT' ) ) {
 		/**
 		 * Singleton
 		 *
-		 * @return CPT|null
+		 * @return \Masjid\Settings\Post_Type|null
 		 */
 		public static function init() {
 			if ( null === self::$instance ) {
@@ -250,4 +250,4 @@ if ( ! class_exists( 'CPT' ) ) {
 		}
 	}
 }
-CPT::init();
+Post_Type::init();
