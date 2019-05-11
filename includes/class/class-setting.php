@@ -96,7 +96,7 @@ if ( ! class_exists( 'Setting' ) ) {
 		 * Additional hooks fot admin
 		 */
 		private function admin_setting() {
-			add_action( 'save_post', [ $this, 'modify_lecture_title_callback' ] );
+			add_action( 'save_post', [ $this, 'clean_campaign_transient_callback' ] );
 			add_filter( 'post_row_actions', [ $this, 'modify_list_row_actions_callback' ], 10, 2 );
 		}
 
@@ -201,11 +201,11 @@ if ( ! class_exists( 'Setting' ) ) {
 		}
 
 		/**
-		 * Modify lecture post title upon saving
+		 * Clean transient campaign upon saving
 		 *
 		 * @param int $post_id post id.
 		 */
-		public function modify_lecture_title_callback( $post_id ) {
+		public function clean_campaign_transient_callback( $post_id ) {
 			// If this is an autosave, our form has not been submitted, so we don't want to do anything.
 			if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
 				return;
@@ -214,24 +214,14 @@ if ( ! class_exists( 'Setting' ) ) {
 			if ( ! current_user_can( 'edit_post', $post_id ) ) {
 				return;
 			}
-			if ( 'kajian' !== get_post_type( $post_id ) ) {
+			if ( 'donasi' !== get_post_type( $post_id ) ) {
 				return;
 			}
 			if ( 'auto-draft' === get_post_status( $post_id ) ) {
 				return;
 			}
-			// remove the action to avoid infinity loop.
-			remove_action( 'save_post', [ $this, 'modify_lecture_title_callback' ] );
-			$post_title = Helpers\Helper::pfield( 'material_title', $post_id );
-			wp_update_post(
-				[
-					'ID'         => $post_id,
-					'post_title' => $post_title,
-					'post_name'  => sanitize_title( $post_title ),
-				]
-			);
-			// reassign the action.
-			add_action( 'save_post', [ $this, 'modify_lecture_title_callback' ] );
+
+			delete_transient('query_latest_campaigns');
 		}
 
 		/**

@@ -60,7 +60,7 @@ if ( ! class_exists( 'Post_Type' ) ) {
 					'singular_name' => __( 'Lecture', 'masjid' ),
 				],
 				'supports'            => [
-					// 'title',
+					'title',
 					'thumbnail',
 				],
 				'taxonomies'          => [],
