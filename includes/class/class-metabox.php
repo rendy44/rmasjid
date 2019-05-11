@@ -11,6 +11,7 @@
 namespace Masjid\Settings;
 
 use WP_Query;
+use Masjid\Transactions;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -623,23 +624,24 @@ if ( ! class_exists( 'Metabox' ) ) {
 		 * Callback for rendering campaign payment widget
 		 */
 		public function campaign_payment_widget_callback() {
-			$admin_url = admin_url( 'edit.php?post_type=bayar' );
+			$admin_url        = admin_url( 'edit.php?post_type=bayar' );
+			$payment_overview = Transactions\Payment::get_payment_overview();
 			?>
 			<ul class="payment-overview">
 				<li class="total_success">
-					<a href="<?php echo $admin_url; ?>">Rp <strong>2.000.000.000</strong><span>Total invoice</span></a>
+					<a href="<?php echo esc_attr( $admin_url ); ?>">Rp <strong><?php echo esc_attr( $payment_overview['total_income_formatted'] ); ?></strong><span><?php echo __( 'Total income', 'masjid' ); // phpcs:ignore WordPress.Security.EscapeOutput ?></span></a>
 				</li>
 				<li class="total">
-					<a href="<?php echo $admin_url; ?>"><strong>44</strong> payments<span>Total payment</span></a>
+					<a href="<?php echo esc_attr( $admin_url ); ?>"><strong><?php echo esc_attr( $payment_overview['total_payment_formatted'] ); ?></strong> <?php echo __( 'payment(s)', 'masjid' ); ?><span><?php echo __( 'Total payment', 'masjid' ); // phpcs:ignore WordPress.Security.EscapeOutput ?></span></a>
 				</li>
 				<li class="total_waiting_payment">
-					<a href="<?php echo $admin_url; ?>"><strong>44</strong> payments<span>Waiting payment</span></a>
+					<a href="<?php echo esc_html( $admin_url ); ?>"><strong><?php echo esc_attr( $payment_overview['total_waiting_payment_formatted'] ); ?></strong> <?php echo __( 'payment(s)', 'masjid' ); ?><span><?php echo __( 'Waiting payment', 'masjid' ); // phpcs:ignore WordPress.Security.EscapeOutput ?></span></a>
 				</li>
 				<li class="total_waiting_confirmation">
-					<a href="<?php echo $admin_url; ?>"><strong>10</strong> payments<span>Waiting confirmation</span></a>
+					<a href="<?php echo esc_attr( $admin_url ); ?>"><strong><?php echo esc_attr( $payment_overview['total_waiting_validation_formatted'] ); ?></strong> <?php echo __( 'payment(s)', 'masjid' ); ?><span><?php echo __( 'Waiting validation', 'masjid' ); // phpcs:ignore WordPress.Security.EscapeOutput ?></span></a>
 				</li>
 				<li class="total_rejected">
-					<a href="<?php echo $admin_url; ?>"><strong>35</strong> payments<span>Already rejected</span></a>
+					<a href="<?php echo esc_attr( $admin_url ); ?>"><strong><?php echo esc_attr( $payment_overview['total_rejected_formatted'] ); ?></strong> <?php echo __( 'payment(s)', 'masjid' ); ?><span><?php echo __( 'Were rejected', 'masjid' ); // phpcs:ignore WordPress.Security.EscapeOutput ?></span></a>
 				</li>
 			</ul>
 			<?php

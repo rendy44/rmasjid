@@ -220,8 +220,12 @@ if ( ! class_exists( 'Setting' ) ) {
 			if ( 'auto-draft' === get_post_status( $post_id ) ) {
 				return;
 			}
-
-			delete_transient('query_latest_campaigns');
+			delete_transient( 'query_latest_campaigns' );
+			wp_cache_delete( 'total_income', 'payment' );
+			delete_transient( 'all_payments' );
+			delete_transient( 'all_waiting_payments' );
+			delete_transient( 'all_waiting_validations' );
+			delete_transient( 'all_rejected' );
 		}
 
 		/**

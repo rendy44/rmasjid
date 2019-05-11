@@ -258,6 +258,106 @@ if ( ! class_exists( 'Payment' ) ) {
 		}
 
 		/**
+		 * Get payment overview
+		 *
+		 * @return array
+		 */
+		public static function get_payment_overview() {
+			global $wpdb;
+			$result = [];
+			// Total income.
+			$total_income = wp_cache_get( 'total_income', 'payment' );
+			if ( ! $total_income ) {
+				$result_db = $wpdb->get_var(
+					$wpdb->prepare(
+						"
+    SELECT SUM(pm.meta_value) FROM {$wpdb->postmeta} pm
+    LEFT JOIN {$wpdb->posts} p ON p.ID = pm.post_id
+    WHERE pm.meta_key = '%s' 
+    AND p.post_status = '%s' 
+    AND p.post_type = '%s'
+  ",
+						'main_detail_collected',
+						'publish',
+						'donasi'
+					)
+				);
+				wp_cache_set( 'total_income', $result_db, 'payment', 3600 );
+				$total_income = $result_db;
+			}
+			$result['total_income']           = (int) $total_income;
+			$result['total_income_formatted'] = number_format( $result['total_income'], 0, ',', '.' );
+			// Total payment.
+			$query_all_payments = get_transient( 'all_payments' );
+			if ( false === $query_all_payments ) {
+				$query_all_payments = new \WP_Query(
+					[
+						'post_type'      => 'bayar',
+						'post_status'    => 'publish',
+						'posts_per_page' => - 1,
+					]
+				);
+				set_transient( 'all_payments', $query_all_payments, 3600 );
+			}
+			$result['total_payment']           = (int) $query_all_payments->found_posts;
+			$result['total_payment_formatted'] = number_format( $result['total_payment'], 0, ',', '.' );
+			wp_reset_postdata();
+			// Total waiting payment.
+			$query_all_waiting_payments = get_transient( 'all_waiting_payments' );
+			if ( false === $query_all_waiting_payments ) {
+				$query_all_waiting_payments = new \WP_Query(
+					[
+						'post_type'      => 'bayar',
+						'post_status'    => 'publish',
+						'posts_per_page' => - 1,
+						'meta_key'       => 'status',
+						'meta_value'     => 'waiting_payment',
+					]
+				);
+				set_transient( 'all_waiting_payments', $query_all_waiting_payments, 3600 );
+			}
+			$result['total_waiting_payment']           = (int) $query_all_waiting_payments->found_posts;
+			$result['total_waiting_payment_formatted'] = number_format( $result['total_waiting_payment'], 0, ',', '.' );
+			wp_reset_postdata();
+			// Total waiting validation.
+			$query_all_waiting_validations = get_transient( 'all_waiting_validations' );
+			if ( false === $query_all_waiting_validations ) {
+				$query_all_waiting_validations = new \WP_Query(
+					[
+						'post_type'      => 'bayar',
+						'post_status'    => 'publish',
+						'posts_per_page' => - 1,
+						'meta_key'       => 'status',
+						'meta_value'     => 'waiting_validation',
+					]
+				);
+				set_transient( 'all_waiting_validations', $query_all_waiting_validations, 3600 );
+			}
+			$result['total_waiting_validation']           = (int) $query_all_waiting_validations->found_posts;
+			$result['total_waiting_validation_formatted'] = number_format( $result['total_waiting_validation'], 0, ',', '.' );
+			wp_reset_postdata();
+			// Total rejected.
+			$query_all_rejected = get_transient( 'all_rejected' );
+			if ( false === $query_all_rejected ) {
+				$query_all_rejected = new \WP_Query(
+					[
+						'post_type'      => 'bayar',
+						'post_status'    => 'publish',
+						'posts_per_page' => - 1,
+						'meta_key'       => 'status',
+						'meta_value'     => 'rejected',
+					]
+				);
+				set_transient( 'all_rejected', $query_all_rejected, 3600 );
+			}
+			$result['total_rejected']           = (int) $query_all_rejected->found_posts;
+			$result['total_rejected_formatted'] = number_format( $result['total_rejected'], 0, ',', '.' );
+			wp_reset_postdata();
+
+			return $result;
+		}
+
+		/**
 		 * Save payment to session
 		 *
 		 * @param int $campaign_id    .
