@@ -72,12 +72,12 @@ while ( have_posts() ) {
 			<button type="button" class="btn btn-info btn-lg btn-block text-uppercase mb-4"><?php echo __( 'Share', 'masjid' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></button>
 			<p><?php echo __( 'Campaign was started at', 'masjid' ) . ' ' . get_the_date() . ' ' . __( 'by', 'masjid' ) . ' ' . get_the_author_posts_link() . '. ' . ( get_the_date() === get_the_modified_date() ? __( 'And since then, there is no change has been made', 'masjid' ) : __( 'And the last update was at', 'masjid' ) . ' ' . get_the_modified_date() ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></p>
 		</div>
-		<div class="col-md-8">
+		<div class="col-md-8 my-auto">
 			<?php
 			if ( has_post_thumbnail() ) {
 				echo '<img class="mx-auto mb-4 d-block img-fluid featured" src="' . get_the_post_thumbnail_url() . '">'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-				echo '<p class="lead text-justify">' . esc_html( Helpers\Helper::pfield( 'main_excerpt' ) ) . '</p>';
 			};
+			echo '<p class="lead text-justify">' . esc_html( Helpers\Helper::pfield( 'main_excerpt' ) ) . '</p>';
 			?>
 		</div>
 	</div>
