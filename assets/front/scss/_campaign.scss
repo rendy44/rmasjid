@@ -2,6 +2,10 @@
 
 .campaign-summary {
 	padding-bottom: 49px;
+	h3 {
+		font-size: 1.3rem;
+		line-height: 1.3;
+	}
 	.sticky-info {
 		position: absolute;
 		bottom: 0;
@@ -49,6 +53,14 @@
 		p.lead {
 			font-size: 1.2rem;
 			line-height: 1.4;
+		}
+	}
+}
+
+@media (min-width: 992px) {
+	.campaign-summary {
+		h3 {
+			font-size: 1.75rem;
 		}
 	}
 }

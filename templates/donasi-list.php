@@ -16,7 +16,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 	<div class="card mb-3 style2 flex-fill">
 		<img class="card-img-top" src="<?php echo $cover_url; ?>" alt="<?php echo $title; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>">
 		<div class="card-body">
-			<h5 class="card-title"><?php echo esc_html( $title ); ?></h5>
+			<a class="permalink" href="<?php echo esc_attr( $permalink ); ?>">
+				<h5 class="card-title"><?php echo esc_html( $title ); ?></h5>
+			</a>
 			<p class="card-text"><?php echo esc_html( $short_description ); ?></p>
 			<div class="action">
 				<div class="py-3">
@@ -37,7 +39,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 						</div>
 					</div>
 				</div>
-				<a href="<?php echo $permalink; ?>"  class="btn btn-primary btn-block"><?php echo __( 'Donate now', 'masjid' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></a>
+				<a href="<?php echo $permalink; ?>" class="btn btn-primary btn-block"><?php echo __( 'Donate now', 'masjid' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></a>
 			</div>
 		</div>
 	</div>

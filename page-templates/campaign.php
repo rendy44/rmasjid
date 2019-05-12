@@ -7,7 +7,6 @@
  *
  * @package Masjid/Pages
  */
-
 /*Template name: Campaign Page */
 __( 'Campaign Page', 'masjid' );
 
@@ -31,8 +30,8 @@ while ( have_posts() ) {
 		if ( $available_campaigns['items'] ) {
 			?>
 			<div class="col-md-4 campaign-summary">
-				<h3 class="mb-lg-4 mb-md-2 mb-sm-0">Mari Salurkan Bantuan Anda Melalui Program Kami</h3>
-				<p class="big">Insya Allah selalu jujur dan terpercaya dalam menjaga amanah</p>
+				<h3 class="mb-lg-4 mb-md-2 mb-sm-0"><?php echo __( 'Share your careness through our campaign programs!', 'masjid' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></h3>
+				<p class="big"><?php echo __( 'Insha Allah we will always be honest and trusted to taking care your trust.', 'masjid' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></p>
 				<div class="sticky-info">
 					<?php
 					$campaign_progress_bar = $temp->render(
