@@ -41,6 +41,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 				padding: 0;
 				-ms-text-size-adjust: 100%;
 				-webkit-text-size-adjust: 100%;
+				color: #555;
 			}
 
 			table {
@@ -126,7 +127,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 			h2,
 			h3,
 			h4 {
-				color: #000000;
 				font-family: sans-serif;
 				font-weight: 400;
 				line-height: 1.4;
@@ -376,8 +376,23 @@ if ( ! defined( 'ABSPATH' ) ) {
 									<table role="presentation" border="0" cellpadding="0" cellspacing="0">
 										<tr>
 											<td>
-												<h3><?php echo $title; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></h3>
-												<?php echo $content; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+												<h2>Invoice #102830123</h2>
+												<p>Hi Rendy,</p>
+												<p>Thank you for making donation to pembangunan masjid anu, here is your invoice details.</p>
+												<table width="100%" class="inv-detail">
+													<tr>
+														<td>Amount</td>
+														<td>Rp6.000.000</td>
+													</tr>
+													<tr>
+														<td>Unique code</td>
+														<td>098</td>
+													</tr>
+													<tr>
+														<td>Total</td>
+														<td>Rp6.000.098</td>
+													</tr>
+												</table>
 											</td>
 										</tr>
 									</table>

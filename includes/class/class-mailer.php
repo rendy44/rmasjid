@@ -29,14 +29,18 @@ if ( ! class_exists( 'Mailer' ) ) {
 		/**
 		 * Convert plain text into beautiful html
 		 *
+		 * @param string $title  plain email title.
 		 * @param string $string plain email content.
 		 *
 		 * @return string
 		 */
-		private static function convert_string_to_template( $string ) {
+		private static function convert_string_to_template( $title, $string ) {
 			global $temp;
 
-			return $temp->render( 'email-template', [ 'content' => $string ] );
+			return $temp->render( 'email-template', [
+					'title'   => $title,
+					'content' => $string,
+				] );
 		}
 
 		/**
@@ -45,7 +49,10 @@ if ( ! class_exists( 'Mailer' ) ) {
 		 * @param int $payment_id payment id.
 		 */
 		public static function send_email_after_making_payment( $payment_id ) {
-			$result = '';
+			$name   = Helper::pfield( 'name', $payment_id );
+			$email  = Helper::pfield( 'email', $payment_id );
+			$expiry = Helper::pfield( 'expiry', $payment_id );
+			$result = '<p>';
 		}
 	}
 }
