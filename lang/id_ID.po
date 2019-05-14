@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Masjid\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-05-14 14:28+0000\n"
-"PO-Revision-Date: 2019-05-14 14:32+0000\n"
+"PO-Revision-Date: 2019-05-14 14:54+0000\n"
 "Last-Translator: admin <rendy.de.p@gmail.com>\n"
 "Language-Team: Bahasa Indonesia\n"
 "Language: id_ID\n"
@@ -592,7 +592,7 @@ msgstr "Silahkan validasi sesegera mungkin"
 
 #: includes/class/class-mailer.php:108
 msgid "New Payment"
-msgstr "Pembayran Baru"
+msgstr "Pembayaran Baru"
 
 #: includes/class/class-metabox.php:64 includes/class/class-metabox.php:492
 #: includes/class/class-post-type.php:60
