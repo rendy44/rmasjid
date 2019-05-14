@@ -15,11 +15,11 @@ use Masjid\Helpers;
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
-global $temp, $designer; ?>
 
-<?php get_header(); ?>
+global $temp, $designer;
 
-<?php
+get_header();
+
 while ( have_posts() ) {
 	the_post();
 	?>
@@ -95,6 +95,5 @@ while ( have_posts() ) {
 		<?php
 	}
 }
-?>
 
-<?php get_footer(); ?>
+get_footer();

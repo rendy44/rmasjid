@@ -22,6 +22,7 @@ if ( ! class_exists( 'Activator' ) ) {
 	 * Class Activator
 	 */
 	class Activator {
+
 		/**
 		 * Private instance variable
 		 *

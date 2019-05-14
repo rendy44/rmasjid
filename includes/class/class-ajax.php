@@ -23,6 +23,7 @@ if ( ! class_exists( 'Ajax' ) ) {
 	 * Class Ajax
 	 */
 	class Ajax {
+
 		/**
 		 * Private instance variable
 		 *
@@ -64,8 +65,7 @@ if ( ! class_exists( 'Ajax' ) ) {
 		 */
 		public function lecture_time_detail_callback() {
 			$result           = [];
-			$datetime_now     = new DateTime();
-			$result['now']    = $datetime_now->getTimestamp();
+			$result['now']    = current_time( 'timestamp' );
 			$result['now_js'] = $result['now'] * 1000;
 			$lecture_id       = ! empty( $_GET['lecture'] ) ? sanitize_text_field( wp_unslash( $_GET['lecture'] ) ) : false; // phpcs:ignore Standard.Category.SniffName.ErrorCode, WordPress.Security.NonceVerification.Recommended
 			if ( $lecture_id ) {
@@ -153,13 +153,13 @@ if ( ! class_exists( 'Ajax' ) ) {
 											$extra_class[]  = $is_ikhwan ? 'e_ikhwan' : '';
 											$extra_class[]  = $is_akhwat ? 'e_akhwat' : '';
 											$added_kajian[] = [
-												'id'    => get_the_ID(),
-												'title' => get_the_title(),
-												'url'   => get_permalink(),
-												'start' => $i->format( 'Y-m-d' ),
-												'classNames' => $extra_class,
-												'borderColor' => $is_tematik ? '#f5c6cb' : '#bee5eb',
-												'textColor' => $is_tematik ? '#721c24' : '#0c5460',
+												'id'              => get_the_ID(),
+												'title'           => get_the_title(),
+												'url'             => get_permalink(),
+												'start'           => $i->format( 'Y-m-d' ),
+												'classNames'      => $extra_class,
+												'borderColor'     => $is_tematik ? '#f5c6cb' : '#bee5eb',
+												'textColor'       => $is_tematik ? '#721c24' : '#0c5460',
 												'backgroundColor' => $is_tematik ? '#f8d7da' : '#d1ecf1',
 											];
 										}
@@ -180,13 +180,13 @@ if ( ! class_exists( 'Ajax' ) ) {
 										$extra_class[]  = $is_ikhwan ? 'e_ikhwan' : '';
 										$extra_class[]  = $is_akhwat ? 'e_akhwat' : '';
 										$added_kajian[] = [
-											'id'          => get_the_ID(),
-											'title'       => get_the_title(),
-											'url'         => get_permalink(),
-											'start'       => $event_date,
-											'classNames'  => $extra_class,
-											'borderColor' => $is_tematik ? '#f5c6cb' : '#bee5eb',
-											'textColor'   => $is_tematik ? '#721c24' : '#0c5460',
+											'id'              => get_the_ID(),
+											'title'           => get_the_title(),
+											'url'             => get_permalink(),
+											'start'           => $event_date,
+											'classNames'      => $extra_class,
+											'borderColor'     => $is_tematik ? '#f5c6cb' : '#bee5eb',
+											'textColor'       => $is_tematik ? '#721c24' : '#0c5460',
 											'backgroundColor' => $is_tematik ? '#f8d7da' : '#d1ecf1',
 										];
 									}

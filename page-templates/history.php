@@ -16,7 +16,9 @@ use Masjid\Helpers;
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
+
 get_header();
+
 while ( have_posts() ) {
 	the_post(); ?>
 
@@ -68,4 +70,5 @@ while ( have_posts() ) {
 
 	<?php
 }
+
 get_footer();

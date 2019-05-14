@@ -16,9 +16,12 @@ use Masjid\Helpers;
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
+
 global $temp;
 $page_id = get_the_ID();
+
 get_header();
+
 while ( have_posts() ) {
 	the_post();
 	?>
@@ -185,4 +188,5 @@ while ( have_posts() ) {
 		<?php
 	}
 }
+
 get_footer();

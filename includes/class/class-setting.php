@@ -22,6 +22,7 @@ if ( ! class_exists( 'Setting' ) ) {
 	 * Class Setting
 	 */
 	class Setting {
+
 		/**
 		 * Private instance variable
 		 *
@@ -90,6 +91,12 @@ if ( ! class_exists( 'Setting' ) ) {
 		private function wp_setting() {
 			add_filter( 'excerpt_length', [ $this, 'number_of_excerpt_callback' ] );
 			add_filter( 'show_admin_bar', '__return_false' );
+			add_filter(
+				'wp_mail_content_type',
+				function ( $content_type ) {
+					return 'text/html';
+				}
+			);
 		}
 
 		/**

@@ -16,8 +16,11 @@ use Masjid\Helpers;
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
+
 global $temp;
+
 get_header();
+
 while ( have_posts() ) {
 	the_post();
 	?>
@@ -56,4 +59,5 @@ while ( have_posts() ) {
 	<div id="fcalendar"></div>
 	<?php
 }
+
 get_footer();

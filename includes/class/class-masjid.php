@@ -89,6 +89,7 @@ if ( ! class_exists( 'Masjid' ) ) {
 				'payment',
 				'options-page',
 				'metabox',
+				'mailer'
 			];
 		}
 
