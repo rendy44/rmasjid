@@ -353,12 +353,14 @@ if ( ! class_exists( 'Payment' ) ) {
 		/**
 		 * Count payment need mod
 		 *
-		 * @return string
+		 * @param bool $html wheter return as int or html string.
+		 *
+		 * @return int|string
 		 */
-		public static function get_payment_need_mod() {
+		public static function get_payment_need_mod( $html = true ) {
 			$count = self::get_payment_overview();
 
-			return $count['total_waiting_validation'] > 0 ? sprintf( ' <span class="awaiting-mod">%d</span>', $count['total_waiting_validation'] ) : '';
+			return $html ? ( $count['total_waiting_validation'] > 0 ? sprintf( ' <span class="awaiting-mod">%d</span>', $count['total_waiting_validation'] ) : '' ) : (int) $count['total_waiting_validation'];
 		}
 
 		/**

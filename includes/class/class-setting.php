@@ -106,6 +106,7 @@ if ( ! class_exists( 'Setting' ) ) {
 			add_action( 'save_post', [ $this, 'clean_campaign_transient_callback' ] );
 			add_action( 'updated_post_meta', [ $this, 'clean_campaign_and_payment_transient' ], 10, 4 );
 			add_filter( 'post_row_actions', [ $this, 'modify_list_row_actions_callback' ], 10, 2 );
+			add_action( 'admin_notices', [ $this, 'need_mod_payments_notice_callback' ] );
 		}
 
 		/**
@@ -114,6 +115,18 @@ if ( ! class_exists( 'Setting' ) ) {
 		private function add_custom_action() {
 			add_action( 'admin_action_validate', [ $this, 'validate_payment_callback' ] );
 			add_action( 'admin_action_reject', [ $this, 'reject_payment_callback' ] );
+		}
+
+		public function need_mod_payments_notice_callback() {
+			$counts = Transactions\Payment::get_payment_need_mod( false );
+			if ( $counts > 0 ) {
+				$go_url = admin_url( 'edit.php?post_type=bayar' );
+				?>
+				<div class="notice notice-warning">
+					<?php echo '<p><strong>' . __( 'Importnat!', 'masjid' ) . ' </strong>' . __( 'You have', 'masjid' ) . ' <a href="' . $go_url . '"><strong>' . $counts . '</strong></a> ' . __( 'payments(s) that need to be validated immediately.', 'masjid' ) . '</p>'; ?>
+				</div>
+				<?php
+			}
 		}
 
 		/**

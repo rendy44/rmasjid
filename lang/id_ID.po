@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Masjid\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-05-14 15:04+0000\n"
-"PO-Revision-Date: 2019-05-14 15:05+0000\n"
+"POT-Creation-Date: 2019-05-14 22:06+0000\n"
+"PO-Revision-Date: 2019-05-14 22:07+0000\n"
 "Last-Translator: admin <rendy.de.p@gmail.com>\n"
 "Language-Team: Bahasa Indonesia\n"
 "Language: id_ID\n"
@@ -204,7 +204,7 @@ msgstr ""
 
 #: page-templates/campaign.php:47 page-templates/home.php:87
 #: templates/donasi-list.php:31 includes/class/class-metabox.php:375
-#: includes/class/class-post-type.php:217
+#: includes/class/class-post-type.php:221
 msgid "Collected"
 msgstr "Terkumpul"
 
@@ -548,75 +548,75 @@ msgstr "jum`at"
 msgid "saturday"
 msgstr "sabtu"
 
-#: includes/class/class-mailer.php:79 includes/class/class-mailer.php:94
-#: includes/class/class-mailer.php:115 includes/class/class-mailer.php:131
+#: includes/class/class-mailer.php:82 includes/class/class-mailer.php:97
+#: includes/class/class-mailer.php:118 includes/class/class-mailer.php:134
 msgid "Hi"
 msgstr "Halo"
 
-#: includes/class/class-mailer.php:80
+#: includes/class/class-mailer.php:83
 msgid "In order to finish your donation, please make a transfer before"
 msgstr "Segera selesaikan donasi Anda dengan melakukan transfer sebelum"
 
-#: includes/class/class-mailer.php:81
+#: includes/class/class-mailer.php:84
 msgid "Please click"
 msgstr "Silahkan klik"
 
-#: includes/class/class-mailer.php:81
+#: includes/class/class-mailer.php:84
 msgid "here"
 msgstr "di sini"
 
-#: includes/class/class-mailer.php:81
+#: includes/class/class-mailer.php:84
 msgid "for your payment details"
 msgstr "untuk detail pembayaran Anda"
 
-#: includes/class/class-mailer.php:83
+#: includes/class/class-mailer.php:86
 msgid "Please complete your payment"
 msgstr "Silahkan selesaikan pembayaran Anda"
 
-#: includes/class/class-mailer.php:95
+#: includes/class/class-mailer.php:98
 msgid "Thank you for confirming your payment, we are validating your payment."
 msgstr ""
 "Terima kasih sudah mengkonfirmasi pembayaran Anda, kami sedang melakukan "
 "validasi."
 
-#: includes/class/class-mailer.php:98
+#: includes/class/class-mailer.php:101
 msgid "Thank you for confirming"
 msgstr "Terima kasih sudah mengkonfirmasi"
 
-#: includes/class/class-mailer.php:101
+#: includes/class/class-mailer.php:104
 msgid "Someone just confirmed that he/she just transfered"
 msgstr "Seseorang baru saja mengkonfirmasi bahwa dia baru saja mentransfer"
 
-#: includes/class/class-mailer.php:101
+#: includes/class/class-mailer.php:104
 msgid "Please validate it as soon as possible"
 msgstr "Silahkan validasi sesegera mungkin"
 
-#: includes/class/class-mailer.php:103
+#: includes/class/class-mailer.php:106
 msgid "New Payment"
 msgstr "Pembayaran Baru"
 
-#: includes/class/class-mailer.php:116 includes/class/class-mailer.php:132
+#: includes/class/class-mailer.php:119 includes/class/class-mailer.php:135
 msgid "Your donation for"
 msgstr "Donasi Anda untuk"
 
-#: includes/class/class-mailer.php:116
+#: includes/class/class-mailer.php:119
 msgid "have been validated."
 msgstr "telah divalidasi."
 
-#: includes/class/class-mailer.php:119
+#: includes/class/class-mailer.php:122
 msgid "Payment Validated"
 msgstr "Pembayaran Divalidasi"
 
-#: includes/class/class-mailer.php:132
+#: includes/class/class-mailer.php:135
 msgid "have been rejected."
 msgstr "telah ditolak."
 
-#: includes/class/class-mailer.php:135
+#: includes/class/class-mailer.php:138
 msgid "Payment Rejected"
 msgstr "Pembayaran Ditolak"
 
 #: includes/class/class-metabox.php:64 includes/class/class-metabox.php:492
-#: includes/class/class-post-type.php:60
+#: includes/class/class-post-type.php:62
 msgid "Lecture"
 msgstr "Kajian"
 
@@ -802,7 +802,7 @@ msgid "Any information you may want to share"
 msgstr "Segala informasi yang perlu dibagikan"
 
 #: includes/class/class-metabox.php:297 includes/class/class-metabox.php:476
-#: includes/class/class-post-type.php:90 includes/class/class-post-type.php:157
+#: includes/class/class-post-type.php:92 includes/class/class-post-type.php:161
 msgid "Campaign"
 msgstr "Donasi"
 
@@ -836,11 +836,11 @@ msgstr "Hapus"
 msgid "Download"
 msgstr "Unduh"
 
-#: includes/class/class-metabox.php:360 includes/class/class-post-type.php:216
+#: includes/class/class-metabox.php:360 includes/class/class-post-type.php:220
 msgid "Target"
 msgstr "Target"
 
-#: includes/class/class-metabox.php:391 includes/class/class-post-type.php:218
+#: includes/class/class-metabox.php:391 includes/class/class-post-type.php:222
 msgid "Due Date"
 msgstr "Batas Akhir"
 
@@ -854,8 +854,8 @@ msgstr "Kepala Halaman"
 
 #: includes/class/class-metabox.php:448 includes/class/class-metabox.php:479
 #: includes/class/class-metabox.php:495 includes/class/class-metabox.php:511
-#: includes/class/class-metabox.php:579 includes/class/class-post-type.php:154
-#: includes/class/class-post-type.php:215
+#: includes/class/class-metabox.php:579 includes/class/class-post-type.php:158
+#: includes/class/class-post-type.php:219
 msgid "Title"
 msgstr "Judul"
 
@@ -1091,68 +1091,69 @@ msgstr "Judul Kolom Ketiga"
 msgid "Third Column Links"
 msgstr "Permalink Kolom Ketiga"
 
-#: includes/class/class-payment.php:118 includes/class/class-payment.php:149
-#: includes/class/class-payment.php:177
+#: includes/class/class-payment.php:129 includes/class/class-payment.php:163
+#: includes/class/class-payment.php:194
 msgid "You are not allowed to perform this action"
 msgstr "Anda tidak diizinkan"
 
-#: includes/class/class-payment.php:216
+#: includes/class/class-payment.php:236
 msgid "Campaign is closed due it already meet its target"
 msgstr "Donasi sudah ditutup karena sudah memenuhi target"
 
-#: includes/class/class-payment.php:223
+#: includes/class/class-payment.php:243
 msgid "Campaign is closed due it already meet its due date"
 msgstr "Donasi ditutup karena sudah melewati batas akhir"
 
-#: includes/class/class-post-type.php:59
+#: includes/class/class-post-type.php:61
 msgid "Lectures"
 msgstr "Kajian"
 
-#: includes/class/class-post-type.php:89
+#: includes/class/class-post-type.php:91
 msgid "Campaigns"
 msgstr "Donasi"
 
-#: includes/class/class-post-type.php:121
+#: includes/class/class-post-type.php:124
+#: includes/class/class-post-type.php:126
 msgid "Payments"
 msgstr "Pembayaran"
 
-#: includes/class/class-post-type.php:122
+#: includes/class/class-post-type.php:125
 msgid "Payment"
 msgstr "Pembayaran"
 
-#: includes/class/class-post-type.php:155
+#: includes/class/class-post-type.php:159
 msgid "Name"
 msgstr "Nama"
 
-#: includes/class/class-post-type.php:156
+#: includes/class/class-post-type.php:160
 msgid "Total Amount"
 msgstr "Jumlah Total"
 
-#: includes/class/class-post-type.php:158
+#: includes/class/class-post-type.php:162
 msgid "Status"
 msgstr "Status"
 
-#: includes/class/class-post-type.php:159
+#: includes/class/class-post-type.php:163
 msgid "Created"
 msgstr "Dibuat"
 
-#: includes/class/class-post-type.php:188
+#: includes/class/class-post-type.php:192
 msgid "Waiting Payment"
 msgstr "Menunggu Pembayaran"
 
-#: includes/class/class-post-type.php:191
+#: includes/class/class-post-type.php:195
 msgid "Waiting Confirmation"
 msgstr "Menunggu Konfirmasi"
 
-#: includes/class/class-post-type.php:194
+#: includes/class/class-post-type.php:198
 msgid "Waiting Validation"
 msgstr "Menunggu Validasi"
 
-#: includes/class/class-post-type.php:197
+#: includes/class/class-post-type.php:201
 msgid "Done"
 msgstr "Selesai"
 
-#: includes/class/class-post-type.php:200
+#: includes/class/class-post-type.php:204
 msgid "Rejected"
 msgstr "Ditolak"
 
@@ -1160,44 +1161,56 @@ msgstr "Ditolak"
 msgid "Main Nav"
 msgstr "Navigasi Utama"
 
-#: includes/class/class-setting.php:133 includes/class/class-setting.php:166
+#: includes/class/class-setting.php:126
+msgid "Importnat!"
+msgstr "Penting!"
+
+#: includes/class/class-setting.php:126
+msgid "You have"
+msgstr "Anda mempunyai"
+
+#: includes/class/class-setting.php:126
+msgid "payments(s) that need to be validated immediately."
+msgstr "pembayaran yang perlu divalidasi segera."
+
+#: includes/class/class-setting.php:147 includes/class/class-setting.php:180
 msgid "Congratulation"
 msgstr "Selamat"
 
-#: includes/class/class-setting.php:133
+#: includes/class/class-setting.php:147
 msgid "You have validated the payment successfully. Please"
 msgstr "Anda sudah berhasil memvalidasi pembayaran. Silahkan"
 
-#: includes/class/class-setting.php:133 includes/class/class-setting.php:166
+#: includes/class/class-setting.php:147 includes/class/class-setting.php:180
 msgid "go back"
 msgstr "kembali"
 
-#: includes/class/class-setting.php:133 includes/class/class-setting.php:166
+#: includes/class/class-setting.php:147 includes/class/class-setting.php:180
 msgid "Success"
 msgstr "Sukses"
 
-#: includes/class/class-setting.php:138 includes/class/class-setting.php:141
-#: includes/class/class-setting.php:171 includes/class/class-setting.php:174
+#: includes/class/class-setting.php:152 includes/class/class-setting.php:155
+#: includes/class/class-setting.php:185 includes/class/class-setting.php:188
 msgid "Not a valid payment"
 msgstr "Bukan pembayaran yang valid"
 
-#: includes/class/class-setting.php:144 includes/class/class-setting.php:177
+#: includes/class/class-setting.php:158 includes/class/class-setting.php:191
 msgid "No payment found"
 msgstr "Pembayaran tidak ditemukan"
 
-#: includes/class/class-setting.php:147 includes/class/class-setting.php:180
+#: includes/class/class-setting.php:161 includes/class/class-setting.php:194
 msgid "Failed to pass security check"
 msgstr "Gagal melewati keamanan"
 
-#: includes/class/class-setting.php:166
+#: includes/class/class-setting.php:180
 msgid "You have rejected the payment successfully. Please"
 msgstr "Anda telah berhasil menolak pembayaran. Silahkan"
 
-#: includes/class/class-setting.php:202
+#: includes/class/class-setting.php:216
 msgid "Validate"
 msgstr "Validasi"
 
-#: includes/class/class-setting.php:203
+#: includes/class/class-setting.php:217
 msgid "Reject"
 msgstr "Tolak"
 
