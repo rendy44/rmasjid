@@ -125,7 +125,7 @@ if ( ! class_exists( 'Mailer' ) ) {
 		/**
 		 * Send email after making rejection
 		 *
-		 * @param $payment_id
+		 * @param int $payment_id payment id.
 		 */
 		public static function send_email_after_making_rejection( $payment_id ) {
 			$name        = Helper::pfield( 'name', $payment_id );

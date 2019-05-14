@@ -122,7 +122,7 @@ if ( ! class_exists( 'Payment' ) ) {
 						'confirmation_datetime' => $datetime_now_timestamp,
 					]
 				);
-				// Send email to user and admin
+				// Send email to user and admin.
 				Helpers\Mailer::send_email_after_making_confirmation( $payment_id );
 				$result['status'] = 'success';
 			} else {
@@ -283,13 +283,7 @@ if ( ! class_exists( 'Payment' ) ) {
 			// Total payment.
 			$query_all_payments = get_transient( 'all_payments' );
 			if ( false === $query_all_payments ) {
-				$query_all_payments = new \WP_Query(
-					[
-						'post_type'      => 'bayar',
-						'post_status'    => 'publish',
-						'posts_per_page' => - 1,
-					]
-				);
+				$query_all_payments = Helpers\Helper::setup_query( 1, 'bayar', [], - 1 );
 				set_transient( 'all_payments', $query_all_payments, 3600 );
 			}
 			$result['total_payment']           = (int) $query_all_payments->found_posts;
@@ -298,14 +292,16 @@ if ( ! class_exists( 'Payment' ) ) {
 			// Total waiting payment.
 			$query_all_waiting_payments = get_transient( 'all_waiting_payments' );
 			if ( false === $query_all_waiting_payments ) {
-				$query_all_waiting_payments = new \WP_Query(
+				$query_all_waiting_payments = Helpers\Helper::setup_query(
+					1,
+					'bayar',
 					[
-						'post_type'      => 'bayar',
-						'post_status'    => 'publish',
-						'posts_per_page' => - 1,
-						'meta_key'       => 'status',
-						'meta_value'     => 'waiting_payment',
-					]
+						[
+							'key'   => 'status',
+							'value' => 'waiting_payment',
+						],
+					],
+					- 1
 				);
 				set_transient( 'all_waiting_payments', $query_all_waiting_payments, 3600 );
 			}
@@ -315,14 +311,16 @@ if ( ! class_exists( 'Payment' ) ) {
 			// Total waiting validation.
 			$query_all_waiting_validations = get_transient( 'all_waiting_validations' );
 			if ( false === $query_all_waiting_validations ) {
-				$query_all_waiting_validations = new \WP_Query(
+				$query_all_waiting_validations = Helpers\Helper::setup_query(
+					1,
+					'bayar',
 					[
-						'post_type'      => 'bayar',
-						'post_status'    => 'publish',
-						'posts_per_page' => - 1,
-						'meta_key'       => 'status',
-						'meta_value'     => 'waiting_validation',
-					]
+						[
+							'key'   => 'status',
+							'value' => 'waiting_validation',
+						],
+					],
+					- 1
 				);
 				set_transient( 'all_waiting_validations', $query_all_waiting_validations, 3600 );
 			}
@@ -332,14 +330,16 @@ if ( ! class_exists( 'Payment' ) ) {
 			// Total rejected.
 			$query_all_rejected = get_transient( 'all_rejected' );
 			if ( false === $query_all_rejected ) {
-				$query_all_rejected = new \WP_Query(
+				$query_all_rejected = Helpers\Helper::setup_query(
+					1,
+					'bayar',
 					[
-						'post_type'      => 'bayar',
-						'post_status'    => 'publish',
-						'posts_per_page' => - 1,
-						'meta_key'       => 'status',
-						'meta_value'     => 'rejected',
-					]
+						[
+							'key'   => 'status',
+							'value' => 'rejected',
+						],
+					],
+					- 1
 				);
 				set_transient( 'all_rejected', $query_all_rejected, 3600 );
 			}
@@ -348,6 +348,17 @@ if ( ! class_exists( 'Payment' ) ) {
 			wp_reset_postdata();
 
 			return $result;
+		}
+
+		/**
+		 * Count payment need mod
+		 *
+		 * @return string
+		 */
+		public static function get_payment_need_mod() {
+			$count = self::get_payment_overview();
+
+			return $count['total_waiting_validation'] > 0 ? sprintf( ' <span class="awaiting-mod">%d</span>', $count['total_waiting_validation'] ) : '';
 		}
 
 		/**

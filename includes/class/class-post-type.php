@@ -11,6 +11,7 @@
 namespace Masjid\Settings;
 
 use Masjid\Helpers;
+use Masjid\Transactions;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -21,6 +22,7 @@ if ( ! class_exists( 'Post_Type' ) ) {
 	 * Class Post_Type
 	 */
 	class Post_Type {
+
 		/**
 		 * Private instance variable
 		 *
@@ -116,10 +118,12 @@ if ( ! class_exists( 'Post_Type' ) ) {
 		 * Register pembayaran post type
 		 */
 		public function register_pembayaran() {
-			$args = [
+			$counts = Transactions\Payment::get_payment_need_mod();
+			$args   = [
 				'labels'              => [
 					'name'          => __( 'Payments', 'masjid' ),
 					'singular_name' => __( 'Payment', 'masjid' ),
+					'menu_name'     => __( 'Payments', 'masjid' ) . $counts,
 				],
 				'supports'            => [
 					'none',

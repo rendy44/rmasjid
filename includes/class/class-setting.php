@@ -217,11 +217,8 @@ if ( ! class_exists( 'Setting' ) ) {
 			if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
 				return;
 			}
-			// Check the user's permissions.
-			if ( ! current_user_can( 'edit_post', $post_id ) ) {
-				return;
-			}
-			if ( 'donasi' !== get_post_type( $post_id ) ) {
+			$post_type = get_post_type( $post_id );
+			if ( ! in_array( $post_type, [ 'donasi', 'bayar' ], true ) ) {
 				return;
 			}
 			if ( 'auto-draft' === get_post_status( $post_id ) ) {
