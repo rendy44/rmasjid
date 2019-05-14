@@ -104,6 +104,7 @@ if ( ! class_exists( 'Setting' ) ) {
 		 */
 		private function admin_setting() {
 			add_action( 'save_post', [ $this, 'clean_campaign_transient_callback' ] );
+			add_action( 'updated_post_meta', [ $this, 'clean_campaign_and_payment_transient' ], 10, 4 );
 			add_filter( 'post_row_actions', [ $this, 'modify_list_row_actions_callback' ], 10, 2 );
 		}
 
@@ -208,6 +209,35 @@ if ( ! class_exists( 'Setting' ) ) {
 		}
 
 		/**
+		 * Clear caches
+		 */
+		private static function clear_cache() {
+			delete_transient( 'query_latest_campaigns' );
+			wp_cache_delete( 'total_income', 'payment' );
+			delete_transient( 'all_payments' );
+			delete_transient( 'all_waiting_payments' );
+			delete_transient( 'all_waiting_validations' );
+			delete_transient( 'all_rejected' );
+		}
+
+		/**
+		 * Clear cache upon post meta saving
+		 *
+		 * @param $meta_id
+		 * @param $post_id
+		 * @param $meta_key
+		 * @param $meta_value
+		 */
+		public function clean_campaign_and_payment_transient( $meta_id, $post_id, $meta_key, $meta_value ) {
+			$post_type = get_post_type( $post_id );
+			if ( in_array( $post_type, [ 'bayar', 'donasi' ], true ) ) {
+				if ( in_array( $meta_key, [ 'main_detail_target', 'status' ] ) ) {
+					self::clear_cache();
+				}
+			}
+		}
+
+		/**
 		 * Clean transient campaign upon saving
 		 *
 		 * @param int $post_id post id.
@@ -224,12 +254,7 @@ if ( ! class_exists( 'Setting' ) ) {
 			if ( 'auto-draft' === get_post_status( $post_id ) ) {
 				return;
 			}
-			delete_transient( 'query_latest_campaigns' );
-			wp_cache_delete( 'total_income', 'payment' );
-			delete_transient( 'all_payments' );
-			delete_transient( 'all_waiting_payments' );
-			delete_transient( 'all_waiting_validations' );
-			delete_transient( 'all_rejected' );
+			self::clear_cache();
 		}
 
 		/**
