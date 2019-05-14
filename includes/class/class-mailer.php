@@ -59,10 +59,13 @@ if ( ! class_exists( 'Mailer' ) ) {
 		private static function convert_string_to_template( $title, $string ) {
 			global $temp;
 
-			return $temp->render( 'email-template', [
-				'title'   => $title,
-				'content' => $string,
-			] );
+			return $temp->render(
+				'email-template',
+				[
+					'title'   => $title,
+					'content' => $string,
+				]
+			);
 		}
 
 		/**
@@ -77,8 +80,8 @@ if ( ! class_exists( 'Mailer' ) ) {
 			$email       = Helper::pfield( 'email', $payment_id );
 			$expiry      = Helper::pfield( 'expiry', $payment_id );
 			$result      = '<p>' . __( 'Hi', 'masjid' ) . ' ' . $name . ',</p>';
-			$result      .= '<p>' . __( 'In order to finish your donation, please make a transfer before', 'masjid' ) . ' ' . date_i18n( $date_format . ', ' . $time_format, $expiry ) . '</p>';
-			$result      .= '<p>' . __( 'Please click', 'masjid' ) . ' <a href="' . get_permalink( $payment_id ) . '">' . __( 'here', 'masjid' ) . '</a> ' . __( 'for your payment details', 'masjid' );
+			$result     .= '<p>' . __( 'In order to finish your donation, please make a transfer before', 'masjid' ) . ' ' . date_i18n( $date_format . ', ' . $time_format, $expiry ) . '</p>';
+			$result     .= '<p>' . __( 'Please click', 'masjid' ) . ' <a href="' . get_permalink( $payment_id ) . '">' . __( 'here', 'masjid' ) . '</a> ' . __( 'for your payment details', 'masjid' );
 
 			self::send_email( $email, __( 'Please complete your payment', 'masjid' ), $result );
 		}
@@ -89,9 +92,9 @@ if ( ! class_exists( 'Mailer' ) ) {
 		 * @param int $payment_id payment id.
 		 */
 		public static function send_email_after_making_confirmation( $payment_id ) {
-			$name   = Helper::pfield( 'name', $payment_id );
-			$email  = Helper::pfield( 'email', $payment_id );
-			$result = '<p>' . __( 'Hi', 'masjid' ) . ' ' . $name . ',</p>';
+			$name    = Helper::pfield( 'name', $payment_id );
+			$email   = Helper::pfield( 'email', $payment_id );
+			$result  = '<p>' . __( 'Hi', 'masjid' ) . ' ' . $name . ',</p>';
 			$result .= '<p>' . __( 'Thank you for confirming your payment, we are validating your payment.', 'masjid' ) . '</p>';
 
 			// Send to user.
@@ -113,7 +116,7 @@ if ( ! class_exists( 'Mailer' ) ) {
 			$email       = Helper::pfield( 'email', $payment_id );
 			$campaign_id = Helper::pfield( 'campaign_id', $payment_id );
 			$result      = '<p>' . __( 'Hi', 'masjid' ) . ' ' . $name . ',</p>';
-			$result      .= '<p>' . __( 'Your donation for', 'masjid' ) . ' <strong>' . get_the_title( $campaign_id ) . '</strong> ' . __( 'have been validated.', 'masjid' ) . '</p>';
+			$result     .= '<p>' . __( 'Your donation for', 'masjid' ) . ' <strong>' . get_the_title( $campaign_id ) . '</strong> ' . __( 'have been validated.', 'masjid' ) . '</p>';
 
 			// Send to user.
 			self::send_email( $email, __( 'Payment Validated', 'masjid' ), $result );
@@ -129,7 +132,7 @@ if ( ! class_exists( 'Mailer' ) ) {
 			$email       = Helper::pfield( 'email', $payment_id );
 			$campaign_id = Helper::pfield( 'campaign_id', $payment_id );
 			$result      = '<p>' . __( 'Hi', 'masjid' ) . ' ' . $name . ',</p>';
-			$result      .= '<p>' . __( 'Your donation for', 'masjid' ) . ' <strong>' . get_the_title( $campaign_id ) . '</strong> ' . __( 'have been rejected.', 'masjid' ) . '</p>';
+			$result     .= '<p>' . __( 'Your donation for', 'masjid' ) . ' <strong>' . get_the_title( $campaign_id ) . '</strong> ' . __( 'have been rejected.', 'masjid' ) . '</p>';
 
 			// Send to user.
 			self::send_email( $email, __( 'Payment Rejected', 'masjid' ), $result );

@@ -33,17 +33,22 @@ if ( ! class_exists( 'Payment' ) ) {
 		public static function create_payment( $campaign_id ) {
 			$result      = false;
 			$title       = '#' . uniqid( 'ma', true );
-			$new_payment = wp_insert_post( [
-				'post_type'   => 'bayar',
-				'post_title'  => strtoupper( $title ),
-				'post_name'   => sanitize_title( $title ),
-				'post_status' => 'publish',
-			] );
+			$new_payment = wp_insert_post(
+				[
+					'post_type'   => 'bayar',
+					'post_title'  => strtoupper( $title ),
+					'post_name'   => sanitize_title( $title ),
+					'post_status' => 'publish',
+				]
+			);
 			if ( $new_payment ) {
-				Helpers\Helper::upfield( $new_payment, [
-					'campaign_id' => $campaign_id,
-					'status'      => 'waiting_payment',
-				] );
+				Helpers\Helper::upfield(
+					$new_payment,
+					[
+						'campaign_id' => $campaign_id,
+						'status'      => 'waiting_payment',
+					]
+				);
 				$result = $new_payment;
 			}
 
@@ -73,18 +78,21 @@ if ( ! class_exists( 'Payment' ) ) {
 				$datetime_expiry = new DateTime();
 				$datetime_expiry->modify( '+1 day' );
 				$expiry_timestamp = $datetime_expiry->getTimestamp();
-				Helpers\Helper::upfield( $payment_id, [
-					'amount'           => $amount,
-					'total_amount'     => $total_amount,
-					'unique_amount'    => $unique,
-					'name'             => $name,
-					'email'            => $email,
-					'hide_name'        => $hide_name,
-					'message'          => $message,
-					'expiry'           => $expiry_timestamp,
-					'status'           => 'waiting_confirmation',
-					'payment_datetime' => $datetime_now_timestamp,
-				] );
+				Helpers\Helper::upfield(
+					$payment_id,
+					[
+						'amount'           => $amount,
+						'total_amount'     => $total_amount,
+						'unique_amount'    => $unique,
+						'name'             => $name,
+						'email'            => $email,
+						'hide_name'        => $hide_name,
+						'message'          => $message,
+						'expiry'           => $expiry_timestamp,
+						'status'           => 'waiting_confirmation',
+						'payment_datetime' => $datetime_now_timestamp,
+					]
+				);
 				// Send invoice email to user.
 				Helpers\Mailer::send_email_after_making_payment( $payment_id );
 				$result['status'] = 'success';
@@ -107,10 +115,13 @@ if ( ! class_exists( 'Payment' ) ) {
 			$datetime_now_timestamp = current_time( 'timestamp' );
 			$status                 = Helpers\Helper::pfield( 'status', $payment_id );
 			if ( 'waiting_confirmation' === $status ) {
-				Helpers\Helper::upfield( $payment_id, [
-					'status'                => 'waiting_validation',
-					'confirmation_datetime' => $datetime_now_timestamp,
-				] );
+				Helpers\Helper::upfield(
+					$payment_id,
+					[
+						'status'                => 'waiting_validation',
+						'confirmation_datetime' => $datetime_now_timestamp,
+					]
+				);
 				// Send email to user and admin
 				Helpers\Mailer::send_email_after_making_confirmation( $payment_id );
 				$result['status'] = 'success';
@@ -137,11 +148,14 @@ if ( ! class_exists( 'Payment' ) ) {
 				// Make a charge since the payment is success.
 				self::charge_payment_into_campaign( $campaign_id, $payment_id );
 				// update some fields.
-				Helpers\Helper::upfield( $payment_id, [
-					'validated_by'        => wp_get_current_user()->ID,
-					'status'              => 'done',
-					'validation_datetime' => $datetime_now_timestamp,
-				] );
+				Helpers\Helper::upfield(
+					$payment_id,
+					[
+						'validated_by'        => wp_get_current_user()->ID,
+						'status'              => 'done',
+						'validation_datetime' => $datetime_now_timestamp,
+					]
+				);
 				// Send email to user.
 				Helpers\Mailer::send_email_after_making_validation( $payment_id );
 				$result['status'] = 'success';
@@ -165,11 +179,14 @@ if ( ! class_exists( 'Payment' ) ) {
 			$status                 = Helpers\Helper::pfield( 'status', $payment_id );
 			if ( 'waiting_validation' === $status ) {
 				// update some fields.
-				Helpers\Helper::upfield( $payment_id, [
-					'rejected_by'        => wp_get_current_user()->ID,
-					'status'             => 'rejected',
-					'rejection_datetime' => $datetime_now_timestamp,
-				] );
+				Helpers\Helper::upfield(
+					$payment_id,
+					[
+						'rejected_by'        => wp_get_current_user()->ID,
+						'status'             => 'rejected',
+						'rejection_datetime' => $datetime_now_timestamp,
+					]
+				);
 				// Send email to user.
 				Helpers\Mailer::send_email_after_making_rejection( $payment_id );
 				$result['status'] = 'success';
@@ -193,11 +210,14 @@ if ( ! class_exists( 'Payment' ) ) {
 			$payment_total_amount           = (int) Helpers\Helper::pfield( 'total_amount', $payment_id );
 			$new_campaign_collected         = $campaign_collected + $payment_total_amount;
 			$new_campaign_collected_percent = $new_campaign_collected * 100 / $campaign_target;
-			Helpers\Helper::upfield( $campaign_id, [
-				'main_detail_collected'         => $new_campaign_collected,
-				'last_success_donation'         => $datetime_now_timestamp,
-				'main_detail_collected_percent' => (int) $new_campaign_collected_percent,
-			] );
+			Helpers\Helper::upfield(
+				$campaign_id,
+				[
+					'main_detail_collected'         => $new_campaign_collected,
+					'last_success_donation'         => $datetime_now_timestamp,
+					'main_detail_collected_percent' => (int) $new_campaign_collected_percent,
+				]
+			);
 		}
 
 		/**
@@ -241,13 +261,20 @@ if ( ! class_exists( 'Payment' ) ) {
 			// Total income.
 			$total_income = wp_cache_get( 'total_income', 'payment' );
 			if ( ! $total_income ) {
-				$result_db = $wpdb->get_var( $wpdb->prepare( "
+				$result_db = $wpdb->get_var(
+					$wpdb->prepare(
+						"
     SELECT SUM(pm.meta_value) FROM {$wpdb->postmeta} pm
     LEFT JOIN {$wpdb->posts} p ON p.ID = pm.post_id
     WHERE pm.meta_key = '%s' 
     AND p.post_status = '%s' 
     AND p.post_type = '%s'
-  ", 'main_detail_collected', 'publish', 'donasi' ) );
+  ",
+						'main_detail_collected',
+						'publish',
+						'donasi'
+					)
+				);
 				wp_cache_set( 'total_income', $result_db, 'payment', 3600 );
 				$total_income = $result_db;
 			}
@@ -256,11 +283,13 @@ if ( ! class_exists( 'Payment' ) ) {
 			// Total payment.
 			$query_all_payments = get_transient( 'all_payments' );
 			if ( false === $query_all_payments ) {
-				$query_all_payments = new \WP_Query( [
-					'post_type'      => 'bayar',
-					'post_status'    => 'publish',
-					'posts_per_page' => - 1,
-				] );
+				$query_all_payments = new \WP_Query(
+					[
+						'post_type'      => 'bayar',
+						'post_status'    => 'publish',
+						'posts_per_page' => - 1,
+					]
+				);
 				set_transient( 'all_payments', $query_all_payments, 3600 );
 			}
 			$result['total_payment']           = (int) $query_all_payments->found_posts;
@@ -269,13 +298,15 @@ if ( ! class_exists( 'Payment' ) ) {
 			// Total waiting payment.
 			$query_all_waiting_payments = get_transient( 'all_waiting_payments' );
 			if ( false === $query_all_waiting_payments ) {
-				$query_all_waiting_payments = new \WP_Query( [
-					'post_type'      => 'bayar',
-					'post_status'    => 'publish',
-					'posts_per_page' => - 1,
-					'meta_key'       => 'status',
-					'meta_value'     => 'waiting_payment',
-				] );
+				$query_all_waiting_payments = new \WP_Query(
+					[
+						'post_type'      => 'bayar',
+						'post_status'    => 'publish',
+						'posts_per_page' => - 1,
+						'meta_key'       => 'status',
+						'meta_value'     => 'waiting_payment',
+					]
+				);
 				set_transient( 'all_waiting_payments', $query_all_waiting_payments, 3600 );
 			}
 			$result['total_waiting_payment']           = (int) $query_all_waiting_payments->found_posts;
@@ -284,13 +315,15 @@ if ( ! class_exists( 'Payment' ) ) {
 			// Total waiting validation.
 			$query_all_waiting_validations = get_transient( 'all_waiting_validations' );
 			if ( false === $query_all_waiting_validations ) {
-				$query_all_waiting_validations = new \WP_Query( [
-					'post_type'      => 'bayar',
-					'post_status'    => 'publish',
-					'posts_per_page' => - 1,
-					'meta_key'       => 'status',
-					'meta_value'     => 'waiting_validation',
-				] );
+				$query_all_waiting_validations = new \WP_Query(
+					[
+						'post_type'      => 'bayar',
+						'post_status'    => 'publish',
+						'posts_per_page' => - 1,
+						'meta_key'       => 'status',
+						'meta_value'     => 'waiting_validation',
+					]
+				);
 				set_transient( 'all_waiting_validations', $query_all_waiting_validations, 3600 );
 			}
 			$result['total_waiting_validation']           = (int) $query_all_waiting_validations->found_posts;
@@ -299,13 +332,15 @@ if ( ! class_exists( 'Payment' ) ) {
 			// Total rejected.
 			$query_all_rejected = get_transient( 'all_rejected' );
 			if ( false === $query_all_rejected ) {
-				$query_all_rejected = new \WP_Query( [
-					'post_type'      => 'bayar',
-					'post_status'    => 'publish',
-					'posts_per_page' => - 1,
-					'meta_key'       => 'status',
-					'meta_value'     => 'rejected',
-				] );
+				$query_all_rejected = new \WP_Query(
+					[
+						'post_type'      => 'bayar',
+						'post_status'    => 'publish',
+						'posts_per_page' => - 1,
+						'meta_key'       => 'status',
+						'meta_value'     => 'rejected',
+					]
+				);
 				set_transient( 'all_rejected', $query_all_rejected, 3600 );
 			}
 			$result['total_rejected']           = (int) $query_all_rejected->found_posts;
