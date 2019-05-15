@@ -24,6 +24,7 @@ get_header();
 
 while ( have_posts() ) {
 	the_post();
+	$page_maps = get_option( 'ma_page_maps' );
 	?>
 
 	<!--    Masthead-->
@@ -86,6 +87,12 @@ while ( have_posts() ) {
 					<p class="text-muted text-center">
 						<small><?php echo __( 'Collected', 'masjid' ) . ' ' . $available_campaigns['sum']['collected_percent'] . '% ' . __( 'from total', 'masjid' ) . ' Rp' . $available_campaigns['sum']['target_format']; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></small>
 					</p>
+					<?php
+					$page_campaign = ! empty( $page_maps['page_campaign'] ) ? $page_maps['page_campaign'] : false;
+					if ( $page_campaign ) {
+						echo '<a href="' . get_permalink( $page_campaign ) . '" class="btn btn-outline-primary btn-lg mt-3">' . __( 'Browse All Campaigns', 'masjid' ) . '</a>';
+					}
+					?>
 				</div>
 			</div>
 		</div>
@@ -131,6 +138,18 @@ while ( have_posts() ) {
 					]
 				);
 				echo $lecture_result; // phpcs:ignore WordPress.Security.EscapeOutput
+				?>
+				<?php
+				$page_lecture = ! empty( $page_maps['page_lecture'] ) ? $page_maps['page_lecture'] : false;
+				if ( $page_campaign ) {
+					?>
+					<div class="row">
+						<div class="col-lg-8 mx-auto text-center">
+							<a href="<?php the_permalink( $page_lecture ); ?>" class="btn btn-primary btn-lg mt-4"><?php echo __( 'Browse All Lectures', 'masjid' ); ?></a>
+						</div>
+					</div>
+					<?php
+				}
 				?>
 			</div>
 		</section>
@@ -182,6 +201,17 @@ while ( have_posts() ) {
 					]
 				);
 				echo $article_result;  // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+
+				$page_article = ! empty( $page_maps['page_article'] ) ? $page_maps['page_article'] : false;
+				if ( $page_campaign ) {
+					?>
+					<div class="row">
+						<div class="col-lg-8 mx-auto text-center">
+							<a href="<?php the_permalink( $page_article ); ?>" class="btn btn-outline-primary btn-lg mt-4"><?php echo __( 'Browse All Articles', 'masjid' ); ?></a>
+						</div>
+					</div>
+					<?php
+				}
 				?>
 			</div>
 		</section>
