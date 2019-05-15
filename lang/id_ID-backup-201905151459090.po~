@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Masjid\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-05-15 14:20+0000\n"
-"PO-Revision-Date: 2019-05-15 14:21+0000\n"
+"POT-Creation-Date: 2019-05-15 14:29+0000\n"
+"PO-Revision-Date: 2019-05-15 14:30+0000\n"
 "Last-Translator: admin <rendy.de.p@gmail.com>\n"
 "Language-Team: Bahasa Indonesia\n"
 "Language: id_ID\n"
@@ -280,7 +280,7 @@ msgstr "Jadilah yang pertama melakukan donasi"
 msgid "By"
 msgstr "Oleh"
 
-#: templates/history-payment-list.php:24 templates/pdf-template-report.php:155
+#: templates/history-payment-list.php:24 templates/pdf-template-report.php:156
 msgid "Anonymous"
 msgstr "Anonim"
 
@@ -402,6 +402,10 @@ msgstr "Jumlah Total"
 #: templates/pdf-template-report.php:146 includes/class/class-metabox.php:178
 msgid "Date"
 msgstr "Tanggal"
+
+#: templates/pdf-template-report.php:165
+msgid "Sub Total"
+msgstr "Sub Total"
 
 #: templates/post-404.php:16
 msgid "The post you are looking for is not found"
@@ -1107,25 +1111,25 @@ msgstr "Judul Kolom Ketiga"
 msgid "Third Column Links"
 msgstr "Permalink Kolom Ketiga"
 
-#: includes/class/class-payment.php:119 includes/class/class-payment.php:150
-#: includes/class/class-payment.php:178
+#: includes/class/class-payment.php:130 includes/class/class-payment.php:164
+#: includes/class/class-payment.php:195
 msgid "You are not allowed to perform this action"
 msgstr "Anda tidak diizinkan"
 
-#: includes/class/class-payment.php:217
+#: includes/class/class-payment.php:237
 msgid "Campaign is closed due it already meet its target"
 msgstr "Donasi sudah ditutup karena sudah memenuhi target"
 
-#: includes/class/class-payment.php:224
+#: includes/class/class-payment.php:244
 msgid "Campaign is closed due it already meet its due date"
 msgstr "Donasi ditutup karena sudah melewati batas akhir"
 
-#: includes/class/class-post-handler.php:72
 #: includes/class/class-post-handler.php:74
+#: includes/class/class-post-handler.php:76
 msgid "Report for"
 msgstr "Laporan untuk"
 
-#: includes/class/class-post-handler.php:87
+#: includes/class/class-post-handler.php:90
 msgid "Please provide campaign id"
 msgstr "Masukkan id donasi"
 

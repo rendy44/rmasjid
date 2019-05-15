@@ -25,6 +25,7 @@ if ( ! class_exists( 'Metabox' ) ) {
 	 * @package Masjid\Settings
 	 */
 	class Metabox {
+
 		/**
 		 * Private instance variable
 		 *
@@ -54,6 +55,7 @@ if ( ! class_exists( 'Metabox' ) ) {
 			add_action( 'cmb2_admin_init', [ $this, 'front_page_metabox_callback' ] );
 			add_action( 'cmb2_admin_init', [ $this, 'history_page_metabox_callback' ] );
 			add_action( 'wp_dashboard_setup', [ $this, 'custom_dashboard_widget_callback' ] );
+			add_action( 'add_meta_boxes', [ $this, 'register_campaign_custom_metabox_callback' ] );
 		}
 
 		/**
@@ -646,6 +648,31 @@ if ( ! class_exists( 'Metabox' ) ) {
 				</li>
 			</ul>
 			<?php
+		}
+
+		/**
+		 * Callback for registering campaign custom metabox
+		 */
+		public function register_campaign_custom_metabox_callback() {
+			add_meta_box(
+				'campaign_report_mb',
+				__( 'Report', 'masjid' ),
+				[
+					$this,
+					'campaign_report_metabox_callback',
+				],
+				'donasi',
+				'side'
+			);
+		}
+
+		public function campaign_report_metabox_callback() {
+			global $post;
+			if ( is_object( $post ) && 'donasi' == $post->post_type ) {
+				$download_url = wp_nonce_url( admin_url( 'admin-post.php?action=download_pdf&campaign=' . $post->ID ), 'download_pdf' );
+				echo '<p>' . __( 'Download donation reports in pdf format.', 'masjid' ) . '</p>';
+				echo '<a class="button" href="' . $download_url . '" target="_blank">' . __( 'Download', 'masjid' ) . '</a>';
+			}
 		}
 	}
 }

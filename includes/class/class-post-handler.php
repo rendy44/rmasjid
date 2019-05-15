@@ -59,34 +59,39 @@ if ( ! class_exists( 'Post_Handler' ) ) {
 		 * Callback for `download_pdf`
 		 */
 		public function download_pdf_callback() {
+			$nonce       = ! empty( $_GET['_wpnonce'] ) ? $_GET['_wpnonce'] : false; // phpcs:ignore WordPress
 			$campaign_id = ! empty( $_GET['campaign'] ) ? $_GET['campaign'] : false; // phpcs:ignore WordPress
-			global $temp;
-			if ( $campaign_id ) {
-				$html2pdf = new Html2Pdf();
-				try {
-					$histories      = Transactions\Payment::success_payments( $campaign_id );
-					$campaign_title = get_the_title( $campaign_id );
-					$content        = $temp->render(
-						'pdf-template-report',
-						[
-							'title'     => get_bloginfo( 'name' ),
-							'subtitle'  => __( 'Report for', 'masjid' ) . '<br/>' . $campaign_title,
-							'rows'      => $histories,
-							'doc_title' => __( 'Report for', 'masjid' ) . ' ' . $campaign_title,
-							'site_url'  => home_url(),
-							'footnote'  => '&copy; ' . date( 'Y' ) . ' ' . get_bloginfo( 'name' ),
+			if ( wp_verify_nonce( $nonce, 'download_pdf' ) ) {
+				global $temp;
+				if ( $campaign_id ) {
+					$html2pdf = new Html2Pdf();
+					try {
+						$histories      = Transactions\Payment::success_payments( $campaign_id );
+						$campaign_title = get_the_title( $campaign_id );
+						$content        = $temp->render(
+							'pdf-template-report',
+							[
+								'title'     => get_bloginfo( 'name' ),
+								'subtitle'  => __( 'Report for', 'masjid' ) . '<br/>' . $campaign_title,
+								'rows'      => $histories,
+								'doc_title' => __( 'Report for', 'masjid' ) . ' ' . $campaign_title,
+								'site_url'  => home_url(),
+								'footnote'  => '&copy; ' . date( 'Y' ) . ' ' . get_bloginfo( 'name' ),
 
-						]
-					);
-					$html2pdf->writeHTML( $content );
-					$html2pdf->output();
-				} catch ( Html2PdfException $e ) {
-					$html2pdf->clean();
-					$formatter = new ExceptionFormatter( $e );
-					wp_die( $formatter->getHtmlMessage() ); // phpcs:ignore WordPress
+							]
+						);
+						$html2pdf->writeHTML( $content );
+						$html2pdf->output();
+					} catch ( Html2PdfException $e ) {
+						$html2pdf->clean();
+						$formatter = new ExceptionFormatter( $e );
+						wp_die( $formatter->getHtmlMessage() ); // phpcs:ignore WordPress
+					}
+				} else {
+					wp_die( __( 'Please provide campaign id', 'masjid' ) ); // phpcs:ignore WordPress
 				}
 			} else {
-				wp_die( __( 'Please provide campaign id', 'masjid' ) ); // phpcs:ignore WordPress
+				wp_die( __( 'Please do not cheating :)', 'masjid' ) ); // phpcs:ignore WordPress
 			}
 		}
 	}
