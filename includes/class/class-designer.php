@@ -15,6 +15,7 @@ use Masjid\Helpers;
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
+
 if ( ! class_exists( 'MaDesigner' ) ) {
 
 	/**
@@ -183,5 +184,6 @@ if ( ! class_exists( 'MaDesigner' ) ) {
 		}
 	}
 }
+
 global $designer;
 $designer = Designer::init();

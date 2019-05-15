@@ -13,6 +13,7 @@ namespace Masjid\Helpers;
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
+
 if ( ! class_exists( 'Mailer' ) ) {
 
 	/**

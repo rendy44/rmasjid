@@ -13,6 +13,7 @@ namespace Masjid\Helpers;
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
+
 if ( ! class_exists( 'Template' ) ) {
 
 	/**
@@ -127,5 +128,6 @@ if ( ! class_exists( 'Template' ) ) {
 		}
 	}
 }
+
 global $temp;
 $temp = Template::init();

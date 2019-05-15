@@ -16,6 +16,7 @@ use Masjid\Transactions;
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
+
 if ( ! class_exists( 'Metabox' ) ) {
 
 	/**
@@ -648,4 +649,5 @@ if ( ! class_exists( 'Metabox' ) ) {
 		}
 	}
 }
+
 Metabox::init();

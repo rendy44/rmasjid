@@ -13,6 +13,7 @@ namespace Masjid\CMB2\Extension;
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
+
 if ( ! class_exists( 'CMB2_Custom_Field' ) ) {
 
 	/**
@@ -99,4 +100,5 @@ if ( ! class_exists( 'CMB2_Custom_Field' ) ) {
 		}
 	}
 }
+
 CMB2_Custom_Field::init();

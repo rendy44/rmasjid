@@ -17,6 +17,7 @@ use DateTime;
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
+
 if ( ! class_exists( 'Ajax' ) ) {
 
 	/**
@@ -260,4 +261,5 @@ if ( ! class_exists( 'Ajax' ) ) {
 		}
 	}
 }
+
 Ajax::init();

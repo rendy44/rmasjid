@@ -16,6 +16,7 @@ use Masjid\Transactions;
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
+
 if ( ! class_exists( 'Setting' ) ) {
 
 	/**
@@ -117,13 +118,16 @@ if ( ! class_exists( 'Setting' ) ) {
 			add_action( 'admin_action_reject', [ $this, 'reject_payment_callback' ] );
 		}
 
+		/**
+		 * Callback to display admin notices
+		 */
 		public function need_mod_payments_notice_callback() {
 			$counts = Transactions\Payment::get_payment_need_mod( false );
 			if ( $counts > 0 ) {
 				$go_url = admin_url( 'edit.php?post_type=bayar' );
 				?>
 				<div class="notice notice-warning">
-					<?php echo '<p><strong>' . __( 'Importnat!', 'masjid' ) . ' </strong>' . __( 'You have', 'masjid' ) . ' <a href="' . $go_url . '"><strong>' . $counts . '</strong></a> ' . __( 'payments(s) that need to be validated immediately.', 'masjid' ) . '</p>'; ?>
+					<?php echo '<p><strong>' . __( 'Importnat!', 'masjid' ) . ' </strong>' . __( 'You have', 'masjid' ) . ' <a href="' . $go_url . '"><strong>' . $counts . '</strong></a> ' . __( 'payments(s) that need to be validated immediately.', 'masjid' ) . '</p>'; // phpcs:ignore WordPress ?>
 				</div>
 				<?php
 			}
@@ -296,4 +300,5 @@ if ( ! class_exists( 'Setting' ) ) {
 		}
 	}
 }
+
 Setting::init();

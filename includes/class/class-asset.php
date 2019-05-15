@@ -15,6 +15,7 @@ use Masjid\Helpers;
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
+
 if ( ! class_exists( 'Asset' ) ) {
 
 	/**
@@ -294,4 +295,5 @@ if ( ! class_exists( 'Asset' ) ) {
 		}
 	}
 }
+
 Asset::init();

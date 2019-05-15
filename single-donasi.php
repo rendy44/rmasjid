@@ -9,6 +9,7 @@
  */
 
 use Masjid\Helpers;
+use Masjid\Transactions;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -87,37 +88,10 @@ while ( have_posts() ) {
 			<hr class="mb-4"/>
 			<div class="mb-2">
 				<?php
-				$query_payment_history = Helpers\Helper::setup_query(
-					1,
-					'bayar',
-					[
-						'relation' => 'and',
-						[
-							'key'   => 'status',
-							'value' => 'done',
-						],
-						[
-							'key'   => 'campaign_id',
-							'value' => get_the_ID(),
-						],
-					]
-				);
-				if ( $query_payment_history->have_posts() ) {
-					$date_format     = get_option( 'date_format' );
-					$time_format     = get_option( 'time_format' );
-					$datetime_format = $date_format . ' ' . $time_format;
-					while ( $query_payment_history->have_posts() ) {
-						$query_payment_history->the_post();
-						$history_result = $temp->render(
-							'history-payment-list',
-							[
-								'total_formatted_amount' => number_format( (int) Helpers\Helper::pfield( 'total_amount' ), 0, ',', '.' ),
-								'name'                   => esc_html( Helpers\Helper::pfield( 'name' ) ),
-								'hide_name'              => (bool) Helpers\Helper::pfield( 'hide_name' ),
-								'beautify_datetime'      => date( $datetime_format, Helpers\Helper::pfield( 'validation_datetime' ) ), // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-								'message'                => esc_html( Helpers\Helper::pfield( 'message' ) ),
-							]
-						);
+				$payment_histories = Transactions\Payment::success_payments( get_the_ID() );
+				if ( $payment_histories ) {
+					foreach ( $payment_histories as $history ) {
+						$history_result = $temp->render( 'history-payment-list', $history );
 						echo $history_result; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 					}
 				} else {

@@ -16,6 +16,7 @@ use Masjid\Transactions;
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
+
 if ( ! class_exists( 'Post_Type' ) ) {
 
 	/**
@@ -254,4 +255,5 @@ if ( ! class_exists( 'Post_Type' ) ) {
 		}
 	}
 }
+
 Post_Type::init();

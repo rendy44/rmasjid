@@ -16,6 +16,7 @@ use CMB2_Boxes;
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
+
 if ( ! class_exists( 'CMB2_Conditional' ) ) {
 
 	/**
@@ -225,4 +226,5 @@ if ( ! class_exists( 'CMB2_Conditional' ) ) {
 		}
 	} /* End of class. */
 }
+
 CMB2_Conditional::init();

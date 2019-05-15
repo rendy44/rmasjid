@@ -16,6 +16,7 @@ use WP_Error;
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
+
 if ( ! class_exists( 'Activator' ) ) {
 
 	/**
@@ -151,4 +152,5 @@ if ( ! class_exists( 'Activator' ) ) {
 		}
 	}
 }
+
 Activator::init();

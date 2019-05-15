@@ -15,6 +15,7 @@ use WP_Query;
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
+
 if ( ! class_exists( 'Options_Page' ) ) {
 
 	/**
@@ -322,4 +323,5 @@ if ( ! class_exists( 'Options_Page' ) ) {
 		}
 	}
 }
+
 Options_Page::init();

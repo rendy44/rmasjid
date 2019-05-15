@@ -16,6 +16,7 @@ use DateTime;
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
+
 if ( ! class_exists( 'Payment' ) ) {
 
 	/**
@@ -391,6 +392,54 @@ if ( ! class_exists( 'Payment' ) ) {
 		 */
 		private static function remove_payment_session( $campaign_id ) {
 			unset( $_SESSION[ 'pay_' . $campaign_id ] );
+		}
+
+		/**
+		 * List success payments
+		 *
+		 * @param int $campaign_id campaign id.
+		 *
+		 * @return array
+		 */
+		public static function success_payments( $campaign_id ) {
+			$result             = [];
+			$query_all_payments = Helpers\Helper::setup_query(
+				1,
+				'bayar',
+				[
+					'relation' => 'and',
+					[
+						'key'   => 'status',
+						'value' => 'done',
+					],
+					[
+						'key'   => 'campaign_id',
+						'value' => $campaign_id,
+					],
+				],
+				- 1
+			);
+			if ( $query_all_payments->have_posts() ) {
+				$date_format     = get_option( 'date_format' );
+				$time_format     = get_option( 'time_format' );
+				$datetime_format = $date_format . ' ' . $time_format;
+				while ( $query_all_payments->have_posts() ) {
+					$query_all_payments->the_post();
+					$raw_total_amount = (float) Helpers\Helper::pfield( 'total_amount' );
+					$result[]         = [
+						'id'                     => get_the_ID(),
+						'clean_total_amount'     => $raw_total_amount,
+						'total_formatted_amount' => number_format( $raw_total_amount, 0, ',', '.' ),
+						'name'                   => esc_html( Helpers\Helper::pfield( 'name' ) ),
+						'hide_name'              => (bool) Helpers\Helper::pfield( 'hide_name' ),
+						'beautify_datetime'      => date_i18n( $datetime_format, Helpers\Helper::pfield( 'validation_datetime' ) ), // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+						'message'                => esc_html( Helpers\Helper::pfield( 'message' ) ),
+					];
+				}
+			}
+			wp_reset_postdata();
+
+			return $result;
 		}
 	}
 }

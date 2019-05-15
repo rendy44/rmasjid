@@ -27,14 +27,12 @@ if ( ! class_exists( 'Masjid' ) ) {
 		 * @var null
 		 */
 		private static $instance = null;
-
 		/**
 		 * Private classes variable
 		 *
 		 * @var array
 		 */
 		private $classes = [];
-
 		/**
 		 * Private libraries variable
 		 *
@@ -62,6 +60,14 @@ if ( ! class_exists( 'Masjid' ) ) {
 			$this->load_libraries();
 			$this->load_classes();
 			$this->load_languages();
+			$this->load_vendors();
+		}
+
+		/**
+		 * Load composer vendors
+		 */
+		private function load_vendors() {
+			require TEMP_PATH . '/includes/vendor/autoload.php';
 		}
 
 		/**
@@ -89,7 +95,8 @@ if ( ! class_exists( 'Masjid' ) ) {
 				'payment',
 				'options-page',
 				'metabox',
-				'mailer'
+				'mailer',
+				'post-handler',
 			];
 		}
 
