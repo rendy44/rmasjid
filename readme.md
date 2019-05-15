@@ -6,7 +6,9 @@ Go to your WordPress admin dashboard and go to `Appearance` and click `themes`, 
 After that, please go to `Theme Options` to adjust some basic setting.
 ## Features
 This theme provides some features for your web, such as:
-1. **Campaign** will help you organize and manage any donation and campaign right on your website, right now it only support manual payment through bank transfer
+1. **Campaign** will help you organize and manage any donation and campaign right on your website, right now it only support manual payment through bank transfer.
+    - **Notification**, both admin and user will be notified through email every time a new event happen to campaign nor payment.
+    - **Report**, we provide pdf report for each campaigns with its successful payment records.
 2. **Article** is a blog portal where you can write articles, news, knowledge nor anything you want.
 3. **Lecture** is another feature that will make your lecture scheduling lot easier, it supports both single event and recurring event.
 4. **Customization** is a unique feature that will allow you to change the design to meet your preference.
