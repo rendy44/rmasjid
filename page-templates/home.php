@@ -28,7 +28,7 @@ while ( have_posts() ) {
 
 	<!--    Masthead-->
 	<section class="masthead">
-		<div class="container">
+		<div class="container d-flex h-100">
 			<?php
 			$head_title        = Helpers\Helper::pfield( 'head_title' );
 			$head_subtitle     = Helpers\Helper::pfield( 'head_subtitle' );

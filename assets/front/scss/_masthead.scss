@@ -9,8 +9,8 @@ section.masthead {
 	text-align: center;
 	color: white;
 	.intro-text {
-		padding-top: 120px;
-		padding-bottom: 90px;
+		//padding-top: 120px;
+		//padding-bottom: 90px;
 		.intro-lead-in {
 			font-size: 24px;
 			font-style: normal;
@@ -32,13 +32,14 @@ section.masthead {
 			padding-bottom: 60px;
 		}
 	}
+	height: 100vh;
 }
 
 @media (min-width: 576px) {
 	section.masthead {
 		.intro-text {
-			padding-top: 170px;
-			padding-bottom: 140px;
+			//padding-top: 170px;
+			//padding-bottom: 140px;
 			.intro-lead-in {
 				font-size: 29px;
 			}
@@ -58,8 +59,8 @@ section.masthead {
 @media(min-width: 768px) {
 	section.masthead {
 		.intro-text {
-			padding-top: 220px;
-			padding-bottom: 190px;
+			//padding-top: 220px;
+			//padding-bottom: 190px;
 			.intro-lead-in {
 				font-size: 34px;
 			}
@@ -80,8 +81,8 @@ section.masthead {
 @media (min-width: 992px) {
 	section.masthead {
 		.intro-text {
-			padding-top: 270px;
-			padding-bottom: 150px;
+			//padding-top: 270px;
+			//padding-bottom: 150px;
 			.intro-text {
 				font-size: 39px;
 			}
