@@ -382,7 +382,7 @@ if ( ! class_exists( 'Helper' ) ) {
 			$mlocal      = get_locale();
 			setlocale( LC_TIME, $mlocal );
 
-			return date( $date_format, $timestamp );
+			return date_i18n( $date_format, $timestamp );
 		}
 
 		/**
