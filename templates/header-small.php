@@ -23,7 +23,7 @@ $subcontent   = isset( $subcontent ) ? '<p class="text-center lead">' . esc_html
 		<div class="row">
 			<div class="col-lg-8 mx-auto">
 				<div class="intro-text">
-					<div class="intro-lead-in text-uppercase"><?php echo esc_html( $header_title ); ?></div>
+                    <div class="intro-lead-in text-uppercase"><?php echo wp_strip_all_tags( $header_title, true ); // phpcs:ignore ?></div>
 					<?php echo $subcontent; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 				</div>
 			</div>
