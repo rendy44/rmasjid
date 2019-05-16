@@ -2,10 +2,10 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Masjid\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-05-15 14:58+0000\n"
-"PO-Revision-Date: 2019-05-15 14:59+0000\n"
+"POT-Creation-Date: 2019-05-16 12:18+0000\n"
+"PO-Revision-Date: 2019-05-16 12:20+0000\n"
 "Last-Translator: admin <rendy.de.p@gmail.com>\n"
-"Language-Team: Indonesian\n"
+"Language-Team: Bahasa Indonesia\n"
 "Language: id_ID\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "MIME-Version: 1.0\n"
@@ -29,6 +29,26 @@ msgstr ""
 #: 404.php:26 templates/payment-thank-you.php:19
 msgid "Back to Homepage"
 msgstr "Kembali ke Halaman Depan"
+
+#. %s: post title
+#: comments.php:32
+#, php-format
+msgctxt "comments title"
+msgid "One thought on &ldquo;%s&rdquo;"
+msgstr "Satu komentar untuk &ldquo;%s&rdquo;"
+
+#. 1: number of comments, 2: post title
+#: comments.php:35
+#, php-format
+msgctxt "comments title"
+msgid "%1$s thought on &ldquo;%2$s&rdquo;"
+msgid_plural "%1$s thoughts on &ldquo;%2$s&rdquo;"
+msgstr[0] "%1$s komentar untuk &ldquo;%2$s&rdquo;"
+msgstr[1] ""
+
+#: comments.php:58
+msgid "Comments are closed."
+msgstr "Komentar ditutup."
 
 #: searchform.php:19
 msgid "Search for..."
@@ -179,11 +199,11 @@ msgstr ""
 "Semoga Allah ﷻ senantiasa memberi kita taufiq dan hidayah untuk menuntut "
 "ilmu di dunia ini, aamiin"
 
-#: single.php:46
+#: single.php:54
 msgid " comment"
 msgstr " komentar"
 
-#: single.php:46 templates/post-list.php:30
+#: single.php:54 templates/post-list.php:30
 msgid "There's no comment"
 msgstr "Belum ada komentar"
 
@@ -202,13 +222,13 @@ msgid ""
 msgstr ""
 "Insya Allah kami akan senantiasa jujur dan terpercaya menjaga amanah Anda."
 
-#: page-templates/campaign.php:47 page-templates/home.php:87
+#: page-templates/campaign.php:47 page-templates/home.php:88
 #: templates/donasi-list.php:31 includes/class/class-metabox.php:378
 #: includes/class/class-post-type.php:222
 msgid "Collected"
 msgstr "Terkumpul"
 
-#: page-templates/campaign.php:47 page-templates/home.php:87
+#: page-templates/campaign.php:47 page-templates/home.php:88
 msgid "from total"
 msgstr "dari total"
 
@@ -226,9 +246,21 @@ msgstr "Sekarang"
 msgid "Front Page"
 msgstr "Halaman Depan"
 
-#: page-templates/home.php:75
+#: page-templates/home.php:76
 msgid "This is the current status of our available campaign as per"
 msgstr "Berikut ini adalah status terkini tentang ketersediaan donasi per"
+
+#: page-templates/home.php:93
+msgid "Browse All Campaigns"
+msgstr "Semua Donasi"
+
+#: page-templates/home.php:148
+msgid "Browse All Lectures"
+msgstr "Semua Jadwal Kajian"
+
+#: page-templates/home.php:210
+msgid "Browse All Articles"
+msgstr "Semua Artikel"
 
 #. Template name: Lecture Page
 #: page-templates/lecture.php:12

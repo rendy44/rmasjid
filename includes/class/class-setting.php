@@ -98,6 +98,7 @@ if ( ! class_exists( 'Setting' ) ) {
 					return 'text/html';
 				}
 			);
+			add_filter( 'comment_form_default_fields', [ $this, 'comment_form_hide_cookies_consent' ] );
 		}
 
 		/**
@@ -240,15 +241,15 @@ if ( ! class_exists( 'Setting' ) ) {
 		/**
 		 * Clear cache upon post meta saving
 		 *
-		 * @param $meta_id
-		 * @param $post_id
-		 * @param $meta_key
-		 * @param $meta_value
+		 * @param int    $meta_id    meta id.
+		 * @param int    $post_id    post id.
+		 * @param string $meta_key   meta key.
+		 * @param string $meta_value meta value.
 		 */
 		public function clean_campaign_and_payment_transient( $meta_id, $post_id, $meta_key, $meta_value ) {
 			$post_type = get_post_type( $post_id );
 			if ( in_array( $post_type, [ 'bayar', 'donasi' ], true ) ) {
-				if ( in_array( $meta_key, [ 'main_detail_target', 'status' ] ) ) {
+				if ( in_array( $meta_key, [ 'main_detail_target', 'status' ], true ) ) {
 					self::clear_cache();
 				}
 			}
@@ -297,6 +298,19 @@ if ( ! class_exists( 'Setting' ) ) {
 		 */
 		public function number_of_excerpt_callback( $length ) {
 			return (int) $length - 40;
+		}
+
+		/**
+		 * Callback for removing cookies consent checkbox
+		 *
+		 * @param array $fields default fields.
+		 *
+		 * @return mixed
+		 */
+		public function comment_form_hide_cookies_consent( $fields ) {
+			unset( $fields['cookies'] );
+
+			return $fields;
 		}
 	}
 }

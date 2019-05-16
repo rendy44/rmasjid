@@ -34,8 +34,16 @@ while ( have_posts() ) {
 			<p class="text-muted text-center">
 				<?php echo __( 'Published by', 'masjid' ) . ' ' . get_the_author_posts_link() . ' ' . esc_html__( 'at', 'masjid' ) . ' ' . get_the_date(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 			</p>
-			<?php echo has_post_thumbnail() ? '<img src="' . get_the_post_thumbnail_url() . '" class="img-fluid mx-auto d-block mb-5">' : ''; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
-			<?php the_content(); ?>
+			<?php
+			// Featured image.
+			echo has_post_thumbnail() ? '<img src="' . get_the_post_thumbnail_url() . '" class="img-fluid mx-auto d-block mb-5">' : ''; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+			// Content.
+			the_content();
+			// Comments.
+			if ( comments_open() ) {
+				comments_template();
+			}
+			?>
 			<div class="post_detail">
 				<p class="text-muted">
 					<?php echo '<i class="fas fa-folder"></i> : ' . get_the_category_list( ', ' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
