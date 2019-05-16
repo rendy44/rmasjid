@@ -20,54 +20,76 @@
 		li.comment-author-admin {
 		}
 		li.comment {
-			padding: 1em 1em 0;
-			//border-bottom: 1px solid #ddd;
-			.comment-author {
-				cite.fn {
-					font-weight: 600;
-					font-size: 18px;
-					text-transform: capitalize;
-					font-style: normal;
-				}
-				span.says {
-					display: none;
-				}
-				img.avatar {
-					float: left;
-					margin: 0 20px 10px 0;
-					border: 3px solid #ccc;
-					border-radius: 50%;
-				}
-				img.avatar-32 {
-				}
-				img.photo {
+			padding: 1em 0 0 1em;
+			margin-bottom: 10px;
+			&.depth-1 {
+				padding-bottom: .5em;
+				padding-right: 1em;
+				border-left: 3px solid #ddd;
+				&:nth-child(even) {
+					background-color: #fafafa;
 				}
 			}
-			.comment-meta {
-				a {
-					font-size: 12px;
-					color: #ccc;
+			&:not(.depth-1) {
+				.comment-body {
+					.reply {
+						display: none;
+					}
 				}
 			}
-			p {
-				clear: both;
-			}
-			ul {
-				margin: 0 0 0 20px;
-				list-style: none;
-				font-size: em(12);
-			}
-			.reply {
-				a {
-					font-weight: 500
+			.comment-body {
+				position: relative;
+				.comment-author {
+					cite.fn {
+						font-weight: 600;
+						font-size: 18px;
+						text-transform: capitalize;
+						font-style: normal;
+					}
+					span.says {
+						display: none;
+					}
+					img.avatar {
+						float: left;
+						margin: 0 20px 10px 0;
+						border: 3px solid #ccc;
+						border-radius: 50%;
+					}
+					img.avatar-32 {
+					}
+					img.photo {
+					}
+				}
+				.comment-meta {
+					a {
+						font-size: 12px;
+						color: #ccc;
+					}
+				}
+				p {
+					clear: both;
+				}
+				ul {
+					margin: 0 0 0 20px;
+					list-style: none;
+					font-size: em(12);
+				}
+				.reply {
+					position: absolute;
+					top: 0;
+					right: 0;
+					a {
+						font-weight: 500
+					}
 				}
 			}
 			ol.children {
-				padding-left: 15px;
-				margin: 12px 12px 0;
+				padding-left: 0;
+				margin-left: 1em;
 				list-style-type: none;
 				text-indent: 0;
 				li {
+					border-left: 2px solid #eee;
 				}
 				// end li
 				li.alt {
@@ -80,42 +102,25 @@
 				}
 				li.comment-author-admin {
 				}
-				li.depth-2 {
-					margin: 0 0 10px 10px;
-					border-left: 3px solid #ccc;
-				}
-				li.depth-3 {
-					margin: 0 0 10px 10px;
-					border-left: 3px solid #bbb;
-				}
-				li.depth-4 {
-					margin: 0 0 3px 10px;
-					border-left: 5px solid #aaa;
-				}
-				li.depth-5 {
-				}
+				//li.depth-2 {
+				//	margin-left: 10px;
+				//	border-left: 3px solid #ccc;
+				//}
+				//li.depth-3 {
+				//	margin-left: 10px;
+				//	border-left: 3px solid #bbb;
+				//}
+				//li.depth-4 {
+				//	margin-left: 10px;
+				//	border-left: 5px solid #aaa;
+				//}
+				//li.depth-5 {
+				//}
 				// you get the idea
 				li.odd {
 				}
 				// end .odd
 			}
-			// end ul.children
-		}
-		// end li.comment
-		li.even {
-			background: #fff;
-		}
-		li.odd {
-			background: #f6f6f6;
-		}
-		li.parent {
-			border-left: 3px solid #ddd;
-		}
-		li.thread-alt {
-		}
-		li.thread-even {
-		}
-		li.thread-odd {
 		}
 	}
 
