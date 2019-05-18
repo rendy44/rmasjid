@@ -13,7 +13,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 } ?>
 
 <div class="navbar2">
-    <!-- Navigation -->
+	<!-- Navigation -->
 	<?php
 	if ( has_nav_menu( 'main_nav' ) ) {
 		wp_nav_menu(
@@ -30,14 +30,14 @@ if ( ! defined( 'ABSPATH' ) ) {
 	}
 	?>
 
-    <!-- Burger-Icon -->
-    <div class="b-container">
-        <div class="b-menu">
-            <div class="b-bun b-bun--top"></div>
-            <div class="b-bun b-bun--mid"></div>
-            <div class="b-bun b-bun--bottom"></div>
-        </div>
+	<!-- Burger-Icon -->
+	<div class="b-container">
+		<div class="b-menu">
+			<div class="b-bun b-bun--top"></div>
+			<div class="b-bun b-bun--mid"></div>
+			<div class="b-bun b-bun--bottom"></div>
+		</div>
 
-        <a href="<?php echo home_url(); ?>" class="b-brand"><?php echo $brand; ?></a>
-    </div>
+		<a href="<?php echo home_url(); ?>" class="b-brand"><?php echo $brand; // phpcs:ignore ?></a>
+	</div>
 </div>

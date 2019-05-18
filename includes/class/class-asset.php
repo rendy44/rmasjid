@@ -95,7 +95,7 @@ if ( ! class_exists( 'Asset' ) ) {
 					'url' => 'https://cdn.jsdelivr.net/npm/sweetalert2@8.11.1/dist/sweetalert2.min.css',
 				],
 				'fontawesome'   => [
-					'url' => TEMP_URI . '/assets/front/vendor/fontawesome-free/css/all.min.css',
+					'url' => 'https://use.fontawesome.com/releases/v5.8.2/css/all.css',
 				],
 				'mirza_gf'      => [
 					'url' => 'https://fonts.googleapis.com/css?family=Mirza',
