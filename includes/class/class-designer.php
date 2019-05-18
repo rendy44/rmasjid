@@ -22,6 +22,7 @@ if ( ! class_exists( 'MaDesigner' ) ) {
 	 * Class MaDesigner
 	 */
 	class Designer {
+
 		/**
 		 * Private instance variable
 		 *
@@ -103,7 +104,7 @@ if ( ! class_exists( 'MaDesigner' ) ) {
 		 * Callback for rendering top navbar
 		 */
 		public function top_navbar_callback() {
-			echo $this->temp->render( 'top-nav', [ 'brand' => Helpers\Helper::get_header_brand_content() ] ); // phpcs:ignore WordPress.Security.EscapeOutput
+			echo $this->temp->render( 'top-nav-2', [ 'brand' => get_bloginfo( 'name' ) ] ); // phpcs:ignore WordPress.Security.EscapeOutput
 		}
 
 		/**

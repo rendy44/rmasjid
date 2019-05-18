@@ -5,6 +5,17 @@
 		e.preventDefault();
 	});
 
+	var body = document.body;
+	var burgerMenu = document.getElementsByClassName('b-menu')[0];
+	var burgerContain = document.getElementsByClassName('b-container')[0];
+	var burgerNav = document.getElementsByClassName('b-nav')[0];
+	
+	burgerMenu.addEventListener('click', function toggleClasses() {
+		[body, burgerContain, burgerNav].forEach(function (el) {
+			el.classList.toggle('open');
+		});
+	}, false);
+
 	// Smooth scrolling using jQuery easing
 	$('a.js-scroll-trigger[href*="#"]:not([href="#"])').click(function () {
 		if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') && location.hostname == this.hostname) {
@@ -24,18 +35,12 @@
 		$('.navbar-collapse').collapse('hide');
 	});
 
-	// Activate scrollspy to add active class to navbar items on scroll
-	$('body').scrollspy({
-		target: '#mainNav',
-		offset: 56
-	});
-
 	// Collapse Navbar
 	var navbarCollapse = function () {
-		if ($("#mainNav").offset().top > 100) {
-			$("#mainNav").addClass("navbar-shrink");
+		if ($(".navbar2 .b-container").offset().top > 100) {
+			$(".navbar2 .b-container").addClass("shrink");
 		} else {
-			$("#mainNav").removeClass("navbar-shrink");
+			$(".navbar2 .b-container").removeClass("shrink");
 		}
 	};
 	// Collapse now if page is not at top

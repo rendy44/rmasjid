@@ -92,7 +92,7 @@ if ( ! class_exists( 'Asset' ) ) {
 					'url' => 'https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css',
 				],
 				'sweetalert'    => [
-					'url' => TEMP_URI . '/assets/front/vendor/bootstrap-sweetalert/dist/sweetalert.css',
+					'url' => 'https://cdn.jsdelivr.net/npm/sweetalert2@8.11.1/dist/sweetalert2.min.css',
 				],
 				'fontawesome'   => [
 					'url' => TEMP_URI . '/assets/front/vendor/fontawesome-free/css/all.min.css',
