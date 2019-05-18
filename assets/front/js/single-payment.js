@@ -31,7 +31,11 @@
 				success: function (data) {
 					if ('success' !== data.status) {
 						btn.prop('disabled', false).html(btn_text);
-						swal(obj.message.sorry, data.message, 'error');
+						Swal.fire({
+							type: 'error',
+							title: obj.message.sorry,
+							text: data.message
+						});
 					} else {
 						location.reload();
 					}
@@ -70,7 +74,11 @@
 			success: function (data) {
 				if ('success' !== data.status) {
 					me.prop('disabled', false).html(me_text);
-					swal(obj.message.sorry, data.message, 'error');
+					Swal.fire({
+						type: 'error',
+						title: obj.message.sorry,
+						text: data.message
+					});
 				} else {
 					location.reload();
 				}

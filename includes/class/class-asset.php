@@ -22,6 +22,7 @@ if ( ! class_exists( 'Asset' ) ) {
 	 * Class MaAsset
 	 */
 	class Asset {
+
 		/**
 		 * Private instance variable
 		 *
@@ -88,7 +89,7 @@ if ( ! class_exists( 'Asset' ) ) {
 		private function map_front_asset() {
 			$this->front_css       = [
 				'bootstrap'     => [
-					'url' => TEMP_URI . '/assets/front/vendor/bootstrap/css/bootstrap.min.css',
+					'url' => 'https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css',
 				],
 				'sweetalert'    => [
 					'url' => TEMP_URI . '/assets/front/vendor/bootstrap-sweetalert/dist/sweetalert.css',
@@ -116,17 +117,20 @@ if ( ! class_exists( 'Asset' ) ) {
 				],
 			];
 			$this->front_js        = [
+				'popper'            => [
+					'url' => 'https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js',
+				],
 				'bootstrap'         => [
-					'url' => TEMP_URI . '/assets/front/vendor/bootstrap/js/bootstrap.bundle.min.js',
+					'url' => 'https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js',
 				],
 				'jquery-validation' => [
-					'url' => TEMP_URI . '/assets/front/vendor/jquery-validation/dist/jquery.validate.min.js',
+					'url' => 'https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js',
 				],
 				'sweetalert'        => [
-					'url' => TEMP_URI . '/assets/front/vendor/bootstrap-sweetalert/dist/sweetalert.min.js',
+					'url' => 'https://cdn.jsdelivr.net/npm/sweetalert2@8',
 				],
 				'jquery-easing'     => [
-					'url' => TEMP_URI . '/assets/front/vendor/jquery-easing/jquery.easing.min.js',
+					'url' => 'https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js',
 				],
 				'lity'              => [
 					'url' => TEMP_URI . '/assets/front/vendor/lity/dist/lity.min.js',

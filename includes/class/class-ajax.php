@@ -254,8 +254,7 @@ if ( ! class_exists( 'Ajax' ) ) {
 			$result      = [ 'status' => 'error' ];
 			$campaign_id = ! empty( $_POST['payment_id'] ) ? sanitize_text_field( wp_unslash( $_POST['payment_id'] ) ) : false; // phpcs:ignore Standard.Category.SniffName.ErrorCode, WordPress.Security.NonceVerification.Missing
 			if ( DOING_AJAX && defined( 'DOING_AJAX' ) ) {
-				$confirm_payment = Transactions\Payment::confirm_payment( $campaign_id );
-				$result          = $confirm_payment;
+				$result = Transactions\Payment::confirm_payment( $campaign_id );
 			}
 			wp_send_json( $result );
 		}
