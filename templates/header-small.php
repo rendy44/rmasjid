@@ -13,9 +13,20 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /* translators: %s: search term */
-$header_title = ! isset( $header_title ) ? ( is_archive() ? get_the_archive_title() : ( is_search() ? sprintf( __( 'Search Results for "%s"', 'masjid' ), get_search_query() ) : single_post_title( '', false ) ) ) : $header_title;  // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-$image_url    = isset( $image_url ) ? 'style="background-image: linear-gradient(to top right, rgba(30, 30, 30, .6), rgba(0, 0, 0, .8)), url(' . $image_url . ')"' : '';
-$subcontent   = isset( $subcontent ) ? '<p class="text-center lead">' . esc_html( $subcontent ) . '</p>' : '';
+if ( ! isset( $header_title ) ) {
+	if ( is_archive() ) {
+		$header_title = get_the_archive_title();
+	} elseif ( is_search() ) {
+		// translators: %s: search term.
+		$header_title = sprintf( __( 'Search Results for "%s"', 'masjid' ), get_search_query() );
+	} elseif ( is_404() ) {
+		$header_title = __( 'Not Found', 'masjid' );
+	} else {
+		$header_title = single_post_title( '', false );
+	}
+}
+$image_url  = isset( $image_url ) ? 'style="background-image: linear-gradient(to top right, rgba(30, 30, 30, .6), rgba(0, 0, 0, .8)), url(' . $image_url . ')"' : '';
+$subcontent = isset( $subcontent ) ? '<p class="text-center lead">' . esc_html( $subcontent ) . '</p>' : '';
 ?>
 
 <section class="masthead small" <?php echo $image_url; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>>
