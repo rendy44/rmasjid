@@ -583,5 +583,26 @@ if ( ! class_exists( 'Helper' ) ) {
 
 			return ! empty( $options['logo_id'] ) ? '<img class="img-fluid" src="' . wp_get_attachment_image_url( $options['logo_id'], 'medium' ) . '"/>' : get_bloginfo( 'name' );
 		}
+
+		/**
+		 * Get formatted header style inline
+		 *
+		 * @param string $background_image background image url.
+		 * @param bool   $use_default      whether use default ot not.
+		 *
+		 * @return string
+		 */
+		public static function get_header_style_inline( $background_image = '', $use_default = false ) {
+			$solid_color     = self::get_solid_main_color();
+			$solid_color_rgb = self::hex2rgb( $solid_color );
+
+			$result = $background_image ? 'background-image: linear-gradient(to top right, rgba(' . $solid_color_rgb['r'] . ', ' . $solid_color_rgb['g'] . ', ' . $solid_color_rgb['b'] . ', 1) 10%, rgba(255, 255, 255, 0.9) 90%), url(' . $background_image . ')' : '';
+			if ( $use_default ) {
+				$def_bg = self::get_default_background_image_url();
+				$result = ! $result ? 'background-image: linear-gradient(to top right, rgba(' . $solid_color_rgb['r'] . ', ' . $solid_color_rgb['g'] . ', ' . $solid_color_rgb['b'] . ', 1) 10%, rgba(255, 255, 255, 0.9) 90%), url(' . $def_bg . ')' : $result;
+			}
+
+			return $result;
+		}
 	}
 }

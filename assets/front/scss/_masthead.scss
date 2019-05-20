@@ -9,8 +9,6 @@ section.masthead {
 	text-align: center;
 	color: white;
 	.intro-text {
-		//padding-top: 120px;
-		//padding-bottom: 90px;
 		.intro-lead-in {
 			font-size: 24px;
 			font-style: normal;
@@ -42,6 +40,9 @@ section.masthead {
 			.carousel-item {
 				text-align: center;
 				.carousel-item-wrapper {
+					background-position: top center;
+					background-size: cover;
+					background-attachment: fixed;
 					height: calc(100vh - 100px);
 					min-height: 500px;
 					max-height: 700px;
