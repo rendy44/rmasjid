@@ -27,6 +27,7 @@ section.masthead {
 		}
 	}
 	&.small {
+		z-index: -1;
 		background-image: linear-gradient(to top right, rgba(30, 30, 30, .6), rgba(0, 0, 0, .8)), url("../img/main-background.jpg");
 		.intro-text {
 			padding-top: 120px;
