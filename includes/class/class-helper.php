@@ -596,10 +596,10 @@ if ( ! class_exists( 'Helper' ) ) {
 			$solid_color     = self::get_solid_main_color();
 			$solid_color_rgb = self::hex2rgb( $solid_color );
 
-			$result = $background_image ? 'background-image: linear-gradient(to top right, rgba(' . $solid_color_rgb['r'] . ', ' . $solid_color_rgb['g'] . ', ' . $solid_color_rgb['b'] . ', 1) 10%, rgba(255, 255, 255, 0.9) 90%), url(' . $background_image . ')' : '';
+			$result = $background_image ? 'background-image: linear-gradient(to top right, rgba(' . $solid_color_rgb['r'] . ', ' . $solid_color_rgb['g'] . ', ' . $solid_color_rgb['b'] . ', .9) 30%, rgba(50, 50, 50, .5) 70%), url(' . $background_image . ')' : '';
 			if ( $use_default ) {
 				$def_bg = self::get_default_background_image_url();
-				$result = ! $result ? 'background-image: linear-gradient(to top right, rgba(' . $solid_color_rgb['r'] . ', ' . $solid_color_rgb['g'] . ', ' . $solid_color_rgb['b'] . ', 1) 10%, rgba(255, 255, 255, 0.9) 90%), url(' . $def_bg . ')' : $result;
+				$result = ! $result ? 'background-image: linear-gradient(to top right, rgba(' . $solid_color_rgb['r'] . ', ' . $solid_color_rgb['g'] . ', ' . $solid_color_rgb['b'] . ', .9) 30%, rgba(50, 50, 50, .5) 70%), url(' . $def_bg . ')' : $result;
 			}
 
 			return $result;
