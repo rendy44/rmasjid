@@ -34,10 +34,8 @@ while ( have_posts() ) {
 	$sliders       = $slider_object ? Helpers\Helper::pfield( 'sliders', $slider_object ) : [];
 	if ( empty( $sliders ) ) {
 		$sliders[] = [
-			[
-				'title'       => get_bloginfo( 'name' ),
-				'description' => get_bloginfo( 'description' ),
-			],
+			'title'       => get_bloginfo( 'name' ),
+			'description' => get_bloginfo( 'description' ),
 		];
 	}
 	?>
@@ -196,7 +194,7 @@ while ( have_posts() ) {
 					?>
 					<div class="row">
 						<div class="col-lg-8 mx-auto text-center">
-							<a href="<?php the_permalink( $page_lecture ); ?>" class="btn btn-primary btn-lg mt-4"><?php echo __( 'Browse All Lectures', 'masjid' ); // phpcs:ignore ?></a>
+                            <a href="<?php the_permalink( $page_lecture ); ?>" class="btn btn-primary btn-lg mt-4"><?php echo __( 'Browse All Lectures', 'masjid' ); // phpcs:ignore ?></a>
 						</div>
 					</div>
 					<?php
@@ -258,7 +256,7 @@ while ( have_posts() ) {
 					?>
 					<div class="row">
 						<div class="col-lg-8 mx-auto text-center">
-							<a href="<?php the_permalink( $page_article ); ?>" class="btn btn-outline-primary btn-lg mt-4"><?php echo __( 'Browse All Articles', 'masjid' ); // phpcs:ignore ?></a>
+                            <a href="<?php the_permalink( $page_article ); ?>" class="btn btn-outline-primary btn-lg mt-4"><?php echo __( 'Browse All Articles', 'masjid' ); // phpcs:ignore ?></a>
 						</div>
 					</div>
 					<?php
