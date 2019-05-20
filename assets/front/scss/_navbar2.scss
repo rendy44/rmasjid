@@ -209,9 +209,22 @@ $b-pad-top: ($b-height / 2 - $b-bun-width-half); //Vertically centers bun in men
 				background-color: $light;
 			}
 		}
-		&.shrink:not(.open){
+		&.shrink:not(.open),
+		&:not(.open) {
 			.b-brand {
 				color: transparent;
+			}
+		}
+	}
+}
+
+@media (min-width: 768px) {
+	.navbar2 {
+		.b-container {
+			&:not(.open) {
+				.b-brand {
+					color: white;
+				}
 			}
 		}
 	}
