@@ -44,14 +44,17 @@ section.masthead {
 					height: calc(100vh - 100px);
 					min-height: 500px;
 					max-height: 700px;
-					.intro-text {
-						margin-bottom: 70px;
-						.intro-subheading {
-							font-size: 20px;
-							font-weight: 500;
-							line-height: 1.5;
-							margin-bottom: 30px;
-							@include heading-font;
+					.container {
+						align-self: center;
+						.intro-text {
+							margin-bottom: 70px;
+							.intro-subheading {
+								font-size: 20px;
+								font-weight: 500;
+								line-height: 1.5;
+								margin-bottom: 30px;
+								@include heading-font;
+							}
 						}
 					}
 				}
@@ -147,9 +150,13 @@ section.masthead {
 		.carousel {
 			.carousel-inner {
 				.carousel-item {
-					.intro-text {
-						.intro-subheading {
-							font-size: 28px;
+					.carousel-item-wrapper {
+						.container {
+							.intro-text {
+								.intro-subheading {
+									font-size: 28px;
+								}
+							}
 						}
 					}
 				}
@@ -172,13 +179,18 @@ section.masthead {
 			.carousel-inner {
 				.carousel-item {
 					text-align: left;
-					.intro-text {
-						padding-right: 40%;
-						.intro-text {
-							font-size: 30px;
-						}
-						.intro-subheading {
-							font-size: 22px;
+					.carousel-item-wrapper {
+						.container {
+							align-self: flex-end;
+							.intro-text {
+								padding-right: 40%;
+								.intro-text {
+									font-size: 30px;
+								}
+								.intro-subheading {
+									font-size: 22px;
+								}
+							}
 						}
 					}
 				}

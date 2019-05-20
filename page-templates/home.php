@@ -61,7 +61,7 @@ while ( have_posts() ) {
 					?>
                     <div class="carousel-item <?php echo $active_slider; // phpcs:ignore ?>">
 						<div class="carousel-item-wrapper d-flex">
-							<div class="container align-self-end">
+							<div class="container">
 								<?php
 								$slider_item = $temp->render(
 									'front-masthead',
