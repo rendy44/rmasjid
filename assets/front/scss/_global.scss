@@ -169,6 +169,17 @@ button {
 	}
 }
 
+.btn-outline-default {
+	background-color: transparent;
+	border-color: white;
+	color: white;
+	&:hover,
+	&:focus,
+	&:active {
+		color: white;
+	}
+}
+
 .btn-outline-primary {
 	background-color: white;
 	border-color: $primary;

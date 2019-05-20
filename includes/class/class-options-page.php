@@ -64,58 +64,6 @@ if ( ! class_exists( 'Options_Page' ) ) {
 				'tab_title'    => __( 'Site Identity', 'masjid' ),
 			];
 			$main_options = new_cmb2_box( $main_args );
-			$main_options->add_field(
-				[
-					'name'         => __( 'Logo', 'masjid' ),
-					'desc'         => __( 'Leave it empty to use simple text instead', 'masjid' ),
-					'id'           => 'logo',
-					'type'         => 'file',
-					'options'      => [
-						'url' => false,
-					],
-					'text'         => [
-						'add_upload_file_text' => __( 'Select Image', 'masjid' ),
-					],
-					'query_args'   => [
-						'type' => [
-							'image/gif',
-							'image/jpeg',
-							'image/png',
-						],
-					],
-					'preview_size' => 'thumbnail',
-				]
-			);
-			$main_options->add_field(
-				[
-					'name'         => __( 'Background Image', 'masjid' ),
-					'desc'         => __( 'This will be set as a default background image, leave it empty to use the stock image (image of prophet mosque)', 'masjid' ),
-					'id'           => 'background_image',
-					'type'         => 'file',
-					'options'      => [
-						'url' => false,
-					],
-					'text'         => [
-						'add_upload_file_text' => __( 'Select Image', 'masjid' ),
-					],
-					'query_args'   => [
-						'type' => [
-							'image/gif',
-							'image/jpeg',
-							'image/png',
-						],
-					],
-					'preview_size' => 'thumbnail',
-				]
-			);
-			$main_options->add_field(
-				[
-					'name'    => __( 'Color Scheme', 'masjid' ),
-					'id'      => 'bg_color',
-					'type'    => 'colorpicker',
-					'default' => '#d3a55f',
-				]
-			);
 			$second_args       = [
 				'id'           => 'ma_options_bank',
 				'menu_title'   => __( 'Bank Accounts', 'masjid' ), // Use menu title, & not title to hide main h2.

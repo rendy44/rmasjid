@@ -2,10 +2,10 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Masjid\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-05-16 12:18+0000\n"
-"PO-Revision-Date: 2019-05-16 12:20+0000\n"
+"POT-Creation-Date: 2019-05-20 14:03+0000\n"
+"PO-Revision-Date: 2019-05-20 14:07+0000\n"
 "Last-Translator: admin <rendy.de.p@gmail.com>\n"
-"Language-Team: Bahasa Indonesia\n"
+"Language-Team: Indonesian\n"
 "Language: id_ID\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "MIME-Version: 1.0\n"
@@ -46,7 +46,7 @@ msgid_plural "%1$s thoughts on &ldquo;%2$s&rdquo;"
 msgstr[0] "%1$s komentar untuk &ldquo;%2$s&rdquo;"
 msgstr[1] ""
 
-#: comments.php:58
+#: comments.php:63
 msgid "Comments are closed."
 msgstr "Komentar ditutup."
 
@@ -70,7 +70,7 @@ msgstr "terkumpul dari total"
 msgid "collected"
 msgstr "terkumpul"
 
-#: single-donasi.php:66
+#: single-donasi.php:66 page-templates/home.php:93
 msgid "Donate Now"
 msgstr "Donasi Sekarang"
 
@@ -86,7 +86,7 @@ msgstr "Bagikan"
 msgid "Campaign was started at"
 msgstr "Donasi pertama kali dibuka pada"
 
-#: single-donasi.php:74 includes/class/class-helper.php:308
+#: single-donasi.php:74 includes/class/class-helper.php:309
 msgid "by"
 msgstr "oleh"
 
@@ -102,12 +102,12 @@ msgstr "Dan terakhir diperbarui pada"
 msgid "Payment History"
 msgstr "Riwayat Pembayaran"
 
-#: single-donasi.php:108 includes/class/class-metabox.php:218
+#: single-donasi.php:108 includes/class/class-metabox.php:219
 msgid "Detail"
 msgstr "Detail"
 
-#: single-donasi.php:112 includes/class/class-metabox.php:341
-#: includes/class/class-metabox.php:344
+#: single-donasi.php:112 includes/class/class-metabox.php:340
+#: includes/class/class-metabox.php:343
 msgid "Gallery"
 msgstr "Galeri"
 
@@ -119,8 +119,8 @@ msgstr "Komentar"
 msgid "Published by"
 msgstr "Dipublikasikan oleh"
 
-#: single-kajian.php:44 single.php:35 includes/class/class-helper.php:352
-#: includes/class/class-helper.php:360
+#: single-kajian.php:44 single.php:35 includes/class/class-helper.php:353
+#: includes/class/class-helper.php:361
 msgid "at"
 msgstr "pada"
 
@@ -157,7 +157,7 @@ msgid "These are the details of lecture, insya Allah will be held on"
 msgstr ""
 "Berikut ini adalah detail kajian, insya Allah akan diselenggarakan pada"
 
-#: single-kajian.php:86 includes/class/class-helper.php:365
+#: single-kajian.php:86 includes/class/class-helper.php:366
 msgid "finish"
 msgstr "selesai"
 
@@ -222,18 +222,18 @@ msgid ""
 msgstr ""
 "Insya Allah kami akan senantiasa jujur dan terpercaya menjaga amanah Anda."
 
-#: page-templates/campaign.php:47 page-templates/home.php:88
-#: templates/donasi-list.php:31 includes/class/class-metabox.php:378
-#: includes/class/class-post-type.php:222
+#: page-templates/campaign.php:47 page-templates/home.php:140
+#: templates/donasi-list.php:31 includes/class/class-metabox.php:377
+#: includes/class/class-post-type.php:253
 msgid "Collected"
 msgstr "Terkumpul"
 
-#: page-templates/campaign.php:47 page-templates/home.php:88
+#: page-templates/campaign.php:47 page-templates/home.php:140
 msgid "from total"
 msgstr "dari total"
 
 #. Template name: History Page
-#: page-templates/history.php:12 includes/class/class-metabox.php:540
+#: page-templates/history.php:12 includes/class/class-metabox.php:512
 msgid "History Page"
 msgstr "Halaman Sejarah"
 
@@ -242,23 +242,39 @@ msgid "Now"
 msgstr "Sekarang"
 
 #. Template name: Front Page
-#: page-templates/home.php:12 includes/class/class-metabox.php:416
+#: page-templates/home.php:12 includes/class/class-metabox.php:413
 msgid "Front Page"
 msgstr "Halaman Depan"
 
-#: page-templates/home.php:76
+#: page-templates/home.php:74
+msgid "Read more"
+msgstr "Selengkapnya"
+
+#: page-templates/home.php:92
+msgid "It's time to give our best."
+msgstr "Saatnya berikan yang terbaik."
+
+#: page-templates/home.php:96 templates/payment-instruction.php:21
+msgid "Important!"
+msgstr "Penting!"
+
+#: page-templates/home.php:97
+msgid "Every single rupiah you donate, is surely count."
+msgstr "Setiap rupiah yang Anda donasikan, pasti bermanfaat."
+
+#: page-templates/home.php:128
 msgid "This is the current status of our available campaign as per"
 msgstr "Berikut ini adalah status terkini tentang ketersediaan donasi per"
 
-#: page-templates/home.php:93
+#: page-templates/home.php:144
 msgid "Browse All Campaigns"
 msgstr "Semua Donasi"
 
-#: page-templates/home.php:148
+#: page-templates/home.php:199
 msgid "Browse All Lectures"
 msgstr "Semua Jadwal Kajian"
 
-#: page-templates/home.php:210
+#: page-templates/home.php:261
 msgid "Browse All Articles"
 msgstr "Semua Artikel"
 
@@ -299,10 +315,14 @@ msgstr "Email ini dikirim oleh"
 msgid "There is no images for this campaign"
 msgstr "Tidak ada foto untuk donasi ini"
 
-#: templates/header-small.php:16
+#: templates/header-small.php:21
 #, php-format
 msgid "Search Results for \"%s\""
 msgstr "Hasil Pencarian untuk \"%s\""
+
+#: templates/header-small.php:23
+msgid "Not Found"
+msgstr "Tidak Ditemukan"
 
 #: templates/history-payment-404.php:16
 msgid "Be the first to make a donation"
@@ -320,7 +340,7 @@ msgstr "Anonim"
 msgid "There is no lecture schedule right now"
 msgstr "Saat ini belum ada jadwal kajian"
 
-#: templates/lecture-list.php:31 includes/class/class-metabox.php:189
+#: templates/lecture-list.php:31 includes/class/class-metabox.php:190
 msgid "Time Start"
 msgstr "Jam Mulai"
 
@@ -328,7 +348,7 @@ msgstr "Jam Mulai"
 msgid "Type"
 msgstr "Jenis"
 
-#: templates/lecture-list.php:55 includes/class/class-metabox.php:236
+#: templates/lecture-list.php:55 includes/class/class-metabox.php:237
 msgid "Lecturer"
 msgstr "Pemateri"
 
@@ -378,10 +398,6 @@ msgid "Please make a transfer with the amount below."
 msgstr "Silahkan lakukan transfer dengan jumlah berikut"
 
 #: templates/payment-instruction.php:21
-msgid "Important!"
-msgstr "Penting!"
-
-#: templates/payment-instruction.php:21
 msgid ""
 "The amount has to be exactly the same as above including the last 3 digits"
 msgstr ""
@@ -423,15 +439,15 @@ msgstr "halaman"
 msgid "No."
 msgstr "No."
 
-#: templates/pdf-template-report.php:144 includes/class/class-post-type.php:160
+#: templates/pdf-template-report.php:144 includes/class/class-post-type.php:191
 msgid "Name"
 msgstr "Nama"
 
-#: templates/pdf-template-report.php:145 includes/class/class-post-type.php:161
+#: templates/pdf-template-report.php:145 includes/class/class-post-type.php:192
 msgid "Total Amount"
 msgstr "Jumlah Total"
 
-#: templates/pdf-template-report.php:146 includes/class/class-metabox.php:180
+#: templates/pdf-template-report.php:146 includes/class/class-metabox.php:181
 msgid "Date"
 msgstr "Tanggal"
 
@@ -504,103 +520,167 @@ msgstr "Terjadi masalah, silahkan coba lagi nanti"
 msgid "Failed to verify security check"
 msgstr "Gagal melewati pemeriksaan keamanan"
 
-#: includes/class/class-asset.php:173 includes/class/class-asset.php:186
+#: includes/class/class-asset.php:177 includes/class/class-asset.php:190
 msgid "Sorry"
 msgstr "Maaf"
 
-#: includes/class/class-asset.php:174 includes/class/class-asset.php:187
+#: includes/class/class-asset.php:178 includes/class/class-asset.php:191
 msgid "Great"
 msgstr "Selamat"
 
-#: includes/class/class-helper.php:207
+#: includes/class/class-customizer.php:82
+msgid "Designer"
+msgstr "Tampilan"
+
+#: includes/class/class-customizer.php:91
+msgid "Header"
+msgstr "Bagan Kepala"
+
+#: includes/class/class-customizer.php:105
+msgid "Background Image"
+msgstr "Gambar Latar"
+
+#: includes/class/class-customizer.php:106
+msgid ""
+"This will be set as a default background image, leave it empty to use the "
+"stock image (image of prophet mosque)"
+msgstr ""
+"Ini akan ditetapkan sebagai gambar latar belakang default, biarkan kosong "
+"untuk menggunakan gambar stok (gambar masjid nabawi)"
+
+#: includes/class/class-customizer.php:116
+#: includes/class/class-options-page.php:207
+msgid "Color Scheme"
+msgstr "Skema Warna"
+
+#: includes/class/class-customizer.php:124
+#: includes/class/class-post-type.php:158
+#: includes/class/class-post-type.php:160
+msgid "Sliders"
+msgstr "Slider"
+
+#: includes/class/class-customizer.php:129
+msgid "Slider #"
+msgstr "Slider #"
+
+#: includes/class/class-customizer.php:131 includes/class/class-metabox.php:593
+msgid "Add Slider"
+msgstr "Tambah Slider"
+
+#: includes/class/class-customizer.php:136 includes/class/class-metabox.php:599
+msgid "Background"
+msgstr "Latar Belakang"
+
+#: includes/class/class-customizer.php:140 includes/class/class-metabox.php:456
+#: includes/class/class-metabox.php:472 includes/class/class-metabox.php:488
+#: includes/class/class-metabox.php:545 includes/class/class-metabox.php:618
+#: includes/class/class-post-type.php:190
+#: includes/class/class-post-type.php:251
+msgid "Title"
+msgstr "Judul"
+
+#: includes/class/class-customizer.php:145 includes/class/class-metabox.php:569
+#: includes/class/class-metabox.php:623
+msgid "Description"
+msgstr "Deskripsi"
+
+#: includes/class/class-customizer.php:150 includes/class/class-metabox.php:638
+msgid "Link"
+msgstr "Tautan"
+
+#: includes/class/class-customizer.php:163
+msgid "Caption"
+msgstr "Label"
+
+#: includes/class/class-helper.php:208
 msgid "days"
 msgstr "hari"
 
-#: includes/class/class-helper.php:207
+#: includes/class/class-helper.php:208
 msgid "day"
 msgstr "hari"
 
-#: includes/class/class-helper.php:208
+#: includes/class/class-helper.php:209
 msgid "days left"
 msgstr "hari tersisa"
 
-#: includes/class/class-helper.php:208
+#: includes/class/class-helper.php:209
 msgid "day left"
 msgstr "hari tersisa"
 
-#: includes/class/class-helper.php:304 includes/class/class-helper.php:331
+#: includes/class/class-helper.php:305 includes/class/class-helper.php:332
 msgid "recurring lecture"
 msgstr "kajian rutin"
 
-#: includes/class/class-helper.php:304 includes/class/class-helper.php:331
+#: includes/class/class-helper.php:305 includes/class/class-helper.php:332
 msgid "special lecture"
 msgstr "kajian tematik"
 
-#: includes/class/class-helper.php:337
+#: includes/class/class-helper.php:338
 msgid "every day"
 msgstr "setiap hari"
 
-#: includes/class/class-helper.php:341 includes/class/class-helper.php:348
+#: includes/class/class-helper.php:342 includes/class/class-helper.php:349
 msgid "every"
 msgstr "setiap"
 
-#: includes/class/class-helper.php:397 includes/class/class-metabox.php:91
+#: includes/class/class-helper.php:398 includes/class/class-metabox.php:92
 msgid "Recurring"
 msgstr "Rutin"
 
-#: includes/class/class-helper.php:398
+#: includes/class/class-helper.php:399
 msgid "Special"
 msgstr "Tematik"
 
-#: includes/class/class-helper.php:399
+#: includes/class/class-helper.php:400
 msgid "male"
 msgstr "ikhwan"
 
-#: includes/class/class-helper.php:400
+#: includes/class/class-helper.php:401
 msgid "female"
 msgstr "akhwat"
 
-#: includes/class/class-helper.php:401
+#: includes/class/class-helper.php:402
 msgid "first week"
 msgstr "pekan pertama"
 
-#: includes/class/class-helper.php:402
+#: includes/class/class-helper.php:403
 msgid "second week"
 msgstr "pekan kedua"
 
-#: includes/class/class-helper.php:403
+#: includes/class/class-helper.php:404
 msgid "third week"
 msgstr "pekan ketiga"
 
-#: includes/class/class-helper.php:404
+#: includes/class/class-helper.php:405
 msgid "fourth week"
 msgstr "pekan keempat"
 
-#: includes/class/class-helper.php:405
+#: includes/class/class-helper.php:406
 msgid "sunday"
 msgstr "ahad"
 
-#: includes/class/class-helper.php:406
+#: includes/class/class-helper.php:407
 msgid "monday"
 msgstr "senin"
 
-#: includes/class/class-helper.php:407
+#: includes/class/class-helper.php:408
 msgid "tuesday"
 msgstr "selasa"
 
-#: includes/class/class-helper.php:408
+#: includes/class/class-helper.php:409
 msgid "wednesday"
 msgstr "rabu"
 
-#: includes/class/class-helper.php:409
+#: includes/class/class-helper.php:410
 msgid "thursday"
 msgstr "kamis"
 
-#: includes/class/class-helper.php:410
+#: includes/class/class-helper.php:411
 msgid "friday"
 msgstr "jum`at"
 
-#: includes/class/class-helper.php:411
+#: includes/class/class-helper.php:412
 msgid "saturday"
 msgstr "sabtu"
 
@@ -671,325 +751,334 @@ msgstr "telah ditolak."
 msgid "Payment Rejected"
 msgstr "Pembayaran Ditolak"
 
-#: includes/class/class-metabox.php:67 includes/class/class-metabox.php:495
-#: includes/class/class-post-type.php:63
+#: includes/class/class-metabox.php:68 includes/class/class-metabox.php:469
+#: includes/class/class-post-type.php:64
 msgid "Lecture"
 msgstr "Kajian"
 
-#: includes/class/class-metabox.php:82
+#: includes/class/class-metabox.php:83
 msgid "Time Information"
 msgstr "Informasi Waktu"
 
-#: includes/class/class-metabox.php:85
+#: includes/class/class-metabox.php:86
 msgid "Lecture Type"
 msgstr "Jenis Kajian"
 
-#: includes/class/class-metabox.php:92
+#: includes/class/class-metabox.php:93
 msgid "Once"
 msgstr "Tematik"
 
-#: includes/class/class-metabox.php:96 includes/class/class-metabox.php:573
+#: includes/class/class-metabox.php:97 includes/class/class-metabox.php:539
 msgid "Period"
 msgstr "Periode"
 
-#: includes/class/class-metabox.php:102
+#: includes/class/class-metabox.php:103
 msgid "Daily"
 msgstr "Setiap Hari"
 
-#: includes/class/class-metabox.php:103
+#: includes/class/class-metabox.php:104
 msgid "Weekly"
 msgstr "Setiap Pekan"
 
-#: includes/class/class-metabox.php:104
+#: includes/class/class-metabox.php:105
 msgid "Monthly"
 msgstr "Setiap Bulan"
 
-#: includes/class/class-metabox.php:112
+#: includes/class/class-metabox.php:113
 msgid "Month"
 msgstr "Bulan"
 
-#: includes/class/class-metabox.php:119
+#: includes/class/class-metabox.php:120
 msgid "January"
 msgstr "Januari"
 
-#: includes/class/class-metabox.php:120
+#: includes/class/class-metabox.php:121
 msgid "February"
 msgstr "Februari"
 
-#: includes/class/class-metabox.php:121
+#: includes/class/class-metabox.php:122
 msgid "March"
 msgstr "Maret"
 
-#: includes/class/class-metabox.php:122
+#: includes/class/class-metabox.php:123
 msgid "April"
 msgstr "April"
 
-#: includes/class/class-metabox.php:123
+#: includes/class/class-metabox.php:124
 msgid "May"
 msgstr "Mei"
 
-#: includes/class/class-metabox.php:124
+#: includes/class/class-metabox.php:125
 msgid "June"
 msgstr "Juni"
 
-#: includes/class/class-metabox.php:125
+#: includes/class/class-metabox.php:126
 msgid "July"
 msgstr "Juli"
 
-#: includes/class/class-metabox.php:126
+#: includes/class/class-metabox.php:127
 msgid "August"
 msgstr "Agustus"
 
-#: includes/class/class-metabox.php:127
+#: includes/class/class-metabox.php:128
 msgid "September"
 msgstr "September"
 
-#: includes/class/class-metabox.php:128
+#: includes/class/class-metabox.php:129
 msgid "October"
 msgstr "Oktober"
 
-#: includes/class/class-metabox.php:129
+#: includes/class/class-metabox.php:130
 msgid "November"
 msgstr "November"
 
-#: includes/class/class-metabox.php:130
+#: includes/class/class-metabox.php:131
 msgid "December"
 msgstr "Desember"
 
-#: includes/class/class-metabox.php:139
+#: includes/class/class-metabox.php:140
 msgid "Week"
 msgstr "Pekan"
 
-#: includes/class/class-metabox.php:146
+#: includes/class/class-metabox.php:147
 msgid "First Week"
 msgstr "Pekan Pertama"
 
-#: includes/class/class-metabox.php:147
+#: includes/class/class-metabox.php:148
 msgid "Second Week"
 msgstr "Pekan Kedua"
 
-#: includes/class/class-metabox.php:148
+#: includes/class/class-metabox.php:149
 msgid "Third Week"
 msgstr "Pekan Ketiga"
 
-#: includes/class/class-metabox.php:149
+#: includes/class/class-metabox.php:150
 msgid "Fourth Week"
 msgstr "Pekan Keempat"
 
-#: includes/class/class-metabox.php:158
+#: includes/class/class-metabox.php:159
 msgid "Day"
 msgstr "Hari"
 
-#: includes/class/class-metabox.php:165
+#: includes/class/class-metabox.php:166
 msgid "Sunday"
 msgstr "Ahad"
 
-#: includes/class/class-metabox.php:166
+#: includes/class/class-metabox.php:167
 msgid "Monday"
 msgstr "Senin"
 
-#: includes/class/class-metabox.php:167
+#: includes/class/class-metabox.php:168
 msgid "Tuesday"
 msgstr "Selasa"
 
-#: includes/class/class-metabox.php:168
+#: includes/class/class-metabox.php:169
 msgid "Wednesday"
 msgstr "Rabu"
 
-#: includes/class/class-metabox.php:169
+#: includes/class/class-metabox.php:170
 msgid "Thursday"
 msgstr "Kamis"
 
-#: includes/class/class-metabox.php:170
+#: includes/class/class-metabox.php:171
 msgid "Friday"
 msgstr "Jum'at"
 
-#: includes/class/class-metabox.php:171
+#: includes/class/class-metabox.php:172
 msgid "Saturday"
 msgstr "Sabtu"
 
-#: includes/class/class-metabox.php:198
+#: includes/class/class-metabox.php:199
 msgid "Time End"
 msgstr "Jam Selesai"
 
-#: includes/class/class-metabox.php:200 includes/class/class-metabox.php:206
+#: includes/class/class-metabox.php:201 includes/class/class-metabox.php:207
 msgid "Optional, you can leave it empty"
 msgstr "Opsional, bisa dikosongkan"
 
-#: includes/class/class-metabox.php:205 includes/class/class-metabox.php:229
-#: includes/class/class-metabox.php:244 includes/class/class-metabox.php:263
+#: includes/class/class-metabox.php:206 includes/class/class-metabox.php:230
+#: includes/class/class-metabox.php:245 includes/class/class-metabox.php:264
 msgid "Note"
 msgstr "Catatan"
 
-#: includes/class/class-metabox.php:210
+#: includes/class/class-metabox.php:211
 msgid "ex: Right after Shalat Al-Maghrib until Shalat al-`isha"
 msgstr "contoh: Setelah Shalat Maghrib sampai Shalat Isya'"
 
-#: includes/class/class-metabox.php:221
+#: includes/class/class-metabox.php:222
 msgid "Title of Material"
 msgstr "Judul Materi"
 
-#: includes/class/class-metabox.php:251
+#: includes/class/class-metabox.php:252
 msgid "Participant"
 msgstr "Peserta"
 
-#: includes/class/class-metabox.php:258
+#: includes/class/class-metabox.php:259
 msgid "Male"
 msgstr "Ikhwan"
 
-#: includes/class/class-metabox.php:259
+#: includes/class/class-metabox.php:260
 msgid "Female"
 msgstr "Akhwat"
 
-#: includes/class/class-metabox.php:270
+#: includes/class/class-metabox.php:271
 msgid "Location"
 msgstr "Lokasi"
 
-#: includes/class/class-metabox.php:278
+#: includes/class/class-metabox.php:279
 msgid "Additional Notes"
 msgstr "Catatan Extra"
 
-#: includes/class/class-metabox.php:279
+#: includes/class/class-metabox.php:280
 msgid "Any information you may want to share"
 msgstr "Segala informasi yang perlu dibagikan"
 
-#: includes/class/class-metabox.php:300 includes/class/class-metabox.php:479
-#: includes/class/class-post-type.php:93 includes/class/class-post-type.php:162
+#: includes/class/class-metabox.php:299 includes/class/class-metabox.php:453
+#: includes/class/class-post-type.php:94 includes/class/class-post-type.php:193
 msgid "Campaign"
 msgstr "Donasi"
 
-#: includes/class/class-metabox.php:314
+#: includes/class/class-metabox.php:313
 msgid "Information"
 msgstr "Informasi"
 
-#: includes/class/class-metabox.php:317
+#: includes/class/class-metabox.php:316
 msgid "Short Description"
 msgstr "Deskripsi Singkat"
 
-#: includes/class/class-metabox.php:319
+#: includes/class/class-metabox.php:318
 msgid "Short description of this campaign"
 msgstr "Deskripsi singkat mengenai donasi"
 
-#: includes/class/class-metabox.php:325
+#: includes/class/class-metabox.php:324
 msgid "Write all details about this campaign"
 msgstr "Tulis semua detail mengenai donasi"
 
-#: includes/class/class-metabox.php:350 includes/class/class-metabox.php:597
-#: includes/class/class-options-page.php:77
-#: includes/class/class-options-page.php:99
+#: includes/class/class-metabox.php:349 includes/class/class-metabox.php:557
+#: includes/class/class-metabox.php:606
 msgid "Select Image"
 msgstr "Pilih Gambar"
 
-#: includes/class/class-metabox.php:351 includes/class/class-metabox.php:353
+#: includes/class/class-metabox.php:350 includes/class/class-metabox.php:352
 msgid "Remove"
 msgstr "Hapus"
 
-#: includes/class/class-metabox.php:352 includes/class/class-metabox.php:674
+#: includes/class/class-metabox.php:351 includes/class/class-metabox.php:707
 msgid "Download"
 msgstr "Unduh"
 
-#: includes/class/class-metabox.php:363 includes/class/class-post-type.php:221
+#: includes/class/class-metabox.php:362 includes/class/class-post-type.php:252
 msgid "Target"
 msgstr "Target"
 
-#: includes/class/class-metabox.php:394 includes/class/class-post-type.php:223
+#: includes/class/class-metabox.php:393 includes/class/class-post-type.php:254
 msgid "Due Date"
 msgstr "Batas Akhir"
 
-#: includes/class/class-metabox.php:395
+#: includes/class/class-metabox.php:394
 msgid "Leave it empty, for unlimited due date"
 msgstr "Biarkan kosong jika tidak mempunyai batas akhir"
 
-#: includes/class/class-metabox.php:448
+#: includes/class/class-metabox.php:440
 msgid "Masthead"
 msgstr "Kepala Halaman"
 
-#: includes/class/class-metabox.php:451 includes/class/class-metabox.php:482
-#: includes/class/class-metabox.php:498 includes/class/class-metabox.php:514
-#: includes/class/class-metabox.php:582 includes/class/class-post-type.php:159
-#: includes/class/class-post-type.php:220
-msgid "Title"
-msgstr "Judul"
+#: includes/class/class-metabox.php:443 includes/class/class-metabox.php:581
+#: includes/class/class-post-type.php:159
+msgid "Slider"
+msgstr "Slider"
 
-#: includes/class/class-metabox.php:456 includes/class/class-metabox.php:487
-#: includes/class/class-metabox.php:503 includes/class/class-metabox.php:519
+#: includes/class/class-metabox.php:461 includes/class/class-metabox.php:477
+#: includes/class/class-metabox.php:493
 msgid "Subtitle"
 msgstr "Sub-judul"
 
-#: includes/class/class-metabox.php:461
-msgid "Link"
-msgstr "Tautan"
-
-#: includes/class/class-metabox.php:468
-msgid "Link Caption"
-msgstr "Judul Tautan"
-
-#: includes/class/class-metabox.php:511
+#: includes/class/class-metabox.php:485
 msgid "Article"
 msgstr "Artikel"
 
-#: includes/class/class-metabox.php:553
+#: includes/class/class-metabox.php:524
 msgid "Content"
 msgstr "Konten"
 
-#: includes/class/class-metabox.php:563
+#: includes/class/class-metabox.php:532
 msgid "Timeline {#}"
 msgstr "Linimasa {#}"
 
-#: includes/class/class-metabox.php:564
+#: includes/class/class-metabox.php:533
 msgid "Add Timeline"
 msgstr "Tambah Linimasa"
 
-#: includes/class/class-metabox.php:565
+#: includes/class/class-metabox.php:534
 msgid "Remove Timeline"
 msgstr "Hapus Linimasa"
 
-#: includes/class/class-metabox.php:574
+#: includes/class/class-metabox.php:540
 msgid "Estimation time period when the event occur"
 msgstr "Perkiraan waktu terjadinya peristiwa"
 
-#: includes/class/class-metabox.php:590
+#: includes/class/class-metabox.php:550
 msgid "Image"
 msgstr "Gambar"
 
-#: includes/class/class-metabox.php:612
-msgid "Description"
-msgstr "Deskripsi"
+#: includes/class/class-metabox.php:592
+msgid "Slider {#}"
+msgstr "Slider {#}"
 
-#: includes/class/class-metabox.php:623
+#: includes/class/class-metabox.php:594
+msgid "Remove Slider"
+msgstr "Hapus Slider"
+
+#: includes/class/class-metabox.php:645
+msgid "Custom Link"
+msgstr "Kustom Permalink"
+
+#: includes/class/class-metabox.php:647
+msgid ""
+"Put any external url to override link from dropdown above, or you can leave "
+"it empty."
+msgstr ""
+"Letakkan kustom permalink untuk menindih permalink dari dropdown di atas, "
+"atau biarkan kosong."
+
+#: includes/class/class-metabox.php:652
+msgid "Link Caption"
+msgstr "Judul Tautan"
+
+#: includes/class/class-metabox.php:662
 msgid "Payment Overview"
 msgstr "Sekilas Tentang Pembayaran"
 
-#: includes/class/class-metabox.php:635
+#: includes/class/class-metabox.php:674
 msgid "Total income"
 msgstr "Total pemasukkan"
 
-#: includes/class/class-metabox.php:638 includes/class/class-metabox.php:641
-#: includes/class/class-metabox.php:644 includes/class/class-metabox.php:647
+#: includes/class/class-metabox.php:677 includes/class/class-metabox.php:680
+#: includes/class/class-metabox.php:683 includes/class/class-metabox.php:686
 msgid "payment(s)"
 msgstr "pembayaran"
 
-#: includes/class/class-metabox.php:638
+#: includes/class/class-metabox.php:677
 msgid "Total payment"
 msgstr "Total pembayaran"
 
-#: includes/class/class-metabox.php:641
+#: includes/class/class-metabox.php:680
 msgid "Waiting payment"
 msgstr "Menunggu pembayaran"
 
-#: includes/class/class-metabox.php:644
+#: includes/class/class-metabox.php:683
 msgid "Waiting validation"
 msgstr "Menunggu validasi"
 
-#: includes/class/class-metabox.php:647
+#: includes/class/class-metabox.php:686
 msgid "Were rejected"
 msgstr "Telah ditolak"
 
-#: includes/class/class-metabox.php:659
+#: includes/class/class-metabox.php:696
 msgid "Report"
 msgstr "Laporan"
 
-#: includes/class/class-metabox.php:673
+#: includes/class/class-metabox.php:706
 msgid "Download donation reports in pdf format."
 msgstr "Unduh laporan donasi dalam format pdf."
 
@@ -1002,152 +1091,127 @@ msgid "Site Identity"
 msgstr "Identitas Situs"
 
 #: includes/class/class-options-page.php:69
-msgid "Logo"
-msgstr "Logo"
-
-#: includes/class/class-options-page.php:70
-msgid "Leave it empty to use simple text instead"
-msgstr "Biarkan kosong untuk menggunakan nama website sebagai logo"
-
-#: includes/class/class-options-page.php:91
-msgid "Background Image"
-msgstr "Gambar Latar"
-
-#: includes/class/class-options-page.php:92
-msgid ""
-"This will be set as a default background image, leave it empty to use the "
-"stock image (image of prophet mosque)"
-msgstr ""
-"Ini akan ditetapkan sebagai gambar latar belakang default, biarkan kosong "
-"untuk menggunakan gambar stok (gambar masjid nabawi)"
-
-#: includes/class/class-options-page.php:113
-#: includes/class/class-options-page.php:259
-msgid "Color Scheme"
-msgstr "Skema Warna"
-
-#: includes/class/class-options-page.php:121
-#: includes/class/class-options-page.php:126
+#: includes/class/class-options-page.php:74
 msgid "Bank Accounts"
 msgstr "Akun Bank"
 
-#: includes/class/class-options-page.php:135
+#: includes/class/class-options-page.php:83
 msgid "Add Bank"
 msgstr "Tambah Bank"
 
-#: includes/class/class-options-page.php:136
+#: includes/class/class-options-page.php:84
 msgid "Remove Bank"
 msgstr "Hapus Bank"
 
-#: includes/class/class-options-page.php:144
+#: includes/class/class-options-page.php:92
 msgid "Bank Name"
 msgstr "Nama Bank"
 
-#: includes/class/class-options-page.php:150
+#: includes/class/class-options-page.php:98
 msgid "Bank Rakyat Indonesia (BRI)"
 msgstr "Bank Rakyat Indonesia (BRI)"
 
-#: includes/class/class-options-page.php:151
+#: includes/class/class-options-page.php:99
 msgid "Bank Negara Indonesia (BNI)"
 msgstr "Bank Negara Indonesia (BNI)"
 
-#: includes/class/class-options-page.php:152
+#: includes/class/class-options-page.php:100
 msgid "Bank Central Asia (BCA)"
 msgstr "Bank Central Asia (BCA)"
 
-#: includes/class/class-options-page.php:153
+#: includes/class/class-options-page.php:101
 msgid "Bank Mandiri"
 msgstr "Bank Mandiri"
 
-#: includes/class/class-options-page.php:160
+#: includes/class/class-options-page.php:108
 msgid "Holder Name"
 msgstr "Atas Nama"
 
-#: includes/class/class-options-page.php:168
+#: includes/class/class-options-page.php:116
 msgid "Account Number"
 msgstr "Nomor Akun"
 
-#: includes/class/class-options-page.php:176
+#: includes/class/class-options-page.php:124
 msgid "Branch"
 msgstr "Cabang"
 
-#: includes/class/class-options-page.php:183
-#: includes/class/class-options-page.php:188
+#: includes/class/class-options-page.php:131
+#: includes/class/class-options-page.php:136
 msgid "Social Network"
 msgstr "Media Sosial"
 
-#: includes/class/class-options-page.php:193
+#: includes/class/class-options-page.php:141
 msgid "Facebook"
 msgstr "Facebook"
 
-#: includes/class/class-options-page.php:200
+#: includes/class/class-options-page.php:148
 msgid "Telegram"
 msgstr "Telegram"
 
-#: includes/class/class-options-page.php:207
+#: includes/class/class-options-page.php:155
 msgid "Instagram"
 msgstr "Instagram"
 
-#: includes/class/class-options-page.php:214
+#: includes/class/class-options-page.php:162
 msgid "Youtube"
 msgstr "Youtube"
 
-#: includes/class/class-options-page.php:235
-#: includes/class/class-options-page.php:240
+#: includes/class/class-options-page.php:183
+#: includes/class/class-options-page.php:188
 msgid "Footer"
 msgstr "Bagan Kaki"
 
-#: includes/class/class-options-page.php:245
+#: includes/class/class-options-page.php:193
 msgid "Design"
 msgstr "Desain"
 
-#: includes/class/class-options-page.php:252
+#: includes/class/class-options-page.php:200
 msgid "Full"
 msgstr "Penuh"
 
-#: includes/class/class-options-page.php:253
+#: includes/class/class-options-page.php:201
 msgid "Minimalism"
 msgstr "Minimalis"
 
-#: includes/class/class-options-page.php:266
+#: includes/class/class-options-page.php:214
 msgid "Dark"
 msgstr "Gelap"
 
-#: includes/class/class-options-page.php:267
+#: includes/class/class-options-page.php:215
 msgid "Light"
 msgstr "Cerah"
 
-#: includes/class/class-options-page.php:268
+#: includes/class/class-options-page.php:216
 msgid "Default"
 msgstr "Bawaan"
 
-#: includes/class/class-options-page.php:274
+#: includes/class/class-options-page.php:222
 msgid "First Column Title"
 msgstr "Judul Kolom Pertama"
 
-#: includes/class/class-options-page.php:281
+#: includes/class/class-options-page.php:229
 msgid "First Column Links"
 msgstr "Permalink Kolom Pertama"
 
-#: includes/class/class-options-page.php:283
-#: includes/class/class-options-page.php:300
-#: includes/class/class-options-page.php:317
+#: includes/class/class-options-page.php:231
+#: includes/class/class-options-page.php:248
+#: includes/class/class-options-page.php:265
 msgid "You can select multiple options"
 msgstr "Anda bisa memilih beberapa pilihan"
 
-#: includes/class/class-options-page.php:291
+#: includes/class/class-options-page.php:239
 msgid "Second Column Title"
 msgstr "Judul Kolom Kedua"
 
-#: includes/class/class-options-page.php:298
+#: includes/class/class-options-page.php:246
 msgid "Second Column Links"
 msgstr "Permalink Kolom Kedua"
 
-#: includes/class/class-options-page.php:308
+#: includes/class/class-options-page.php:256
 msgid "Third Column Title"
 msgstr "Judul Kolom Ketiga"
 
-#: includes/class/class-options-page.php:315
+#: includes/class/class-options-page.php:263
 msgid "Third Column Links"
 msgstr "Permalink Kolom Ketiga"
 
@@ -1177,48 +1241,48 @@ msgstr "Masukkan id donasi"
 msgid "Please do not cheating :)"
 msgstr "Jangan nakal ya :)"
 
-#: includes/class/class-post-type.php:62
+#: includes/class/class-post-type.php:63
 msgid "Lectures"
 msgstr "Kajian"
 
-#: includes/class/class-post-type.php:92
+#: includes/class/class-post-type.php:93
 msgid "Campaigns"
 msgstr "Donasi"
 
-#: includes/class/class-post-type.php:125
-#: includes/class/class-post-type.php:127
+#: includes/class/class-post-type.php:126
+#: includes/class/class-post-type.php:128
 msgid "Payments"
 msgstr "Pembayaran"
 
-#: includes/class/class-post-type.php:126
+#: includes/class/class-post-type.php:127
 msgid "Payment"
 msgstr "Pembayaran"
 
-#: includes/class/class-post-type.php:163
+#: includes/class/class-post-type.php:194
 msgid "Status"
 msgstr "Status"
 
-#: includes/class/class-post-type.php:164
+#: includes/class/class-post-type.php:195
 msgid "Created"
 msgstr "Dibuat"
 
-#: includes/class/class-post-type.php:193
+#: includes/class/class-post-type.php:224
 msgid "Waiting Payment"
 msgstr "Menunggu Pembayaran"
 
-#: includes/class/class-post-type.php:196
+#: includes/class/class-post-type.php:227
 msgid "Waiting Confirmation"
 msgstr "Menunggu Konfirmasi"
 
-#: includes/class/class-post-type.php:199
+#: includes/class/class-post-type.php:230
 msgid "Waiting Validation"
 msgstr "Menunggu Validasi"
 
-#: includes/class/class-post-type.php:202
+#: includes/class/class-post-type.php:233
 msgid "Done"
 msgstr "Selesai"
 
-#: includes/class/class-post-type.php:205
+#: includes/class/class-post-type.php:236
 msgid "Rejected"
 msgstr "Ditolak"
 
@@ -1226,56 +1290,56 @@ msgstr "Ditolak"
 msgid "Main Nav"
 msgstr "Navigasi Utama"
 
-#: includes/class/class-setting.php:130
+#: includes/class/class-setting.php:131
 msgid "Importnat!"
 msgstr "Penting!"
 
-#: includes/class/class-setting.php:130
+#: includes/class/class-setting.php:131
 msgid "You have"
 msgstr "Anda mempunyai"
 
-#: includes/class/class-setting.php:130
+#: includes/class/class-setting.php:131
 msgid "payments(s) that need to be validated immediately."
 msgstr "pembayaran yang perlu divalidasi segera."
 
-#: includes/class/class-setting.php:151 includes/class/class-setting.php:184
+#: includes/class/class-setting.php:152 includes/class/class-setting.php:185
 msgid "Congratulation"
 msgstr "Selamat"
 
-#: includes/class/class-setting.php:151
+#: includes/class/class-setting.php:152
 msgid "You have validated the payment successfully. Please"
 msgstr "Anda sudah berhasil memvalidasi pembayaran. Silahkan"
 
-#: includes/class/class-setting.php:151 includes/class/class-setting.php:184
+#: includes/class/class-setting.php:152 includes/class/class-setting.php:185
 msgid "go back"
 msgstr "kembali"
 
-#: includes/class/class-setting.php:151 includes/class/class-setting.php:184
+#: includes/class/class-setting.php:152 includes/class/class-setting.php:185
 msgid "Success"
 msgstr "Sukses"
 
-#: includes/class/class-setting.php:156 includes/class/class-setting.php:159
-#: includes/class/class-setting.php:189 includes/class/class-setting.php:192
+#: includes/class/class-setting.php:157 includes/class/class-setting.php:160
+#: includes/class/class-setting.php:190 includes/class/class-setting.php:193
 msgid "Not a valid payment"
 msgstr "Bukan pembayaran yang valid"
 
-#: includes/class/class-setting.php:162 includes/class/class-setting.php:195
+#: includes/class/class-setting.php:163 includes/class/class-setting.php:196
 msgid "No payment found"
 msgstr "Pembayaran tidak ditemukan"
 
-#: includes/class/class-setting.php:165 includes/class/class-setting.php:198
+#: includes/class/class-setting.php:166 includes/class/class-setting.php:199
 msgid "Failed to pass security check"
 msgstr "Gagal melewati keamanan"
 
-#: includes/class/class-setting.php:184
+#: includes/class/class-setting.php:185
 msgid "You have rejected the payment successfully. Please"
 msgstr "Anda telah berhasil menolak pembayaran. Silahkan"
 
-#: includes/class/class-setting.php:220
+#: includes/class/class-setting.php:221
 msgid "Validate"
 msgstr "Validasi"
 
-#: includes/class/class-setting.php:221
+#: includes/class/class-setting.php:222
 msgid "Reject"
 msgstr "Tolak"
 

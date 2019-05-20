@@ -95,6 +95,7 @@ if ( ! class_exists( 'Masjid' ) ) {
 				'payment',
 				'options-page',
 				'metabox',
+				'customizer',
 				'mailer',
 				'post-handler',
 			];
@@ -104,7 +105,7 @@ if ( ! class_exists( 'Masjid' ) ) {
 		 * Map dependency libraries
 		 */
 		private function map_libraries() {
-			$this->libraries = [ 'cmb2/init', 'cmb2-tabs/plugin' ];
+			$this->libraries = [ 'cmb2/init', 'cmb2-tabs/plugin', 'kirki/kirki' ];
 		}
 
 		/**

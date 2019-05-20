@@ -24,6 +24,7 @@ if ( ! class_exists( 'Helper' ) ) {
 	 * Class MaHelper
 	 */
 	class Helper {
+
 		/**
 		 * Get post thumbnail url
 		 *
@@ -252,10 +253,10 @@ if ( ! class_exists( 'Helper' ) ) {
 		/**
 		 * Setup custom query
 		 *
-		 * @param int    $page           current page.
-		 * @param string $post_type      post type.
-		 * @param array  $query_args     custom meta_query args.
-		 * @param string $posts_per_page posts_per_page.
+		 * @param int          $page           current page.
+		 * @param string|array $post_type      post type.
+		 * @param array        $query_args     custom meta_query args.
+		 * @param string       $posts_per_page posts_per_page.
 		 *
 		 * @return WP_Query
 		 */
@@ -468,9 +469,9 @@ if ( ! class_exists( 'Helper' ) ) {
 		 * @return string
 		 */
 		public static function get_default_background_image_url() {
-			$options = get_option( 'ma_options_identity' );
+			$default_background = get_theme_mod( 'def_bg' );
 
-			return ! empty( $options['background_image'] ) ? $options['background_image'] : TEMP_URI . '/assets/front/img/main-background.jpg';
+			return ! empty( $default_background ) ? wp_get_attachment_image_url( $default_background, 'large' ) : TEMP_URI . '/assets/front/img/main-background.jpg';
 		}
 
 		/**
@@ -527,9 +528,9 @@ if ( ! class_exists( 'Helper' ) ) {
 		 * @return string
 		 */
 		public static function get_solid_main_color() {
-			$options = get_option( 'ma_options_identity' );
+			$default_color = get_theme_mod( 'def_color' );
 
-			return ! empty( $options['bg_color'] ) ? $options['bg_color'] : '#d3a55f';
+			return ! empty( $default_color ) ? $default_color : '#d3a55f';
 		}
 
 		/**

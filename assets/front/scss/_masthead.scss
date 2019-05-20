@@ -1,16 +1,13 @@
 // Styling for the masthead
 section.masthead {
+	position: relative;
 	padding: 0;
-	background-image: linear-gradient(to top right, rgba(30, 30, 30, .6), rgba(0, 0, 0, .8)), url("../img/main-background.jpg");
 	background-repeat: no-repeat;
 	background-attachment: fixed;
 	background-position: top center;
 	background-size: cover;
 	text-align: center;
 	color: white;
-	&:not(.small) {
-		height: 100vh;
-	}
 	.intro-text {
 		//padding-top: 120px;
 		//padding-bottom: 90px;
@@ -30,9 +27,70 @@ section.masthead {
 		}
 	}
 	&.small {
+		background-image: linear-gradient(to top right, rgba(30, 30, 30, .6), rgba(0, 0, 0, .8)), url("../img/main-background.jpg");
 		.intro-text {
 			padding-top: 120px;
 			padding-bottom: 60px;
+		}
+	}
+	ol.carousel-indicators {
+		margin-bottom: 60px !important;
+	}
+	.carousel {
+		.carousel-inner {
+			.carousel-item {
+				text-align: center;
+				.carousel-item-wrapper {
+					height: calc(100vh - 100px);
+					min-height: 500px;
+					max-height: 700px;
+					.intro-text {
+						margin-bottom: 70px;
+						.intro-subheading {
+							font-size: 20px;
+							font-weight: 500;
+							line-height: 1.5;
+							margin-bottom: 30px;
+							@include heading-font;
+						}
+					}
+				}
+			}
+		}
+	}
+	.container {
+		position: relative;
+		.masthead-overview {
+			position: absolute;
+			top: -250px;
+			right: 0;
+			//bottom: 90px;
+			.card {
+				background: linear-gradient(0deg, #FFFFFF 0%, #F2F1F3 100%);
+				max-width: 250px;
+				border: 2px solid white;
+				height: 100%;
+				box-shadow: 0 0 5px 2px rgba(0, 0, 0, .2);
+				.card-body {
+					background-color: white;
+					margin: 15px;
+					border: 1px solid #D5D6D5;
+					border-radius: .25rem;
+					h4.card-title {
+						color: $gray-700;
+						font-size: 21px;
+					}
+				}
+				.card-footer {
+					text-align: left;
+					background-color: #ffffff;
+					font-size: 1rem;
+					color: $gray-700;
+					h4 {
+						font-size: 21px;
+					}
+				}
+			}
 		}
 	}
 }
@@ -40,8 +98,6 @@ section.masthead {
 @media (min-width: 576px) {
 	section.masthead {
 		.intro-text {
-			//padding-top: 170px;
-			//padding-bottom: 140px;
 			.intro-lead-in {
 				font-size: 29px;
 			}
@@ -53,6 +109,17 @@ section.masthead {
 			.intro-text {
 				padding-top: 140px;
 				padding-bottom: 130px;
+			}
+		}
+		.carousel {
+			.carousel-inner {
+				.carousel-item {
+					.intro-text {
+						.intro-subheading {
+							font-size: 24px;
+						}
+					}
+				}
 			}
 		}
 	}
@@ -77,19 +144,44 @@ section.masthead {
 				padding-bottom: 160px;
 			}
 		}
+		.carousel {
+			.carousel-inner {
+				.carousel-item {
+					.intro-text {
+						.intro-subheading {
+							font-size: 28px;
+						}
+					}
+				}
+			}
+		}
 	}
 }
 
 @media (min-width: 992px) {
 	section.masthead {
 		.intro-text {
-			//padding-top: 270px;
-			//padding-bottom: 150px;
 			.intro-text {
 				font-size: 39px;
 			}
 			.intro-heading {
 				font-size: 57px;
+			}
+		}
+		.carousel {
+			.carousel-inner {
+				.carousel-item {
+					text-align: left;
+					.intro-text {
+						padding-right: 40%;
+						.intro-text {
+							font-size: 30px;
+						}
+						.intro-subheading {
+							font-size: 22px;
+						}
+					}
+				}
 			}
 		}
 	}

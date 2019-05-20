@@ -10,7 +10,7 @@
 
 namespace Masjid\Settings;
 
-use WP_Query;
+use Masjid\Helpers;
 use Masjid\Transactions;
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -54,6 +54,7 @@ if ( ! class_exists( 'Metabox' ) ) {
 			add_action( 'cmb2_admin_init', [ $this, 'donasi_metabox_callback' ] );
 			add_action( 'cmb2_admin_init', [ $this, 'front_page_metabox_callback' ] );
 			add_action( 'cmb2_admin_init', [ $this, 'history_page_metabox_callback' ] );
+			add_action( 'cmb2_admin_init', [ $this, 'slider_metabox_callback' ] );
 			add_action( 'wp_dashboard_setup', [ $this, 'custom_dashboard_widget_callback' ] );
 			add_action( 'add_meta_boxes', [ $this, 'register_campaign_custom_metabox_callback' ] );
 		}
@@ -282,13 +283,11 @@ if ( ! class_exists( 'Metabox' ) ) {
 					],
 				],
 			];
-			$cmb_main->add_field(
-				[
-					'id'   => '__tabs',
-					'type' => 'tabs',
-					'tabs' => $main_tabs_setting,
-				]
-			);
+			$cmb_main->add_field( [
+				'id'   => '__tabs',
+				'type' => 'tabs',
+				'tabs' => $main_tabs_setting,
+			] );
 		}
 
 		/**
@@ -398,13 +397,11 @@ if ( ! class_exists( 'Metabox' ) ) {
 					],
 				],
 			];
-			$cmb_main->add_field(
-				[
-					'id'   => '__tabs',
-					'type' => 'tabs',
-					'tabs' => $main_tabs_setting,
-				]
-			);
+			$cmb_main->add_field( [
+				'id'   => '__tabs',
+				'type' => 'tabs',
+				'tabs' => $main_tabs_setting,
+			] );
 		}
 
 		/**
@@ -429,17 +426,12 @@ if ( ! class_exists( 'Metabox' ) ) {
 				'layout' => 'vertical',
 				'tabs'   => [],
 			];
-			$pages_arr         = [];
-			$query_pages       = new WP_Query(
-				[
-					'post_type'      => 'page',
-					'posts_per_page' => - 1,
-				]
-			);
-			if ( $query_pages->have_posts() ) {
-				while ( $query_pages->have_posts() ) {
-					$query_pages->the_post();
-					$pages_arr[ get_the_ID() ] = get_the_title();
+			$sliders_arr       = [];
+			$sliders_query     = Helpers\Helper::setup_query( 1, 'slider', [], - 1 );
+			if ( $sliders_query->have_posts() ) {
+				while ( $sliders_query->have_posts() ) {
+					$sliders_query->the_post();
+					$sliders_arr[ get_the_ID() ] = get_the_title();
 				}
 			}
 			wp_reset_postdata();
@@ -448,29 +440,11 @@ if ( ! class_exists( 'Metabox' ) ) {
 				'title'  => __( 'Masthead', 'masjid' ),
 				'fields' => [
 					[
-						'name' => __( 'Title', 'masjid' ),
-						'id'   => 'head_title',
-						'type' => 'text',
-					],
-					[
-						'name' => __( 'Subtitle', 'masjid' ),
-						'id'   => 'head_subtitle',
-						'type' => 'text',
-					],
-					[
-						'name'             => __( 'Link', 'masjid' ),
-						'id'               => 'head_link',
+						'name'             => __( 'Slider', 'masjid' ),
+						'id'               => 'head_slider',
 						'type'             => 'select',
-						'show_option_none' => true,
-						'options'          => $pages_arr,
-					],
-					[
-						'name'       => __( 'Link Caption', 'masjid' ),
-						'id'         => 'head_link_caption',
-						'type'       => 'text',
-						'attributes' => [
-							'data-conditional-id' => 'head_link',
-						],
+						'show_option_none' => false,
+						'options'          => $sliders_arr,
 					],
 				],
 			];
@@ -522,13 +496,11 @@ if ( ! class_exists( 'Metabox' ) ) {
 					],
 				],
 			];
-			$cmb_main->add_field(
-				[
-					'id'   => '__tabs',
-					'type' => 'tabs',
-					'tabs' => $main_tabs_setting,
-				]
-			);
+			$cmb_main->add_field( [
+				'id'   => '__tabs',
+				'type' => 'tabs',
+				'tabs' => $main_tabs_setting,
+			] );
 		}
 
 		/**
@@ -548,72 +520,139 @@ if ( ! class_exists( 'Metabox' ) ) {
 				'show_names'   => true,
 			];
 			$cmb_main         = new_cmb2_box( $main_box_options );
-			$cmb_main->add_field(
-				[
-					'name' => __( 'Content', 'masjid' ),
-					'id'   => 'content',
-					'type' => 'textarea_small',
-				]
-			);
-			$group_field_id = $cmb_main->add_field(
-				[
-					'id'      => 'timeline',
-					'type'    => 'group',
-					'options' => [
-						'group_title'   => __( 'Timeline {#}', 'masjid' ),
-						'add_button'    => __( 'Add Timeline', 'masjid' ),
-						'remove_button' => __( 'Remove Timeline', 'masjid' ),
-						'sortable'      => true,
+			$cmb_main->add_field( [
+				'name' => __( 'Content', 'masjid' ),
+				'id'   => 'content',
+				'type' => 'textarea_small',
+			] );
+			$group_field_id = $cmb_main->add_field( [
+				'id'      => 'timeline',
+				'type'    => 'group',
+				'options' => [
+					'group_title'   => __( 'Timeline {#}', 'masjid' ),
+					'add_button'    => __( 'Add Timeline', 'masjid' ),
+					'remove_button' => __( 'Remove Timeline', 'masjid' ),
+					'sortable'      => true,
+				],
+			] );
+			$cmb_main->add_group_field( $group_field_id, [
+				'name' => __( 'Period', 'masjid' ),
+				'desc' => __( 'Estimation time period when the event occur', 'masjid' ),
+				'id'   => 'period',
+				'type' => 'text',
+			] );
+			$cmb_main->add_group_field( $group_field_id, [
+				'name' => __( 'Title', 'masjid' ),
+				'id'   => 'title',
+				'type' => 'text',
+			] );
+			$cmb_main->add_group_field( $group_field_id, [
+				'name'         => __( 'Image', 'masjid' ),
+				'id'           => 'image',
+				'type'         => 'file',
+				'options'      => [
+					'url' => false,
+				],
+				'text'         => [
+					'add_upload_file_text' => __( 'Select Image', 'masjid' ),
+				],
+				'query_args'   => [
+					'type' => [
+						'image/gif',
+						'image/jpeg',
+						'image/png',
 					],
-				]
-			);
-			$cmb_main->add_group_field(
-				$group_field_id,
-				[
-					'name' => __( 'Period', 'masjid' ),
-					'desc' => __( 'Estimation time period when the event occur', 'masjid' ),
-					'id'   => 'period',
-					'type' => 'text',
-				]
-			);
-			$cmb_main->add_group_field(
-				$group_field_id,
-				[
-					'name' => __( 'Title', 'masjid' ),
-					'id'   => 'title',
-					'type' => 'text',
-				]
-			);
-			$cmb_main->add_group_field(
-				$group_field_id,
-				[
-					'name'         => __( 'Image', 'masjid' ),
-					'id'           => 'image',
-					'type'         => 'file',
-					'options'      => [
-						'url' => false,
+				],
+				'preview_size' => 'thumbnail',
+			] );
+			$cmb_main->add_group_field( $group_field_id, [
+				'name' => __( 'Description', 'masjid' ),
+				'id'   => 'description',
+				'type' => 'textarea_small',
+			] );
+		}
+
+		/**
+		 * Calback for registering slider metabox
+		 */
+		public function slider_metabox_callback() {
+			$main_box_options = [
+				'id'           => 'cmb_slider_page',
+				'title'        => __( 'Slider', 'masjid' ),
+				'object_types' => [ 'slider' ],
+				'context'      => 'normal',
+				'priority'     => 'high',
+				'show_names'   => true,
+			];
+			$cmb_main         = new_cmb2_box( $main_box_options );
+			$group_field_id   = $cmb_main->add_field( [
+				'id'      => 'sliders',
+				'type'    => 'group',
+				'options' => [
+					'group_title'   => __( 'Slider {#}', 'masjid' ),
+					'add_button'    => __( 'Add Slider', 'masjid' ),
+					'remove_button' => __( 'Remove Slider', 'masjid' ),
+					'sortable'      => true,
+				],
+			] );
+			$cmb_main->add_group_field( $group_field_id, [
+				'name'         => __( 'Background', 'masjid' ),
+				'id'           => 'bg',
+				'type'         => 'file',
+				'options'      => [
+					'url' => false,
+				],
+				'text'         => [
+					'add_upload_file_text' => __( 'Select Image', 'masjid' ),
+				],
+				'query_args'   => [
+					'type' => [
+						'image/gif',
+						'image/jpeg',
+						'image/png',
 					],
-					'text'         => [
-						'add_upload_file_text' => __( 'Select Image', 'masjid' ),
-					],
-					'query_args'   => [
-						'type' => [
-							'image/gif',
-							'image/jpeg',
-							'image/png',
-						],
-					],
-					'preview_size' => 'thumbnail',
-				]
-			);
-			$cmb_main->add_group_field(
-				$group_field_id,
-				[
-					'name' => __( 'Description', 'masjid' ),
-					'id'   => 'description',
-					'type' => 'textarea_small',
-				]
-			);
+				],
+				'preview_size' => 'thumbnail',
+			] );
+			$cmb_main->add_group_field( $group_field_id, [
+				'name' => __( 'Title', 'masjid' ),
+				'id'   => 'title',
+				'type' => 'text',
+			] );
+			$cmb_main->add_group_field( $group_field_id, [
+				'name' => __( 'Description', 'masjid' ),
+				'id'   => 'description',
+				'type' => 'textarea_small',
+			] );
+
+			$posts_arr   = [];
+			$posts_query = Helpers\Helper::setup_query( 1, [ 'post', 'page', 'kajian', 'donasi' ], [], - 1 );
+			if ( $posts_query->have_posts() ) {
+				while ( $posts_query->have_posts() ) {
+					$posts_query->the_post();
+					$posts_arr[ get_the_ID() ] = get_the_title();
+				}
+			}
+			wp_reset_postdata();
+			$cmb_main->add_group_field( $group_field_id, [
+				'name'             => __( 'Link', 'masjid' ),
+				'id'               => 'link',
+				'type'             => 'select',
+				'show_option_none' => true,
+				'options'          => $posts_arr,
+			] );
+			$cmb_main->add_group_field( $group_field_id, [
+				'name'      => __( 'Custom Link', 'masjid' ),
+				'id'        => 'custom_link',
+				'desc'      => __( 'Put any external url to override link from dropdown above, or you can leave it empty.', 'masjid' ),
+				'type'      => 'text_url',
+				'protocols' => [ 'http', 'https' ],
+			] );
+			$cmb_main->add_group_field( $group_field_id, [
+				'name' => __( 'Link Caption', 'masjid' ),
+				'id'   => 'caption',
+				'type' => 'text',
+			] );
 		}
 
 		/**
@@ -630,23 +669,23 @@ if ( ! class_exists( 'Metabox' ) ) {
 			$admin_url        = admin_url( 'edit.php?post_type=bayar' );
 			$payment_overview = Transactions\Payment::get_payment_overview();
 			?>
-			<ul class="payment-overview">
-				<li class="total_success">
-					<a href="<?php echo esc_attr( $admin_url ); ?>">Rp <strong><?php echo esc_attr( $payment_overview['total_income_formatted'] ); ?></strong><span><?php echo __( 'Total income', 'masjid' ); // phpcs:ignore WordPress.Security.EscapeOutput ?></span></a>
-				</li>
-				<li class="total">
-					<a href="<?php echo esc_attr( $admin_url ); ?>"><strong><?php echo esc_attr( $payment_overview['total_payment_formatted'] ); ?></strong> <?php echo __( 'payment(s)', 'masjid' ); ?><span><?php echo __( 'Total payment', 'masjid' ); // phpcs:ignore WordPress.Security.EscapeOutput ?></span></a>
-				</li>
-				<li class="total_waiting_payment">
-					<a href="<?php echo esc_html( $admin_url ); ?>"><strong><?php echo esc_attr( $payment_overview['total_waiting_payment_formatted'] ); ?></strong> <?php echo __( 'payment(s)', 'masjid' ); ?><span><?php echo __( 'Waiting payment', 'masjid' ); // phpcs:ignore WordPress.Security.EscapeOutput ?></span></a>
-				</li>
-				<li class="total_waiting_confirmation">
-					<a href="<?php echo esc_attr( $admin_url ); ?>"><strong><?php echo esc_attr( $payment_overview['total_waiting_validation_formatted'] ); ?></strong> <?php echo __( 'payment(s)', 'masjid' ); ?><span><?php echo __( 'Waiting validation', 'masjid' ); // phpcs:ignore WordPress.Security.EscapeOutput ?></span></a>
-				</li>
-				<li class="total_rejected">
-					<a href="<?php echo esc_attr( $admin_url ); ?>"><strong><?php echo esc_attr( $payment_overview['total_rejected_formatted'] ); ?></strong> <?php echo __( 'payment(s)', 'masjid' ); ?><span><?php echo __( 'Were rejected', 'masjid' ); // phpcs:ignore WordPress.Security.EscapeOutput ?></span></a>
-				</li>
-			</ul>
+            <ul class="payment-overview">
+                <li class="total_success">
+                    <a href="<?php echo esc_attr( $admin_url ); ?>">Rp <strong><?php echo esc_attr( $payment_overview['total_income_formatted'] ); ?></strong><span><?php echo __( 'Total income', 'masjid' ); // phpcs:ignore WordPress.Security.EscapeOutput ?></span></a>
+                </li>
+                <li class="total">
+                    <a href="<?php echo esc_attr( $admin_url ); ?>"><strong><?php echo esc_attr( $payment_overview['total_payment_formatted'] ); ?></strong> <?php echo __( 'payment(s)', 'masjid' ); ?><span><?php echo __( 'Total payment', 'masjid' ); // phpcs:ignore WordPress.Security.EscapeOutput ?></span></a>
+                </li>
+                <li class="total_waiting_payment">
+                    <a href="<?php echo esc_html( $admin_url ); ?>"><strong><?php echo esc_attr( $payment_overview['total_waiting_payment_formatted'] ); ?></strong> <?php echo __( 'payment(s)', 'masjid' ); ?><span><?php echo __( 'Waiting payment', 'masjid' ); // phpcs:ignore WordPress.Security.EscapeOutput ?></span></a>
+                </li>
+                <li class="total_waiting_confirmation">
+                    <a href="<?php echo esc_attr( $admin_url ); ?>"><strong><?php echo esc_attr( $payment_overview['total_waiting_validation_formatted'] ); ?></strong> <?php echo __( 'payment(s)', 'masjid' ); ?><span><?php echo __( 'Waiting validation', 'masjid' ); // phpcs:ignore WordPress.Security.EscapeOutput ?></span></a>
+                </li>
+                <li class="total_rejected">
+                    <a href="<?php echo esc_attr( $admin_url ); ?>"><strong><?php echo esc_attr( $payment_overview['total_rejected_formatted'] ); ?></strong> <?php echo __( 'payment(s)', 'masjid' ); ?><span><?php echo __( 'Were rejected', 'masjid' ); // phpcs:ignore WordPress.Security.EscapeOutput ?></span></a>
+                </li>
+            </ul>
 			<?php
 		}
 
@@ -654,16 +693,10 @@ if ( ! class_exists( 'Metabox' ) ) {
 		 * Callback for registering campaign custom metabox
 		 */
 		public function register_campaign_custom_metabox_callback() {
-			add_meta_box(
-				'campaign_report_mb',
-				__( 'Report', 'masjid' ),
-				[
-					$this,
-					'campaign_report_metabox_callback',
-				],
-				'donasi',
-				'side'
-			);
+			add_meta_box( 'campaign_report_mb', __( 'Report', 'masjid' ), [
+				$this,
+				'campaign_report_metabox_callback',
+			], 'donasi', 'side' );
 		}
 
 		public function campaign_report_metabox_callback() {

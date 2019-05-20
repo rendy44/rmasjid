@@ -24,28 +24,80 @@ get_header();
 
 while ( have_posts() ) {
 	the_post();
-	$page_maps = get_option( 'ma_page_maps' );
+	$page_maps     = get_option( 'ma_page_maps' );
+	$page_campaign = ! empty( $page_maps['page_campaign'] ) ? $page_maps['page_campaign'] : false;
 	?>
 
 	<!--    Masthead-->
+	<?php
+	$slider_object = Helpers\Helper::pfield( 'head_slider' );
+	$sliders       = $slider_object ? Helpers\Helper::pfield( 'sliders', $slider_object ) : [];
+	if ( empty( $sliders ) ) {
+		$sliders[] = [
+			[
+				'title'       => get_bloginfo( 'name' ),
+				'description' => get_bloginfo( 'description' ),
+			],
+		];
+	}
+	?>
 	<section class="masthead">
-		<div class="container d-flex h-100">
-			<?php
-			$head_title        = Helpers\Helper::pfield( 'head_title' );
-			$head_subtitle     = Helpers\Helper::pfield( 'head_subtitle' );
-			$head_link         = Helpers\Helper::pfield( 'head_link' );
-			$head_link_caption = Helpers\Helper::pfield( 'head_link_caption' );
-			$result            = $temp->render(
-				'front-masthead',
-				[
-					'title'        => $head_title ? $head_title : get_bloginfo( 'name' ),
-					'subtitle'     => $head_subtitle ? $head_subtitle : get_bloginfo( 'description' ),
-					'link'         => $head_link ? get_permalink( $head_link ) : false,
-					'link_caption' => $head_link_caption ? $head_link_caption : get_the_title( $head_link ),
-				]
-			);
-			echo $result; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-			?>
+		<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+			<ol class="carousel-indicators">
+				<?php
+				$indicator_num = 0;
+				foreach ( $sliders as $slider ) {
+					$active_indicator = 0 === $indicator_num ? 'class="active"' : '';
+					?>
+                    <li data-target="#carouselExampleIndicators" data-slide-to="<?php echo $indicator_num; ?>" <?php echo $active_indicator; // phpcs:ignore ?>></li>
+					<?php
+					$indicator_num ++;
+				}
+				?>
+			</ol>
+			<div class="carousel-inner">
+				<?php
+				$slider_num = 0;
+				foreach ( $sliders as $slider ) {
+					$active_slider = 0 === $slider_num ? 'active' : '';
+					?>
+                    <div class="carousel-item <?php echo $active_slider; // phpcs:ignore ?>">
+						<div class="carousel-item-wrapper d-flex">
+							<div class="container align-self-end">
+								<?php
+								$slider_item = $temp->render(
+									'front-masthead',
+									[
+										'title'       => ! empty( $slider['title'] ) ? $slider['title'] : false,
+										'description' => ! empty( $slider['description'] ) ? $slider['description'] : false,
+										'link'        => ! empty( $slider['custom_link'] ) ? $slider['custom_link'] : ( ! empty( $slider['link'] ) ? get_the_permalink( $slider['link'] ) : false ),
+										'caption'     => ! empty( $slider['caption'] ) ? $slider['caption'] : ( ! empty( $slider['link'] ) ? get_the_title( $slider['link'] ) : __( 'Read more', 'masjid' ) ),
+									]
+								);
+								echo $slider_item; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+								?>
+							</div>
+						</div>
+					</div>
+					<?php
+					$slider_num ++;
+				}
+				?>
+			</div>
+		</div>
+		<div class="container d-none d-lg-block">
+			<div class="masthead-overview">
+				<div class="card">
+					<div class="card-body">
+                        <h4 class="card-title"><?php echo __( "It's time to give our best.", 'masjid' ); // phpcs:ignore ?></h4>
+                        <a class="btn btn-primary btn-block" href="<?php echo get_permalink( $page_campaign ); ?>"><?php echo __( 'Donate Now', 'masjid' ); // phpcs:ignore ?></a>
+					</div>
+					<div class="card-footer">
+                        <h4><?php echo __( 'Important!', 'masjid' ); // phpcs:ignore ?></h4>
+                        <p><?php echo __( 'Every single rupiah you donate, is surely count.', 'masjid' ); // phpcs:ignore ?></p>
+					</div>
+				</div>
+			</div>
 		</div>
 	</section>
 
@@ -88,9 +140,8 @@ while ( have_posts() ) {
 						<small><?php echo __( 'Collected', 'masjid' ) . ' ' . $available_campaigns['sum']['collected_percent'] . '% ' . __( 'from total', 'masjid' ) . ' Rp' . $available_campaigns['sum']['target_format']; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></small>
 					</p>
 					<?php
-					$page_campaign = ! empty( $page_maps['page_campaign'] ) ? $page_maps['page_campaign'] : false;
 					if ( $page_campaign ) {
-						echo '<a href="' . get_permalink( $page_campaign ) . '" class="btn btn-outline-primary btn-lg mt-3">' . __( 'Browse All Campaigns', 'masjid' ) . '</a>';
+						echo '<a href="' . get_permalink( $page_campaign ) . '" class="btn btn-outline-primary btn-lg mt-3">' . __( 'Browse All Campaigns', 'masjid' ) . '</a>'; // phpcs:ignore
 					}
 					?>
 				</div>
@@ -145,7 +196,7 @@ while ( have_posts() ) {
 					?>
 					<div class="row">
 						<div class="col-lg-8 mx-auto text-center">
-							<a href="<?php the_permalink( $page_lecture ); ?>" class="btn btn-primary btn-lg mt-4"><?php echo __( 'Browse All Lectures', 'masjid' ); ?></a>
+							<a href="<?php the_permalink( $page_lecture ); ?>" class="btn btn-primary btn-lg mt-4"><?php echo __( 'Browse All Lectures', 'masjid' ); // phpcs:ignore ?></a>
 						</div>
 					</div>
 					<?php
@@ -207,7 +258,7 @@ while ( have_posts() ) {
 					?>
 					<div class="row">
 						<div class="col-lg-8 mx-auto text-center">
-							<a href="<?php the_permalink( $page_article ); ?>" class="btn btn-outline-primary btn-lg mt-4"><?php echo __( 'Browse All Articles', 'masjid' ); ?></a>
+							<a href="<?php the_permalink( $page_article ); ?>" class="btn btn-outline-primary btn-lg mt-4"><?php echo __( 'Browse All Articles', 'masjid' ); // phpcs:ignore ?></a>
 						</div>
 					</div>
 					<?php

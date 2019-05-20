@@ -92,7 +92,7 @@ $background_image_url = Helpers\Helper::get_default_background_image_url()
     }
 
     section.masthead {
-        background-image: linear-gradient(to top right, rgba(30, 30, 30, 0.6), rgba(0, 0, 0, 0.8)), url(<?php echo $background_image_url; ?>);
+        background-image: linear-gradient(to top right, rgba(<?php echo $solid_color_rgb['r'] .', ' . $solid_color_rgb['g'] .', ' . $solid_color_rgb['b']; ?>, 0.8) 10%, rgba(150, 150, 150, 0.9) 90%), url(<?php echo $background_image_url; ?>);
     }
 
     .btn-outline-primary {

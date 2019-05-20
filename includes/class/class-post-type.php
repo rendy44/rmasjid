@@ -51,6 +51,7 @@ if ( ! class_exists( 'Post_Type' ) ) {
 			add_action( 'init', [ $this, 'register_kajian' ] );
 			add_action( 'init', [ $this, 'register_donasi' ] );
 			add_action( 'init', [ $this, 'register_pembayaran' ] );
+			add_action( 'init', [ $this, 'register_slider' ] );
 		}
 
 		/**
@@ -146,6 +147,36 @@ if ( ! class_exists( 'Post_Type' ) ) {
 			register_post_type( 'bayar', $args );
 			add_filter( 'manage_bayar_posts_columns', [ $this, 'manage_bayar_column_title_callback' ] );
 			add_action( 'manage_bayar_posts_custom_column', [ $this, 'manage_bayar_columns_callback' ], 10, 2 );
+		}
+
+		/**
+		 * Register slider post type
+		 */
+		public function register_slider() {
+			$args = [
+				'labels'              => [
+					'name'          => __( 'Sliders', 'masjid' ),
+					'singular_name' => __( 'Slider', 'masjid' ),
+					'menu_name'     => __( 'Sliders', 'masjid' ),
+				],
+				'supports'            => [
+					'title',
+				],
+				'taxonomies'          => [],
+				'hierarchical'        => false,
+				'public'              => true,
+				'show_ui'             => true,
+				'show_in_menu'        => true,
+				'show_in_nav_menus'   => false,
+				'show_in_admin_bar'   => false,
+				'can_export'          => true,
+				'has_archive'         => false,
+				'exclude_from_search' => true,
+				'publicly_queryable'  => false,
+				'capability_type'     => 'page',
+				'menu_icon'           => 'dashicons-images-alt',
+			];
+			register_post_type( 'slider', $args );
 		}
 
 		/**
