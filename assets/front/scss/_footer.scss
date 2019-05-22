@@ -38,10 +38,17 @@ footer {
 		margin-top: 5rem;
 		padding-top: 3rem;
 		h4 {
+			text-transform: uppercase;
 			color: $gray-100;
 			font-size: 1.2em;
 			font-weight: 400;
 			@include title-font;
+		}
+		hr {
+			margin: 0 !important;
+			margin-bottom: .75rem !important;
+			border-color: $primary !important;
+			width: 80px;
 		}
 		p {
 			color: $gray-300;
@@ -51,6 +58,7 @@ footer {
 			list-style: none;
 			margin-bottom: 0;
 			li {
+				margin-bottom: .5rem;
 				a {
 					color: $gray-300;
 					&:hover,
@@ -79,7 +87,7 @@ footer {
 			margin-top: 2rem;
 			text-align: center;
 			padding: .7rem;
-			background-color: $gray-900;
+			background-color: $gray-800;
 			color: $gray-300;
 			font-size: .9rem;
 		}

@@ -29,6 +29,7 @@ $color_scheme = ! empty( $options['footer_scheme'] ) ? $options['footer_scheme']
 		<div class="row">
 			<div class="col-lg-6 col-sm-12 desc">
 				<h4><?php echo $title; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></h4>
+				<hr/>
 				<p><?php echo $description; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></p>
 				<ul class="list-inline social-buttons my-2">
 					<?php echo $social_networks['telegram'] ? '<li class="list-inline-item"><a target="_blank" href="' . $social_networks['telegram'] . '"><i class="fab fa-telegram-plane"></i></a></li>' : ''; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
@@ -39,6 +40,7 @@ $color_scheme = ! empty( $options['footer_scheme'] ) ? $options['footer_scheme']
 			</div>
 			<div class="col-lg-2 col-sm-4 first">
 				<h4><?php echo esc_html( $title_1 ); ?></h4>
+				<hr/>
 				<ul class="links">
 					<?php
 					if ( $links_1 ) {
@@ -51,6 +53,7 @@ $color_scheme = ! empty( $options['footer_scheme'] ) ? $options['footer_scheme']
 			</div>
 			<div class="col-lg-2 col-sm-4 mid">
 				<h4><?php echo $title_2; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></h4>
+				<hr/>
 				<ul class="links">
 					<?php
 					if ( $links_2 ) {
@@ -63,7 +66,7 @@ $color_scheme = ! empty( $options['footer_scheme'] ) ? $options['footer_scheme']
 			</div>
 			<div class="col-lg-2 col-sm-4 last">
 				<h4><?php echo $title_3; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></h4>
-				<ul class="links">
+				<hr/>
 					<ul class="links">
 						<?php
 						if ( $links_3 ) {
@@ -73,7 +76,6 @@ $color_scheme = ! empty( $options['footer_scheme'] ) ? $options['footer_scheme']
 						}
 						?>
 					</ul>
-				</ul>
 			</div>
 		</div>
 	</div>

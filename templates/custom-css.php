@@ -151,4 +151,8 @@ $background_image_url = Helpers\Helper::get_default_background_image_url()
 	footer.bg-primary .network {
 		background-color: <?php echo Helpers\Helper::darken_color( $solid_color, 1.8 ); ?> !important;
 	}
+
+    footer.style1 hr {
+        border-color: <?php echo $solid_color; ?> !important;
+    }
 </style>
