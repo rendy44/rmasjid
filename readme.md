@@ -1,4 +1,7 @@
 # Masjid
+
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/9f1f7cc96d40485da063972cea27df4c)](https://app.codacy.com/app/rendy44/rmasjid?utm_source=github.com&utm_medium=referral&utm_content=rendy44/rmasjid&utm_campaign=Badge_Grade_Dashboard)
+
 Free WordPress theme for your masjid/mosque.
 ## Installation
 Download the latest <a href='https://github.com/rendy44/masjid/releases'>release</a>, extract it and put folder `masjid` inside your `wp-content\themes\` directory.
