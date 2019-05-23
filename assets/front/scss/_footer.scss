@@ -45,8 +45,7 @@ footer {
 			@include title-font;
 		}
 		hr {
-			margin: 0 !important;
-			margin-bottom: .75rem !important;
+			margin: 0 auto .75rem auto;
 			border-color: $primary !important;
 			width: 80px;
 		}
@@ -238,12 +237,18 @@ footer {
 				.first {
 					text-align: right;
 					margin-bottom: 0;
+					hr {
+						margin: 0 0 .75rem auto !important;
+					}
 				}
 				.mid {
 					margin-bottom: 0;
 				}
 				.last {
 					text-align: left;
+					hr {
+						margin: 0 auto .75rem 0 !important;
+					}
 				}
 			}
 		}
@@ -254,6 +259,9 @@ footer {
 	footer {
 		&.style1 {
 			.row {
+				hr {
+					margin: 0 auto .75rem 0 !important;
+				}
 				.desc {
 					text-align: left;
 					margin-bottom: 0;
@@ -261,6 +269,9 @@ footer {
 				.first,
 				.mid,
 				.last {
+					hr {
+						margin: 0 auto .75rem 0 !important;
+					}
 					text-align: left;
 				}
 			}

@@ -160,16 +160,16 @@ if ( ! class_exists( 'MaDesigner' ) ) {
 		 */
 		public function footer_content_callback() {
 			$social_network_urls = Helpers\Helper::get_social_network_url();
-			$footer_options      = get_option( 'ma_options_footer' );
-			$style               = ! empty( $footer_options['footer_design'] ) ? $footer_options['footer_design'] : 'style1';
+			$footer_style        = get_theme_mod( 'footer_style' );
+			$color_scheme        = get_theme_mod( 'color_scheme' );
 			$result              = $this->temp->render(
-				'footer-' . $style,
+				'footer-' . $footer_style,
 				[
 					'title'           => get_bloginfo( 'name' ),
 					'description'     => get_bloginfo( 'description' ),
 					'footnote'        => '&copy; ' . get_bloginfo( 'name' ) . ' ' . date( 'Y' ),
 					'social_networks' => $social_network_urls,
-					'options'         => $footer_options,
+					'color_scheme'    => $color_scheme,
 				]
 			);
 			echo $result;  // phpcs:ignore WordPress.Security.EscapeOutput

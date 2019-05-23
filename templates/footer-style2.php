@@ -12,18 +12,16 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-$title_1      = ! empty( $options['footer_1_title'] ) ? $options['footer_1_title'] : '';
-$links_1      = ! empty( $options['footer_1_links'] ) ? $options['footer_1_links'] : '';
-$title_2      = ! empty( $options['footer_2_title'] ) ? $options['footer_2_title'] : '';
-$links_2      = ! empty( $options['footer_2_links'] ) ? $options['footer_2_links'] : '';
-$title_3      = ! empty( $options['footer_3_title'] ) ? $options['footer_3_title'] : '';
-$links_3      = ! empty( $options['footer_3_links'] ) ? $options['footer_3_links'] : '';
-$color_scheme = ! empty( $options['footer_scheme'] ) ? $options['footer_scheme'] : 'bg-primary';
+$title_1 = ! empty( $options['footer_1_title'] ) ? $options['footer_1_title'] : '';
+$links_1 = ! empty( $options['footer_1_links'] ) ? $options['footer_1_links'] : '';
+$title_2 = ! empty( $options['footer_2_title'] ) ? $options['footer_2_title'] : '';
+$links_2 = ! empty( $options['footer_2_links'] ) ? $options['footer_2_links'] : '';
+$title_3 = ! empty( $options['footer_3_title'] ) ? $options['footer_3_title'] : '';
+$links_3 = ! empty( $options['footer_3_links'] ) ? $options['footer_3_links'] : '';
 ?>
 
 <!-- Back to top -->
-<a class="btn btn-primary btn-lg btn-back-to-top text-center text-white" style="display: none">
-	<i class="fa fa-arrow-up"></i> </a>
+<a class="btn btn-primary btn-lg btn-back-to-top text-center text-white" style="display: none"> <i class="fa fa-arrow-up"></i> </a>
 <footer class="style2 <?php echo $color_scheme; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>">
 	<div class="container">
 		<div class="row">

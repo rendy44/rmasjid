@@ -22,6 +22,7 @@ if ( ! class_exists( 'CMB2_Custom_Field' ) ) {
 	 * @package Masjid\CMB2\Extension
 	 */
 	class CMB2_Custom_Field {
+
 		/**
 		 * Static instance variable
 		 *
@@ -53,27 +54,28 @@ if ( ! class_exists( 'CMB2_Custom_Field' ) ) {
 		 * Register `select_multiple`
 		 */
 		private function register_select_multiple() {
-			add_action( 'cmb2_render_select_multiple', [ $this, 'cmb2_render_select_multiple_field_type' ], 10, 5 );
-			add_filter( 'cmb2_sanitize_select_multiple', [ $this, 'cmb2_sanitize_select_multiple_callback' ], 10, 2 );
+			add_action( 'cmb2_render_select2', [ $this, 'cmb2_render_select2_field_type' ], 10, 5 );
+			add_filter( 'cmb2_sanitize_select2', [ $this, 'cmb2_sanitize_select2_callback' ], 10, 2 );
 		}
 
 		/**
-		 * Callback for rendering `select_multiple`
+		 * Callback for rendering `select2`
 		 *
-		 * @param object $field .
-		 * @param string $escaped_value .
-		 * @param int    $object_id .
-		 * @param string $object_type .
+		 * @param object $field             .
+		 * @param string $escaped_value     .
+		 * @param int    $object_id         .
+		 * @param string $object_type       .
 		 * @param object $field_type_object .
 		 */
-		public function cmb2_render_select_multiple_field_type( $field, $escaped_value, $object_id, $object_type, $field_type_object ) {
+		public function cmb2_render_select2_field_type( $field, $escaped_value, $object_id, $object_type, $field_type_object ) {
+
 			$select_multiple = '<select class="widefat" multiple name="' . $field->args['_name'] . '[]" id="' . $field->args['_id'] . '"';
 			foreach ( $field->args['attributes'] as $attribute => $value ) {
 				$select_multiple .= " $attribute=\"$value\"";
 			}
 			$select_multiple .= ' />';
 			foreach ( $field->options() as $value => $name ) {
-				$selected         = ( $escaped_value && in_array( $value, (array) $escaped_value, true ) ) ? 'selected="selected"' : '';
+				$selected        = ( $escaped_value && in_array( $value, (array) $escaped_value, true ) ) ? 'selected="selected"' : '';
 				$select_multiple .= '<option class="cmb2-option" value="' . esc_attr( $value ) . '" ' . $selected . '>' . esc_html( $name ) . '</option>';
 			}
 			$select_multiple .= '</select>';
@@ -82,14 +84,14 @@ if ( ! class_exists( 'CMB2_Custom_Field' ) ) {
 		}
 
 		/**
-		 * Callback for sanitizing `select_multiple`
+		 * Callback for sanitizing `select2`
 		 *
 		 * @param string $override_value .
-		 * @param array  $value .
+		 * @param array  $value          .
 		 *
 		 * @return array
 		 */
-		public function cmb2_sanitize_select_multiple_callback( $override_value, $value ) {
+		public function cmb2_sanitize_select2_callback( $override_value, $value ) {
 			if ( is_array( $value ) ) {
 				foreach ( $value as $key => $saved_value ) {
 					$value[ $key ] = sanitize_text_field( $saved_value );

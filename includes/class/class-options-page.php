@@ -190,35 +190,6 @@ if ( ! class_exists( 'Options_Page' ) ) {
 			$fourth_options = new_cmb2_box( $fourth_args );
 			$fourth_options->add_field(
 				[
-					'name'             => __( 'Design', 'masjid' ),
-					'id'               => 'footer_design',
-					'type'             => 'radio',
-					'classes'          => 'footer_selection',
-					'show_option_none' => false,
-					'default'          => 'style1',
-					'options'          => [
-						'style1' => __( 'Full', 'masjid' ),
-						'style2' => __( 'Minimalism', 'masjid' ),
-					],
-				]
-			);
-			$fourth_options->add_field(
-				[
-					'name'             => __( 'Color Scheme', 'masjid' ),
-					'id'               => 'footer_scheme',
-					'type'             => 'radio_inline',
-					'classes'          => '',
-					'show_option_none' => false,
-					'default'          => 'bg-dark',
-					'options'          => [
-						'bg-dark'    => __( 'Dark', 'masjid' ),
-						'bg-light'   => __( 'Light', 'masjid' ),
-						'bg-primary' => __( 'Default', 'masjid' ),
-					],
-				]
-			);
-			$fourth_options->add_field(
-				[
 					'name' => __( 'First Column Title', 'masjid' ),
 					'id'   => 'footer_1_title',
 					'type' => 'text',
@@ -229,7 +200,7 @@ if ( ! class_exists( 'Options_Page' ) ) {
 					'name'             => __( 'First Column Links', 'masjid' ),
 					'id'               => 'footer_1_links',
 					'desc'             => __( 'You can select multiple options', 'masjid' ),
-					'type'             => 'select_multiple',
+					'type'             => 'select',
 					'show_option_none' => false,
 					'options'          => $pages_arr,
 				]
@@ -246,7 +217,7 @@ if ( ! class_exists( 'Options_Page' ) ) {
 					'name'             => __( 'Second Column Links', 'masjid' ),
 					'id'               => 'footer_2_links',
 					'desc'             => __( 'You can select multiple options', 'masjid' ),
-					'type'             => 'select_multiple',
+					'type'             => 'select2',
 					'show_option_none' => false,
 					'options'          => $pages_arr,
 				]
@@ -263,9 +234,10 @@ if ( ! class_exists( 'Options_Page' ) ) {
 					'name'             => __( 'Third Column Links', 'masjid' ),
 					'id'               => 'footer_3_links',
 					'desc'             => __( 'You can select multiple options', 'masjid' ),
-					'type'             => 'select_multiple',
+					'type'             => 'select',
 					'show_option_none' => false,
 					'options'          => $pages_arr,
+					'repeatable' => true
 				]
 			);
 		}

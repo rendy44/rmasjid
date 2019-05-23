@@ -141,8 +141,12 @@ $background_image_url = Helpers\Helper::get_default_background_image_url()
 	}
 
 	.bg-primary {
-		background-color: <?php echo Helpers\Helper::darken_color( $solid_color, 2 ); ?> !important;
+		background-color: <?php echo $solid_color; ?> !important;
 	}
+
+    footer.bg-primary {
+        background-color: <?php echo Helpers\Helper::darken_color($solid_color,2); ?> !important;
+    }
 
 	footer.style2.bg-primary ul.quicklinks li ul.sub-items li a {
 		background-color: <?php echo Helpers\Helper::darken_color( $solid_color, 2 ); ?> !important;
