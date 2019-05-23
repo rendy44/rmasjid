@@ -1,6 +1,6 @@
 # Masjid
 
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/9f1f7cc96d40485da063972cea27df4c)](https://app.codacy.com/app/rendy44/rmasjid?utm_source=github.com&utm_medium=referral&utm_content=rendy44/rmasjid&utm_campaign=Badge_Grade_Dashboard)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/9f1f7cc96d40485da063972cea27df4c)](https://app.codacy.com/app/rendy44/rmasjid?utm_source=github.com&utm_medium=referral&utm_content=rendy44/rmasjid&utm_campaign=Badge_Grade_Dashboard) [![Maintainability](https://api.codeclimate.com/v1/badges/617b1e8a041246461586/maintainability)](https://codeclimate.com/github/rendy44/rmasjid/maintainability)
 
 Free WordPress theme for your masjid/mosque.
 ## Installation
