@@ -159,26 +159,24 @@ if ( ! class_exists( 'MaDesigner' ) ) {
 		 * Callback for rendering footer content
 		 */
 		public function footer_content_callback() {
-			$social_network_urls = Helpers\Helper::get_social_network_url();
-			$footer_style        = get_theme_mod( 'footer_style', 'style1' );
-			$color_scheme        = get_theme_mod( 'color_scheme', 'bg-dark' );
-			$locations           = get_nav_menu_locations();
-			$footer1             = wp_get_nav_menu_object( $locations['footer1_nav'] );
-			$footer1_title       = $footer1->name;
-			$footer1_items       = wp_get_nav_menu_items( $footer1->name );
-			$footer2             = wp_get_nav_menu_object( $locations['footer2_nav'] );
-			$footer2_title       = $footer2->name;
-			$footer2_items       = wp_get_nav_menu_items( $footer2->name );
-			$footer3             = wp_get_nav_menu_object( $locations['footer3_nav'] );
-			$footer3_title       = $footer3->name;
-			$footer3_items       = wp_get_nav_menu_items( $footer3->name );
-			$result              = $this->temp->render(
+			$footer_style  = get_theme_mod( 'footer_style', 'style1' );
+			$color_scheme  = get_theme_mod( 'color_scheme', 'bg-dark' );
+			$locations     = get_nav_menu_locations();
+			$footer1       = wp_get_nav_menu_object( $locations['footer1_nav'] );
+			$footer1_title = $footer1->name;
+			$footer1_items = wp_get_nav_menu_items( $footer1->name );
+			$footer2       = wp_get_nav_menu_object( $locations['footer2_nav'] );
+			$footer2_title = $footer2->name;
+			$footer2_items = wp_get_nav_menu_items( $footer2->name );
+			$footer3       = wp_get_nav_menu_object( $locations['footer3_nav'] );
+			$footer3_title = $footer3->name;
+			$footer3_items = wp_get_nav_menu_items( $footer3->name );
+			$result        = $this->temp->render(
 				'footer-' . $footer_style,
 				[
 					'title'           => get_bloginfo( 'name' ),
 					'description'     => get_bloginfo( 'description' ),
 					'footnote'        => '&copy; ' . get_bloginfo( 'name' ) . ' ' . date( 'Y' ),
-					'social_networks' => $social_network_urls,
 					'color_scheme'    => $color_scheme,
 					'footer1_title'   => $footer1_title,
 					'footer1_items'   => $footer1_items,
