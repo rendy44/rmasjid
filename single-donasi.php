@@ -111,10 +111,6 @@ while ( have_posts() ) {
 					<a class="nav-link" data-toggle="tab" href="#gallery_tab">
 						<?php echo esc_html__( 'Gallery', 'masjid' ); ?></a>
 				</li>
-				<li class="nav-item">
-					<a class="nav-link" data-toggle="tab" href="#comment_tab">
-						<?php echo esc_html__( 'Comment', 'masjid' ); ?></a>
-				</li>
 			</ul>
 
 			<!-- Tab panes -->
@@ -143,7 +139,6 @@ while ( have_posts() ) {
 						?>
 					</div>
 				</div>
-				<div class="tab-pane container fade py-4" id="comment_tab"></div>
 			</div>
 		</div>
 	</div>
