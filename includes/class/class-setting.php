@@ -64,10 +64,10 @@ if ( ! class_exists( 'Setting' ) ) {
 			add_theme_support( 'post-thumbnails' );
 			register_nav_menus(
 				[
-					'main_nav'   => __( 'Main Nav', 'masjid' ),
-					'foot_one'   => __( 'Footer First Column', 'masjid' ),
-					'foot_two'   => __( 'Footer Second Column', 'masjid' ),
-					'foot_three' => __( 'Footer Third Column', 'masjid' ),
+					'main_nav'    => __( 'Main Nav', 'masjid' ),
+					'footer1_nav' => __( 'About Us', 'masjid' ),
+					'footer2_nav' => __( 'Our Programs', 'masjid' ),
+					'footer3_nav' => __( 'Useful Links', 'masjid' ),
 				]
 			);
 			register_sidebar(

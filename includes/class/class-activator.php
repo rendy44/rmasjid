@@ -63,11 +63,13 @@ if ( ! class_exists( 'Activator' ) ) {
 		 * Create built in nav menu
 		 */
 		private function create_navmenu() {
+			$prebuilt_pages = (array) get_option( 'ma_page_maps' );
+			$locations      = get_theme_mod( 'nav_menu_locations' );
+
 			$header_nav     = 'Main Menu';
 			$header_nav_obj = wp_get_nav_menu_object( $header_nav );
 			if ( ! $header_nav_obj ) {
-				$header_nav_id  = wp_create_nav_menu( $header_nav );
-				$prebuilt_pages = (array) get_option( 'ma_page_maps' );
+				$header_nav_id = wp_create_nav_menu( $header_nav );
 				if ( ! empty( $prebuilt_pages ) ) {
 					foreach ( $prebuilt_pages as $page_key => $page_id ) {
 						wp_update_nav_menu_item(
@@ -82,10 +84,117 @@ if ( ! class_exists( 'Activator' ) ) {
 						);
 					}
 				}
-				$locations             = get_theme_mod( 'nav_menu_locations' );
 				$locations['main_nav'] = $header_nav_id;
-				set_theme_mod( 'nav_menu_locations', $locations );
 			}
+
+			// Create footer link 1.
+			$foot1_nav     = __( 'About Us', 'masjid' );
+			$foot1_nav_obj = wp_get_nav_menu_object( $foot1_nav );
+			if ( ! $foot1_nav_obj ) {
+				$foot1_nav_id   = wp_create_nav_menu( $foot1_nav );
+				$about_page     = $prebuilt_pages['page_about'];
+				$history_page   = $prebuilt_pages['page_history'];
+				$privacy_policy = get_option( 'wp_page_for_privacy_policy' );
+				wp_update_nav_menu_item(
+					$foot1_nav_id,
+					0,
+					[
+						'menu-item-title'  => get_the_title( $about_page ),
+						'menu-item-url'    => home_url( get_post_field( 'post_name', $about_page ) ),
+						'menu-item-status' => 'publish',
+					]
+				);
+				wp_update_nav_menu_item(
+					$foot1_nav_id,
+					0,
+					[
+						'menu-item-title'  => get_the_title( $history_page ),
+						'menu-item-url'    => home_url( get_post_field( 'post_name', $history_page ) ),
+						'menu-item-status' => 'publish',
+					]
+				);
+				wp_update_nav_menu_item(
+					$foot1_nav_id,
+					0,
+					[
+						'menu-item-title'  => get_the_title( $privacy_policy ),
+						'menu-item-url'    => home_url( get_post_field( 'post_name', $privacy_policy ) ),
+						'menu-item-status' => 'publish',
+					]
+				);
+
+				$locations['footer1_nav'] = $foot1_nav_id;
+			}
+
+			// Create footer link 2.
+			$foot2_nav     = __( 'Our Programs', 'masjid' );
+			$foot2_nav_obj = wp_get_nav_menu_object( $foot2_nav );
+			if ( ! $foot2_nav_obj ) {
+				$foot2_nav_id  = wp_create_nav_menu( $foot2_nav );
+				$campaign_page = $prebuilt_pages['page_campaign'];
+				$lecture_page  = $prebuilt_pages['page_lecture'];
+				$article_page  = $prebuilt_pages['page_article'];
+				wp_update_nav_menu_item(
+					$foot2_nav_id,
+					0,
+					[
+						'menu-item-title'  => get_the_title( $campaign_page ),
+						'menu-item-url'    => home_url( get_post_field( 'post_name', $campaign_page ) ),
+						'menu-item-status' => 'publish',
+					]
+				);
+				wp_update_nav_menu_item(
+					$foot2_nav_id,
+					0,
+					[
+						'menu-item-title'  => get_the_title( $lecture_page ),
+						'menu-item-url'    => home_url( get_post_field( 'post_name', $lecture_page ) ),
+						'menu-item-status' => 'publish',
+					]
+				);
+				wp_update_nav_menu_item(
+					$foot2_nav_id,
+					0,
+					[
+						'menu-item-title'  => get_the_title( $article_page ),
+						'menu-item-url'    => home_url( get_post_field( 'post_name', $article_page ) ),
+						'menu-item-status' => 'publish',
+					]
+				);
+
+				$locations['footer2_nav'] = $foot2_nav_id;
+			}
+
+			// Create footer link 3.
+			$foot3_nav     = __( 'Useful Links', 'masjid' );
+			$foot3_nav_obj = wp_get_nav_menu_object( $foot3_nav );
+			if ( ! $foot3_nav_obj ) {
+				$foot3_nav_id = wp_create_nav_menu( $foot3_nav );
+				wp_update_nav_menu_item(
+					$foot3_nav_id,
+					0,
+					[
+						'menu-item-title'  => 'WPMasjid',
+						'menu-item-url'    => 'https://github.com/rendy44/rmasjid',
+						'menu-item-status' => 'publish',
+						'menu-item-target' => 'blank',
+					]
+				);
+				wp_update_nav_menu_item(
+					$foot3_nav_id,
+					0,
+					[
+						'menu-item-title'  => __( 'Consult to Dev', 'masjid' ),
+						'menu-item-url'    => 'http://fb.com/rendy.444444',
+						'menu-item-status' => 'publish',
+						'menu-item-target' => '_blank',
+					]
+				);
+
+				$locations['footer3_nav'] = $foot3_nav_id;
+			}
+
+			set_theme_mod( 'nav_menu_locations', $locations );
 		}
 
 		/**
@@ -135,8 +244,8 @@ if ( ! class_exists( 'Activator' ) ) {
 		 */
 		private function map_dep_pages() {
 			$this->dep_pages = [
-				'campaign' => [
-					'title' => __( 'All Campaigns', 'masjid' ),
+				'about'    => [
+					'title' => __( 'About Us', 'masjid' ),
 				],
 				'history'  => [
 					'title' => __( 'Our History', 'masjid' ),
@@ -151,6 +260,9 @@ if ( ! class_exists( 'Activator' ) ) {
 						'article_title'     => __( 'Latest Published Articles', 'masjid' ),
 						'article_subtitle'  => __( 'We will keep sharing useful articles both for your dunya and hereafter', 'masjid' ),
 					],
+				],
+				'campaign' => [
+					'title' => __( 'All Campaigns', 'masjid' ),
 				],
 				'lecture'  => [
 					'title' => __( 'Lecture Schedules', 'masjid' ),

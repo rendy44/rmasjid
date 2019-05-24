@@ -10,16 +10,7 @@
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
-}
-
-$options = [];
-$title_1 = ! empty( $options['footer_1_title'] ) ? $options['footer_1_title'] : '';
-$links_1 = ! empty( $options['footer_1_links'] ) ? $options['footer_1_links'] : '';
-$title_2 = ! empty( $options['footer_2_title'] ) ? $options['footer_2_title'] : '';
-$links_2 = ! empty( $options['footer_2_links'] ) ? $options['footer_2_links'] : '';
-$title_3 = ! empty( $options['footer_3_title'] ) ? $options['footer_3_title'] : '';
-$links_3 = ! empty( $options['footer_3_links'] ) ? $options['footer_3_links'] : '';
-?>
+} ?>
 
 <!-- Back to top -->
 <a class="btn btn-primary btn-lg btn-back-to-top text-center text-white" style="display: none"> <i class="fa fa-arrow-up"></i> </a>
@@ -38,39 +29,39 @@ $links_3 = ! empty( $options['footer_3_links'] ) ? $options['footer_3_links'] : 
 				</ul>
 			</div>
 			<div class="col-lg-2 col-sm-4 first">
-				<h4><?php echo esc_html( $title_1 ); ?></h4>
+				<h4><?php echo esc_html( $footer1_title ); ?></h4>
 				<hr/>
 				<ul class="links">
 					<?php
-					if ( $links_1 ) {
-						foreach ( $links_1 as $item ) {
-							echo '<li><a href="' . get_permalink( $item ) . '">' . get_the_title( $item ) . '</a></li>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+					if ( ! empty( $footer1_items ) ) {
+						foreach ( $footer1_items as $item ) {
+							echo '<li><a href="' . $item->url . '" target="' . $item->target . '">' . $item->post_title . '</a></li>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 						}
 					}
 					?>
 				</ul>
 			</div>
 			<div class="col-lg-2 col-sm-4 mid">
-				<h4><?php echo $title_2; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></h4>
+				<h4><?php echo esc_html( $footer2_title ); ?></h4>
 				<hr/>
 				<ul class="links">
 					<?php
-					if ( $links_2 ) {
-						foreach ( $links_2 as $item ) {
-							echo '<li><a href="' . get_permalink( $item ) . '">' . get_the_title( $item ) . '</a></li>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+					if ( ! empty( $footer2_items ) ) {
+						foreach ( $footer2_items as $item ) {
+							echo '<li><a href="' . $item->url . '" target="' . $item->target . '">' . $item->post_title . '</a></li>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 						}
 					}
 					?>
 				</ul>
 			</div>
 			<div class="col-lg-2 col-sm-4 last">
-				<h4><?php echo $title_3; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></h4>
+				<h4><?php echo esc_html( $footer3_title ); ?></h4>
 				<hr/>
 				<ul class="links">
 					<?php
-					if ( $links_3 ) {
-						foreach ( $links_3 as $item ) {
-							echo '<li><a href="' . get_permalink( $item ) . '">' . get_the_title( $item ) . '</a></li>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+					if ( ! empty( $footer3_items ) ) {
+						foreach ( $footer3_items as $item ) {
+							echo '<li><a href="' . $item->url . '" target="' . $item->target . '">' . $item->post_title . '</a></li>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 						}
 					}
 					?>
