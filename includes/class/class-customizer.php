@@ -233,6 +233,46 @@ if ( ! class_exists( 'Customizer' ) && class_exists( 'Kirki' ) ) {
 					],
 				]
 			);
+			\Kirki::add_field(
+				$this->config,
+				[
+					'type'     => 'link',
+					'settings' => 'facebook_url',
+					'label'    => __( 'Facebook URL', 'masjid' ),
+					'section'  => 'footer',
+					'priority' => 30,
+				]
+			);
+			\Kirki::add_field(
+				$this->config,
+				[
+					'type'     => 'link',
+					'settings' => 'telegram_url',
+					'label'    => __( 'Telegram URL', 'masjid' ),
+					'section'  => 'footer',
+					'priority' => 40,
+				]
+			);
+			\Kirki::add_field(
+				$this->config,
+				[
+					'type'     => 'link',
+					'settings' => 'instagram_url',
+					'label'    => __( 'Instagram URL', 'masjid' ),
+					'section'  => 'footer',
+					'priority' => 40,
+				]
+			);
+			\Kirki::add_field(
+				$this->config,
+				[
+					'type'     => 'link',
+					'settings' => 'youtube_url',
+					'label'    => __( 'Youtube URL', 'masjid' ),
+					'section'  => 'footer',
+					'priority' => 50,
+				]
+			);
 		}
 	}
 }

@@ -124,11 +124,14 @@ if ( ! class_exists( 'MaDesigner' ) ) {
 		 * @param string $subcontent header subtitle content.
 		 */
 		public function small_header_content_callback( $image_id, $title, $subcontent = '' ) {
-			$result = $this->temp->render( 'header-small', [
-				'image_url'    => ( $image_id ) ? wp_get_attachment_image_url( $image_id, 'large' ) : '',
-				'header_title' => $title,
-				'subcontent'   => $subcontent,
-			] );
+			$result = $this->temp->render(
+				'header-small',
+				[
+					'image_url'    => ( $image_id ) ? wp_get_attachment_image_url( $image_id, 'large' ) : '',
+					'header_title' => $title,
+					'subcontent'   => $subcontent,
+				]
+			);
 			echo $result;  // phpcs:ignore WordPress.Security.EscapeOutput
 		}
 
@@ -169,19 +172,23 @@ if ( ! class_exists( 'MaDesigner' ) ) {
 			$footer3             = wp_get_nav_menu_object( $locations['footer3_nav'] );
 			$footer3_title       = $footer3->name;
 			$footer3_items       = wp_get_nav_menu_items( $footer3->name );
-			$result              = $this->temp->render( 'footer-' . $footer_style, [
-				'title'           => get_bloginfo( 'name' ),
-				'description'     => get_bloginfo( 'description' ),
-				'footnote'        => '&copy; ' . get_bloginfo( 'name' ) . ' ' . date( 'Y' ),
-				'social_networks' => $social_network_urls,
-				'color_scheme'    => $color_scheme,
-				'footer1_title'   => $footer1_title,
-				'footer1_items'   => $footer1_items,
-				'footer2_title'   => $footer2_title,
-				'footer2_items'   => $footer2_items,
-				'footer3_title'   => $footer3_title,
-				'footer3_items'   => $footer3_items,
-			] );
+			$result              = $this->temp->render(
+				'footer-' . $footer_style,
+				[
+					'title'           => get_bloginfo( 'name' ),
+					'description'     => get_bloginfo( 'description' ),
+					'footnote'        => '&copy; ' . get_bloginfo( 'name' ) . ' ' . date( 'Y' ),
+					'social_networks' => $social_network_urls,
+					'color_scheme'    => $color_scheme,
+					'footer1_title'   => $footer1_title,
+					'footer1_items'   => $footer1_items,
+					'footer2_title'   => $footer2_title,
+					'footer2_items'   => $footer2_items,
+					'footer3_title'   => $footer3_title,
+					'footer3_items'   => $footer3_items,
+					'social_networks' => Helpers\Helper::get_social_network_url(),
+				]
+			);
 			echo $result;  // phpcs:ignore WordPress.Security.EscapeOutput
 		}
 

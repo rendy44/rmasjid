@@ -563,11 +563,10 @@ if ( ! class_exists( 'Helper' ) ) {
 		 * @return array
 		 */
 		public static function get_social_network_url() {
-			$keys    = [ 'facebook', 'telegram', 'instagram', 'youtube' ];
-			$result  = [];
-			$options = get_option( 'ma_options_socnet' );
+			$keys   = [ 'facebook', 'telegram', 'instagram', 'youtube' ];
+			$result = [];
 			foreach ( $keys as $key ) {
-				$result[ $key ] = ! empty( $options[ $key ] ) ? $options[ $key ] : false;
+				$result[ $key ] = get_theme_mod( $key . '_url' );
 			}
 
 			return $result;
