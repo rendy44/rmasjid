@@ -64,7 +64,10 @@ if ( ! class_exists( 'Setting' ) ) {
 			add_theme_support( 'post-thumbnails' );
 			register_nav_menus(
 				[
-					'main_nav' => __( 'Main Nav', 'masjid' ),
+					'main_nav'   => __( 'Main Nav', 'masjid' ),
+					'foot_one'   => __( 'Footer First Column', 'masjid' ),
+					'foot_two'   => __( 'Footer Second Column', 'masjid' ),
+					'foot_three' => __( 'Footer Third Column', 'masjid' ),
 				]
 			);
 			register_sidebar(

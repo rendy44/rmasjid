@@ -56,6 +56,36 @@ if ( ! class_exists( 'Activator' ) ) {
 		private function __construct() {
 			$this->create_dep_pages();
 			$this->set_web_settings();
+			$this->create_navmenu();
+		}
+
+		/**
+		 * Create built in nav menu
+		 */
+		private function create_navmenu() {
+			$header_nav     = 'Main Menu';
+			$header_nav_obj = wp_get_nav_menu_object( $header_nav );
+			if ( ! $header_nav_obj ) {
+				$header_nav_id  = wp_create_nav_menu( $header_nav );
+				$prebuilt_pages = (array) get_option( 'ma_page_maps' );
+				if ( ! empty( $prebuilt_pages ) ) {
+					foreach ( $prebuilt_pages as $page_key => $page_id ) {
+						wp_update_nav_menu_item(
+							$header_nav_id,
+							0,
+							[
+								'menu-item-title'   => get_the_title( $page_id ),
+								'menu-item-classes' => $page_key,
+								'menu-item-url'     => home_url( get_post_field( 'post_name', $page_id ) ),
+								'menu-item-status'  => 'publish',
+							]
+						);
+					}
+				}
+				$locations             = get_theme_mod( 'nav_menu_locations' );
+				$locations['main_nav'] = $header_nav_id;
+				set_theme_mod( 'nav_menu_locations', $locations );
+			}
 		}
 
 		/**
@@ -83,7 +113,8 @@ if ( ! class_exists( 'Activator' ) ) {
 					$title                            = ! empty( $obj['title'] ) ? $obj['title'] : ucwords( $name );
 					$contents                         = ! empty( $obj['content'] ) ? $obj['content'] : [];
 					$opt_page_keys[]                  = $name;
-					$created_page                     = $this->create_post( $title, 'page' );
+					$maybe_page_exist                 = get_page_by_title( $title );
+					$created_page                     = null !== $maybe_page_exist ? $maybe_page_exist : $this->create_post( $title, 'page' );
 					$opt_page_ids[]                   = $created_page;
 					$opt_page_maps[ 'page_' . $name ] = $created_page;
 					$post_metas                       = [ '_wp_page_template' => 'page-templates/' . $name . '.php' ];

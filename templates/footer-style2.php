@@ -12,6 +12,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+$options = [];
 $title_1 = ! empty( $options['footer_1_title'] ) ? $options['footer_1_title'] : '';
 $links_1 = ! empty( $options['footer_1_links'] ) ? $options['footer_1_links'] : '';
 $title_2 = ! empty( $options['footer_2_title'] ) ? $options['footer_2_title'] : '';
