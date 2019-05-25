@@ -11,6 +11,7 @@
 namespace Masjid\Settings;
 
 use Masjid\Helpers;
+use Masjid\Includes\Schedule;
 use WP_Error;
 
 if ( ! defined( 'ABSPATH' ) ) {

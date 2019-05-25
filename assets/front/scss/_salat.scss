@@ -1,0 +1,21 @@
+// Style for salat page and section
+section.bg-city {
+	background: url(../img/city.png) repeat-x bottom;
+	.container {
+		.row {
+			.col-6 {
+				//border-left: 1px solid #F5F5F5;
+				border-right: 1px solid #F5F5F5;
+				&:first-child {
+					//border-left: 0;
+				}
+				&:last-child {
+					border-right: 0;
+				}
+				span {
+					display: block;
+				}
+			}
+		}
+	}
+}

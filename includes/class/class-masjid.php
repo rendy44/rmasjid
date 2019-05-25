@@ -87,6 +87,7 @@ if ( ! class_exists( 'Masjid' ) ) {
 				'designer',
 				'asset',
 				'setting',
+				'schedule',
 				'navwalker',
 				'helper',
 				'cmb2-conditional',

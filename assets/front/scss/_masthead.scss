@@ -16,13 +16,6 @@ section.masthead {
 			margin-bottom: 25px;
 			@include serif-font;
 		}
-		.intro-heading {
-			font-size: 32px;
-			font-weight: 600;
-			line-height: 1.3;
-			margin-bottom: 30px;
-			@include heading-font;
-		}
 	}
 	&.small {
 		z-index: -1;
@@ -49,9 +42,10 @@ section.masthead {
 					.container {
 						align-self: center;
 						.intro-text {
+							padding-top: 70px;
 							margin-bottom: 70px;
 							.intro-subheading {
-								font-size: 20px;
+								font-size: 18px;
 								font-weight: 500;
 								line-height: 1.5;
 								margin-bottom: 30px;
@@ -104,10 +98,7 @@ section.masthead {
 	section.masthead {
 		.intro-text {
 			.intro-lead-in {
-				font-size: 29px;
-			}
-			.intro-heading {
-				font-size: 42px;
+				font-size: 26px;
 			}
 		}
 		&.small {
@@ -119,9 +110,13 @@ section.masthead {
 		.carousel {
 			.carousel-inner {
 				.carousel-item {
-					.intro-text {
-						.intro-subheading {
-							font-size: 24px;
+					.carousel-item-wrapper {
+						.container {
+							.intro-text {
+								.intro-subheading {
+									font-size: 20px;
+								}
+							}
 						}
 					}
 				}
@@ -133,14 +128,8 @@ section.masthead {
 @media(min-width: 768px) {
 	section.masthead {
 		.intro-text {
-			//padding-top: 220px;
-			//padding-bottom: 190px;
 			.intro-lead-in {
-				font-size: 34px;
-			}
-			.intro-heading {
-				font-size: 52px;
-				font-weight: 700;
+				font-size: 28px;
 			}
 		}
 		&.small {
@@ -156,7 +145,7 @@ section.masthead {
 						.container {
 							.intro-text {
 								.intro-subheading {
-									font-size: 28px;
+									font-size: 22px;
 								}
 							}
 						}
@@ -170,11 +159,8 @@ section.masthead {
 @media (min-width: 992px) {
 	section.masthead {
 		.intro-text {
-			.intro-text {
-				font-size: 39px;
-			}
-			.intro-heading {
-				font-size: 57px;
+			.intro-lead-in {
+				font-size: 30px;
 			}
 		}
 		.carousel {
@@ -184,13 +170,12 @@ section.masthead {
 					.carousel-item-wrapper {
 						.container {
 							align-self: flex-end;
+							padding-bottom: 40px;
 							.intro-text {
+								padding-top: 0;
 								padding-right: 40%;
-								.intro-text {
-									font-size: 30px;
-								}
 								.intro-subheading {
-									font-size: 22px;
+									font-size: 24px;
 								}
 							}
 						}

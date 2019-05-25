@@ -141,56 +141,17 @@ if ( ! class_exists( 'Customizer' ) && class_exists( 'Kirki' ) ) {
 				]
 			);
 
-			// Slider.
+			// Header.
 			\Kirki::add_field(
 				$this->config,
 				[
-					'type'         => 'repeater',
-					'label'        => __( 'Sliders', 'masjid' ),
-					'section'      => 'header',
-					'priority'     => 10,
-					'row_label'    => [
-						'type'  => 'text',
-						'value' => __( 'Slider #', 'masjid' ),
-					],
-					'button_label' => __( 'Add Slider', 'masjid' ),
-					'settings'     => 'sliders',
-					'fields'       => [
-						'background'  => [
-							'type'  => 'image',
-							'label' => __( 'Background', 'masjid' ),
-						],
-						'title'       => [
-							'type'    => 'text',
-							'label'   => __( 'Title', 'masjid' ),
-							'default' => '',
-						],
-						'description' => [
-							'type'    => 'text',
-							'label'   => __( 'Description', 'masjid' ),
-							'default' => '',
-						],
-						'link'        => [
-							'type'     => 'select',
-							'label'    => __( 'Link', 'masjid' ),
-							'default'  => 'option-1',
-							'multiple' => 0,
-							'choices'  => \Kirki_Helper::get_posts(
-								[
-									'posts_per_page' => - 1,
-									'post_type'      => [ 'page', 'post', 'kajian', 'donasi' ],
-									'post_status'    => 'publish',
-									'orderby'        => 'date',
-									'order'          => 'desc',
-								]
-							),
-						],
-						'caption'     => [
-							'type'    => 'text',
-							'label'   => __( 'Caption', 'masjid' ),
-							'default' => '',
-						],
-					],
+					'type'        => 'text',
+					'settings'    => 'location',
+					'label'       => __( 'Location', 'masjid' ),
+					'section'     => 'header',
+					'default'     => 'sleman',
+					'description' => __( 'Put your city name or zip code to fetch prayer times', 'masjid' ),
+					'priority'    => 10,
 				]
 			);
 
