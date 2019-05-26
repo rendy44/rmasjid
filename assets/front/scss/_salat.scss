@@ -92,7 +92,7 @@
 			}
 		}
 		&.fajr {
-			background-image: linear-gradient(to top right, rgba(255, 126, 17, .1) 10%, #1e273d 100%);
+			background-image: linear-gradient(to top right, rgba(255, 126, 17, .1) 10%, #223344 20%, #112233 70%);
 			color: white;
 			.box-info {
 				li:nth-child(1) {
@@ -108,7 +108,7 @@
 		}
 		&.shurooq {
 			transition-duration: .5s;
-			background-image: linear-gradient(to top right, rgba(255, 168, 108, 0.8) 10%, #537383 100%);
+			background-image: linear-gradient(to top right, rgba(255, 168, 108, 0.8) 10%, #537383 60%, #334455 30%);
 			color: white;
 			.box-info {
 				li:nth-child(2) {
@@ -163,8 +163,8 @@
 			}
 		}
 		&.maghrib {
-			transition-duration: .5s;
-			background-image: linear-gradient(to bottom right, #3a6183, rgba(255, 103, 62, 0.8));
+			transition-duration: 1.5s;
+			background-image: linear-gradient(to bottom right, #112233, #3a6183, rgba(255, 103, 62, 0.8));
 			color: white;
 			.box-info {
 				li:nth-child(5) {
@@ -172,7 +172,7 @@
 				}
 			}
 			.sun {
-				transition-duration: .5s;
+				transition-duration: 1.5s;
 				background-color: #fd5e53;
 				box-shadow: 0 0 100px 50px rgb(255, 79, 70, .9);
 				bottom: 0;
@@ -208,6 +208,7 @@
 				content: '';
 				position: absolute;
 				background: url(../img/city3.png) transparent repeat-x bottom -210px center;
+				background-size: cover;
 				top: 0;
 				right: 0;
 				bottom: 0;
