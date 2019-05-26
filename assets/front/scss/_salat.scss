@@ -10,6 +10,7 @@
 			padding-left: 0;
 			li {
 				display: none;
+				font-size: 20px;
 				span {
 					display: block;
 				}
@@ -42,13 +43,16 @@
 				padding: .5px;
 				background: #ffffdd;
 				box-shadow: 0 0 1px .5px rgba(255, 238, 221, 0.8);
+				-webkit-transition: all 1s;
+				-moz-transition: all 1s;
+				-o-transition: all 1s;
+				transition: all 1s;
 				&.light {
 					box-shadow: none;
 				}
 				&.bright {
 					box-shadow: 0 0 2px 1px rgba(255, 238, 221, 0.8);
 				}
-
 				&:nth-child(1) {
 					top: 20%;
 					right: 100px;
