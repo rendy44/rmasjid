@@ -108,7 +108,7 @@
 		}
 		&.shurooq {
 			transition-duration: .5s;
-			background-image: linear-gradient(to top right, rgba(255, 168, 108, 0.8) 10%, #537383 60%, #334455 30%);
+			background-image: linear-gradient(to top right, rgba(255, 168, 108, 0.8), #537383, #334455);
 			color: white;
 			.box-info {
 				li:nth-child(2) {
@@ -208,7 +208,6 @@
 				content: '';
 				position: absolute;
 				background: url(../img/city3.png) transparent repeat-x bottom -210px center;
-				background-size: cover;
 				top: 0;
 				right: 0;
 				bottom: 0;
