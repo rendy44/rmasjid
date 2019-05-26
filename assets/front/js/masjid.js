@@ -9,7 +9,7 @@
 	var burgerMenu = document.getElementsByClassName('b-menu')[0];
 	var burgerContain = document.getElementsByClassName('b-container')[0];
 	var burgerNav = document.getElementsByClassName('b-nav')[0];
-	
+
 	burgerMenu.addEventListener('click', function toggleClasses() {
 		[body, burgerContain, burgerNav].forEach(function (el) {
 			el.classList.toggle('open');
@@ -30,11 +30,6 @@
 		}
 	});
 
-	// Closes responsive menu when a scroll trigger link is clicked
-	$('.js-scroll-trigger').click(function () {
-		$('.navbar-collapse').collapse('hide');
-	});
-
 	// Collapse Navbar
 	var navbarCollapse = function () {
 		if ($(".navbar2 .b-container").offset().top > 100) {
@@ -48,13 +43,24 @@
 	// Collapse the navbar when page is scrolled
 	$(window).scroll(navbarCollapse);
 
-	// Hide navbar when modals trigger
-	$('.portfolio-modal').on('show.bs.modal', function (e) {
-		$('.navbar').addClass('d-none');
-	});
-	$('.portfolio-modal').on('hidden.bs.modal', function (e) {
-		$('.navbar').removeClass('d-none');
-	});
+	// Switch salat times
+	var opt = ['fajr', 'shurooq', 'dhuhr', 'asr', 'maghrib', 'isha'],
+		salat_section = $('#salat'),
+		sky = salat_section.find('.bg-sky');
+	var counter = 0,
+		interval = setInterval(function () {
+			var current_class = sky.attr('class'),
+				current_class_arr = current_class.split(' '),
+				val_current_class = current_class_arr[1];
+			console.log(val_current_class);
+			if (counter === 5) {
+				counter = 0;
+			} else {
+				counter++;
+			}
+			var next_class = opt[counter];
+			$(sky).removeClass(val_current_class).addClass(next_class);
+		}, 5000);
 
 	// Back to top
 	var btn_back_to_top = $('.btn-back-to-top');

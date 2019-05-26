@@ -1,20 +1,217 @@
 // Style for salat page and section
-section.bg-city {
-	background: url(../img/city.png) repeat-x bottom;
+#salat {
+	padding: 0;
+	z-index: 2;
+	position: relative;
+	overflow: hidden;
 	.container {
-		.row {
-			.col-6 {
-				//border-left: 1px solid #F5F5F5;
-				border-right: 1px solid #F5F5F5;
-				&:first-child {
-					//border-left: 0;
-				}
-				&:last-child {
-					border-right: 0;
-				}
+		.box-info {
+			list-style: none;
+			padding-left: 0;
+			li {
+				display: none;
 				span {
 					display: block;
 				}
+			}
+		}
+	}
+	.bg-sky {
+		background-color: #112233;
+		padding-top: 120px;
+		position: relative;
+		-webkit-transition: all 3s;
+		-moz-transition: all 3s;
+		-o-transition: all 3s;
+		transition: all 3s;
+		.sun {
+			bottom: -300px;
+			left: calc(50% - 25px);
+			width: 50px;
+			height: 50px;
+			border-radius: 50%;
+			position: absolute;
+			-webkit-transition: all 3s;
+			-moz-transition: all 3s;
+			-o-transition: all 3s;
+			transition: all 3s;
+		}
+		.stars {
+			span {
+				position: absolute;
+				padding: .5px;
+				background: #ffffdd;
+				box-shadow: 0 0 1px .5px rgba(255, 238, 221, 0.8);
+				&.light {
+					box-shadow: none;
+				}
+				&.bright {
+					box-shadow: 0 0 2px 1px rgba(255, 238, 221, 0.8);
+				}
+
+				&:nth-child(1) {
+					top: 20%;
+					right: 100px;
+				}
+				&:nth-child(2) {
+					top: 90px;
+					left: 70%;
+				}
+				&:nth-child(3) {
+					top: 50px;
+					left: 300px;
+				}
+				&:nth-child(4) {
+					top: 50px;
+					left: 50px;
+				}
+				&:nth-child(5) {
+					top: 40px;
+					left: 100px;
+				}
+				&:nth-child(6) {
+					top: 100px;
+					right: 45%;
+				}
+				&:nth-child(7) {
+					top: 10%;
+					right: 10%;
+				}
+				&:nth-child(8) {
+					top: 100px;
+					left: 20%;
+				}
+				&:nth-child(9) {
+					top: 100px;
+					left: 30%;
+				}
+				&:nth-child(10) {
+					top: 100px;
+					right: 50%;
+				}
+			}
+		}
+		&.fajr {
+			background-image: linear-gradient(to top right, rgba(255, 126, 17, .1) 10%, #1e273d 100%);
+			color: white;
+			.box-info {
+				li:nth-child(1) {
+					display: block;
+				}
+			}
+			.sun {
+				background-color: #ff7e11;
+				bottom: -50px;
+				left: 0;
+				box-shadow: 0 0 150px 50px rgba(255, 127, 17, .5);
+			}
+		}
+		&.shurooq {
+			transition-duration: .5s;
+			background-image: linear-gradient(to top right, rgba(255, 168, 108, 0.8) 10%, #537383 100%);
+			color: white;
+			.box-info {
+				li:nth-child(2) {
+					display: block;
+				}
+			}
+			.sun {
+				transition-duration: .5s;
+				background-color: #ffca7c;
+				bottom: 0;
+				left: 50px;
+				box-shadow: 0 0 100px 50px rgb(255, 117, 85, .9);
+			}
+			.stars {
+				opacity: .5;
+			}
+		}
+		&.dhuhr {
+			background-color: #aaceeb;
+			.box-info {
+				li:nth-child(3) {
+					display: block;
+				}
+			}
+			.sun {
+				background-color: #ffffee;
+				box-shadow: 0 0 100px 50px rgba(255, 255, 238, .9);
+				bottom: calc(100% - 75px);
+				left: calc(50% - 25px);
+			}
+			.stars {
+				opacity: 0;
+			}
+		}
+		&.asr {
+			transition-duration: 2s;
+			background-color: #7aa3d4;
+			.box-info {
+				li:nth-child(4) {
+					display: block;
+				}
+			}
+			.sun {
+				transition-duration: 2s;
+				background-color: #ffeedd;
+				box-shadow: 0 0 80px 50px rgba(255, 221, 187, 0.9);
+				bottom: 200px;
+				left: calc(100% - 100px);
+			}
+			.stars {
+				opacity: 0;
+			}
+		}
+		&.maghrib {
+			transition-duration: .5s;
+			background-image: linear-gradient(to bottom right, #3a6183, rgba(255, 103, 62, 0.8));
+			color: white;
+			.box-info {
+				li:nth-child(5) {
+					display: block;
+				}
+			}
+			.sun {
+				transition-duration: .5s;
+				background-color: #fd5e53;
+				box-shadow: 0 0 100px 50px rgb(255, 79, 70, .9);
+				bottom: 0;
+				left: 100%;
+			}
+			.stars {
+				opacity: .5;
+			}
+		}
+		&.isha {
+			transition-duration: .5s;
+			background-color: #112233;
+			color: white;
+			.box-info {
+				li:nth-child(6) {
+					display: block;
+				}
+			}
+			.sun {
+				transition-duration: 0s;
+				background-color: transparent;
+				box-shadow: none;
+				bottom: -300px;
+				right: 0;
+			}
+			.stars {
+				opacity: 1;
+			}
+		}
+		.bg-city {
+			padding-bottom: 250px;
+			&:after {
+				content: '';
+				position: absolute;
+				background: url(../img/city3.png) transparent repeat-x bottom -210px center;
+				top: 0;
+				right: 0;
+				bottom: 0;
+				left: 0;
 			}
 		}
 	}
